@@ -1,2 +1,9 @@
 # ASE_2023Spring
-Homework Repository for 2023 Spring CSC 591 Automated Software Engineering
+This is the homework Repository for 2023 Spring CSC 591 Automated Software Engineering
+
+[![DOI](https://zenodo.org/badge/588302670.svg)](https://zenodo.org/badge/latestdoi/588302670)
+
+## Meet the Team
+- Niraj Lavani
+- Qiuyu Chen
+- Uzair Chhapra

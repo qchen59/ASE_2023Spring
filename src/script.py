@@ -3,8 +3,9 @@ import sys
 import re
 
 the = {}
-help = "script.py : an example script with help text and a test suite\nUSAGE:   script.lua  [OPTIONS] [-g ACTION]\nOPTIONS:\n-d  --dump  on crash, dump stack = false\n-g  --go    start-up action      = data\n-h  --help  show help            = false\n-s  --seed  random number seed   = 937162211\nACTIONS:"
-b4 = {}
+help = "script.py : an example script with help text and a test suite\nUSAGE:   script.py  [OPTIONS] [-g ACTION]\nOPTIONS:\n-d  --dump  on crash, dump stack = false\n-g  --go    start-up action      = data\n-h  --help  show help            = false\n-s  --seed  random number seed   = 937162211\nACTIONS:"
+
+
 # -----------------------------------------------------------------------------------------
 
 # -- NUM
@@ -43,7 +44,10 @@ class Num:
 
     # return standard deviation using Welford's algorithm http://t.ly/nn_W
     def div(self):
-        return (self.m2 < 0 or self.n < 2) and 0 or pow(self.m2 / (self.n - 1), 0.5)
+        if self.m2 < 0 or self.n < 2:
+            return 0
+        else:
+            return pow(self.m2 / (self.n - 1), 0.5)
 
 
 # -- `main` fills in the settings, updates them from the command line, runs
@@ -61,32 +65,62 @@ class Main:
 
     # update key,val in `t` from command-line flags
     def cli(self, options):
-        for k, v in options:
-            for n, x in sys.argv:
-                if x[0] == "-" or x == "--":
-                    v = v == "false" and "true" or v == "true" and "false" or sys.argv[n + 1]
+        for k, v in options.items():
+            for n, x in enumerate(sys.argv):
+                # If the command line argument equals to the option
+                if x == "-" + k[0] or x == "--" + k:
+                    if v == "false":
+                        v = "true"
+                    elif v == "true":
+                        v = "false"
+                    else:
+                        v = sys.argv[n + 1]
             options[k] = v
         return options
 
-# -- `main` fills in the settings, updates them from the command line, runs
-# -- the start up actions (and before each run, it resets the random number seed and settongs);
-# -- and, finally, returns the number of test crashed to the operating system.
-    def main(self, options, funs):
+    # -- `main` fills in the settings, updates them from the command line, runs
+    # -- the start up actions (and before each run, it resets the random number seed and settongs);
+    # -- and, finally, returns the number of test crashed to the operating system.
+    def main(self, options, help, funs):
         saved = {}
         fails = 0
-        for k, v in self.cli(self.settings(help)):
+        for k, v in self.cli(self.settings(help)).items():
             options[k] = v
             saved[k] = v
-        if options["help"]:
+        if options["help"] == "true":
             print(help)
         else:
-            for what, fun in funs:
+            for what, fun in funs.items():
                 if options["go"] == "all" or what == options["go"]:
-                    for k, v in saved:
+                    for k, v in saved.items():
                         options[k] = v
-                    Seed = options.seed
+                    # Check the global variable Seed for Numeric
+                    Seed = options["seed"]
                     if not funs[what]():
                         fails += 1
                         print("❌ fail:", what)
                     else:
                         print("✅ pass:", what)
+
+
+# Example Test Cases
+egs = {}
+
+# register an example
+def eg(key, str, fun):
+    global help
+    egs[key] = fun
+    help += "  -g  {}\t{}\n".format(key, str)
+
+
+def numTest():
+    num = Num()
+    for x in [1, 1, 1, 1, 2, 2, 3]:
+        num.add(x)
+    # TODO: add 0.787 == rnd(num.div())
+    return 11 / 7 == num.mid()
+
+
+eg("num", "check nums", numTest)
+m = Main()
+m.main(the, help, egs)

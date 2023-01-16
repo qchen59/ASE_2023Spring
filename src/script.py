@@ -2,6 +2,9 @@
 
 import math
 
+# Global Variable List
+the = {'seed': 937162211}
+
 # Numerics Class
 class Numerics:
     def __init__(self,seed=937162211):
@@ -55,4 +58,30 @@ class Lists:
     # -- sort() is called to sort new table in ascending default order
     def keys(self, table):
         return self.sort(self.kap(table, lambda k, _: k))
+
     
+    # Testing the Random functions within Numerics class
+    def randTest():
+        # Generate 2 nums from Num() [defined by Qiuyu]
+        num1,num2 = Num(),Num()
+
+        # Get set the seed from global setting
+        Numerics.Seed = the['seed']; 
+
+        # Add random numbers 
+        for i in range(10**3): 
+            num1.add(Numerics.rand(0,1))
+
+        # get the seed from global setting again (rand() alters the seed in class)
+        Numerics.Seed = the['seed']; 
+
+        # Add random numbers
+        for i in range(10**3): 
+            num2.add(Numerics.rand(0,1))
+
+        # Test comparison
+        m1,m2 = Numerics.rnd(num1.mid(),10), Numerics.rnd(num2.mid(),10)
+        return m1 == m2 and .5 == Numerics.rnd(m1,1)
+
+    # eg function defined by Qiuyu
+    # eg("rand", "generate, reset, regenerate same", randTest())

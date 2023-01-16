@@ -7,6 +7,35 @@ import re
 the = {'seed': 937162211}
 help = "script.py : an example script with help text and a test suite\nUSAGE:   script.py  [OPTIONS] [-g ACTION]\nOPTIONS:\n-d  --dump  on crash, dump stack = false\n-g  --go    start-up action      = data\n-h  --help  show help            = false\n-s  --seed  random number seed   = 937162211\nACTIONS:\n"
 
+class Sym:
+    def __init__(self) -> None:
+        self.n = 0
+        self.has = {}
+        self.most, self.mode = 0,None
+
+    def add(self, x):
+        if x != "?":
+            self.n += 1
+            # increase count of symbol in dictionary "has"
+            self.has[x] = 1 + self.has.get(x,0)
+            if self.has[x] > self.most:
+                self.most,self.mode = self.has[x], x
+
+    def mid(self):
+        return self.mode
+
+    def div(self, fun, e):
+        def fun(p):
+            return p*math.log(p,2)
+
+        e = 0
+        for _,n in self.has.items():
+            e += fun(n/self.n)
+
+        return -e
+
+
+
 # Numerics Class
 class Numerics:
     def __init__(self):
@@ -221,7 +250,14 @@ def randTest():
     return m1 == m2 and .5 == numeric.rnd(m1,1)
 
     # eg function defined by Qiuyu
+def symTest():
+    sym = Sym()
+    for x in ["a","a","a","a","b","b","c"]:
+        sym.add(x)
+    return "a"==sym.mid() #and 1.379 == rnd(sym:div())end)
 
+
+eg("sym", "check syms", symTest)
 eg("rand", "generate, reset, regenerate same", randTest)
 eg("num", "check nums", numTest)
 m = Main()

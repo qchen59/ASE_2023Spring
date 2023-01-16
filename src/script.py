@@ -1,5 +1,5 @@
 #script.lua -> script.py
-
+import sys
 import math
 import re
 
@@ -9,8 +9,8 @@ help = "script.py : an example script with help text and a test suite\nUSAGE:   
 
 # Numerics Class
 class Numerics:
-    def __init__(self,seed=937162211):
-        self.Seed = seed
+    def __init__(self):
+        self.Seed = the["seed"]
 
     def rint(self,lo=0, hi=1): # n ; a integer lo..hi-1
         return math.floor(0.5 + self.rand(lo, hi))
@@ -103,6 +103,27 @@ class Num:
         else:
             return pow(self.m2 / (self.n - 1), 0.5)
 
+def coerce(s:str):
+    try:
+        # check if boolean true
+        if s.lower()=='true':
+            return True
+        # check if boolean false
+        elif s.lower()=='false':
+            return False
+        try:
+            # cast to int
+            return int(s)
+        except Exception as e:
+            try:
+                # cast to float
+                return float(s)
+            except Exception as e:
+                # remove whitespaces
+                return s.strip()
+    except Exception as e:
+        # any other exception, return as is
+        return s
 
 # -- `main` fills in the settings, updates them from the command line, runs
 # -- the start up actions (and before each run, it resets the random number seed and settongs);
@@ -129,27 +150,28 @@ class Main:
                         v = "false"
                     else:
                         v = sys.argv[n + 1]
-            options[k] = v
+            options[k] = coerce(v)
         return options
 
     # -- `main` fills in the settings, updates them from the command line, runs
     # -- the start up actions (and before each run, it resets the random number seed and settongs);
     # -- and, finally, returns the number of test crashed to the operating system.
-    def main(self, options, help, funs):
+    def main(self, help, funs):
+        global the
         saved = {}
         fails = 0
         for k, v in self.cli(self.settings(help)).items():
-            options[k] = v
+            the[k] = v
             saved[k] = v
-        if options["help"] == "true":
+        if the["help"] == "true":
             print(help)
         else:
             for what, fun in funs.items():
-                if options["go"] == "all" or what == options["go"]:
+                if the["go"] == "all" or what == the["go"]:
                     for k, v in saved.items():
-                        options[k] = v
+                        the[k] = v
                     # Check the global variable Seed for Numeric
-                    the["seed"] = int(options["seed"])
+                    # the["seed"] = int(the["seed"])
                     if not funs[what]():
                         fails += 1
                         print("❌ fail:", what)
@@ -169,37 +191,38 @@ def eg(key, str, fun):
 
 def numTest():
     num = Num()
+    numeric = Numerics()
     for x in [1, 1, 1, 1, 2, 2, 3]:
         num.add(x)
-    # TODO: add 0.787 == rnd(num.div())
-    return 11 / 7 == num.mid()
+    return 11 / 7 == num.mid() and 0.787 == numeric.rnd(num.div())
 
     # Testing the Random functions within Numerics class
-    def randTest():
-        # Generate 2 nums from Num() [defined by Qiuyu]
-        num1,num2 = Num(),Num()
+def randTest():
+    # Generate 2 nums from Num() [defined by Qiuyu]
+    num1,num2 = Num(),Num()
 
-        # Get set the seed from global setting
-        Numerics.Seed = the['seed'];
+    numeric = Numerics()
+    # Get set the seed from global setting
+    numeric.Seed = the['seed'];
 
-        # Add random numbers
-        for i in range(10**3):
-            num1.add(Numerics.rand(0,1))
+    # Add random numbers
+    for i in range(10**3):
+        num1.add(numeric.rand(0,1))
 
-        # get the seed from global setting again (rand() alters the seed in class)
-        Numerics.Seed = the['seed'];
+    # get the seed from global setting again (rand() alters the seed in class)
+    numeric.Seed = the['seed'];
 
-        # Add random numbers
-        for i in range(10**3):
-            num2.add(Numerics.rand(0,1))
+    # Add random numbers
+    for i in range(10**3):
+        num2.add(numeric.rand(0,1))
 
-        # Test comparison
-        m1,m2 = Numerics.rnd(num1.mid(),10), Numerics.rnd(num2.mid(),10)
-        return m1 == m2 and .5 == Numerics.rnd(m1,1)
+    # Test comparison
+    m1,m2 = numeric.rnd(num1.mid(),10), numeric.rnd(num2.mid(),10)
+    return m1 == m2 and .5 == numeric.rnd(m1,1)
 
     # eg function defined by Qiuyu
-    # eg("rand", "generate, reset, regenerate same", randTest())
 
+eg("rand", "generate, reset, regenerate same", randTest)
 eg("num", "check nums", numTest)
 m = Main()
-m.main(the, help, egs)
+m.main(help, egs)

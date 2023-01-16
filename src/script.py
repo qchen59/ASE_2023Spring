@@ -1,4 +1,4 @@
-#script.lua -> script.py
+# script.lua -> script.py
 import sys
 import math
 import re
@@ -7,33 +7,32 @@ import re
 the = {'seed': 937162211}
 help = "script.py : an example script with help text and a test suite\nUSAGE:   script.py  [OPTIONS] [-g ACTION]\nOPTIONS:\n-d  --dump  on crash, dump stack = false\n-g  --go    start-up action      = data\n-h  --help  show help            = false\n-s  --seed  random number seed   = 937162211\nACTIONS:\n"
 
+
 class Sym:
     def __init__(self) -> None:
         self.n = 0
         self.has = {}
-        self.most, self.mode = 0,None
+        self.most, self.mode = 0, None
 
     def add(self, x):
         if x != "?":
             self.n += 1
             # increase count of symbol in dictionary "has"
-            self.has[x] = 1 + self.has.get(x,0)
+            self.has[x] = 1 + self.has.get(x, 0)
             if self.has[x] > self.most:
-                self.most,self.mode = self.has[x], x
+                self.most, self.mode = self.has[x], x
 
     def mid(self):
         return self.mode
 
-    def div(self, fun, e):
+    def div(self, e=0):
         def fun(p):
-            return p*math.log(p,2)
+            return p * math.log(p, 2)
 
-        e = 0
-        for _,n in self.has.items():
-            e += fun(n/self.n)
+        for _, n in self.has.items():
+            e += fun(n / self.n)
 
         return -e
-
 
 
 # Numerics Class
@@ -41,14 +40,14 @@ class Numerics:
     def __init__(self):
         self.Seed = the["seed"]
 
-    def rint(self,lo=0, hi=1): # n ; a integer lo..hi-1
+    def rint(self, lo=0, hi=1):  # n ; a integer lo..hi-1
         return math.floor(0.5 + self.rand(lo, hi))
 
-    def rand(self,lo=0, hi=1): # n; a float "x" lo<=x < x
+    def rand(self, lo=0, hi=1):  # n; a float "x" lo<=x < x
         self.Seed = (16807 * self.Seed) % 2147483647
         return lo + (hi - lo) * self.Seed / 2147483647
 
-    def rnd(self,n, nPlaces=3): # num. return `n` rounded to `nPlaces`
+    def rnd(self, n, nPlaces=3):  # num. return `n` rounded to `nPlaces`
         mult = 10 ** nPlaces
         return math.floor(n * mult + 0.5) / mult
 
@@ -90,8 +89,9 @@ class Lists:
     def keys(self, table):
         return self.sort(self.kap(table, lambda k, _: k))
 
-
     # -- NUM
+
+
 # -- Summarizes a stream of numbers.
 class Num:
     def __init__(self):
@@ -132,13 +132,14 @@ class Num:
         else:
             return pow(self.m2 / (self.n - 1), 0.5)
 
-def coerce(s:str):
+
+def coerce(s: str):
     try:
         # check if boolean true
-        if s.lower()=='true':
+        if s.lower() == 'true':
             return True
         # check if boolean false
-        elif s.lower()=='false':
+        elif s.lower() == 'false':
             return False
         try:
             # cast to int
@@ -153,6 +154,7 @@ def coerce(s:str):
     except Exception as e:
         # any other exception, return as is
         return s
+
 
 # -- `main` fills in the settings, updates them from the command line, runs
 # -- the start up actions (and before each run, it resets the random number seed and settongs);
@@ -192,7 +194,7 @@ class Main:
         for k, v in self.cli(self.settings(help)).items():
             the[k] = v
             saved[k] = v
-        if the["help"] == "true":
+        if the["help"]:
             print(help)
         else:
             for what, fun in funs.items():
@@ -211,6 +213,7 @@ class Main:
 # Example Test Cases
 egs = {}
 
+
 # register an example
 def eg(key, str, fun):
     global help
@@ -225,38 +228,45 @@ def numTest():
         num.add(x)
     return 11 / 7 == num.mid() and 0.787 == numeric.rnd(num.div())
 
-    # Testing the Random functions within Numerics class
+
 def randTest():
-    # Generate 2 nums from Num() [defined by Qiuyu]
-    num1,num2 = Num(),Num()
+    # Generate 2 nums from Num()
+    num1, num2 = Num(), Num()
 
     numeric = Numerics()
     # Get set the seed from global setting
     numeric.Seed = the['seed'];
 
     # Add random numbers
-    for i in range(10**3):
-        num1.add(numeric.rand(0,1))
+    for i in range(10 ** 3):
+        num1.add(numeric.rand(0, 1))
 
     # get the seed from global setting again (rand() alters the seed in class)
     numeric.Seed = the['seed'];
 
     # Add random numbers
-    for i in range(10**3):
-        num2.add(numeric.rand(0,1))
+    for i in range(10 ** 3):
+        num2.add(numeric.rand(0, 1))
 
     # Test comparison
-    m1,m2 = numeric.rnd(num1.mid(),10), numeric.rnd(num2.mid(),10)
-    return m1 == m2 and .5 == numeric.rnd(m1,1)
+    m1, m2 = numeric.rnd(num1.mid(), 10), numeric.rnd(num2.mid(), 10)
+    return m1 == m2 and .5 == numeric.rnd(m1, 1)
 
-    # eg function defined by Qiuyu
+
 def symTest():
     sym = Sym()
-    for x in ["a","a","a","a","b","b","c"]:
+    for x in ["a", "a", "a", "a", "b", "b", "c"]:
         sym.add(x)
-    return "a"==sym.mid() #and 1.379 == rnd(sym:div())end)
+    numeric = Numerics()
+    return "a" == sym.mid() and 1.379 == numeric.rnd(sym.div())
 
 
+def theTest():
+    print(the)
+    return the
+
+
+eg("the", "show settings", theTest)
 eg("sym", "check syms", symTest)
 eg("rand", "generate, reset, regenerate same", randTest)
 eg("num", "check nums", numTest)

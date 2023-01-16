@@ -1,0 +1,17 @@
+name: test
+on:
+  push:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: test
+        run: |
+          cd ./src; python3 script.py -g all
+      - run: echo "🍏 This job's status is ${{ job.status }}."

@@ -11,7 +11,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      - name: test
+      - name: test hw1
         run: |
-          cd ./src; python3 script.py -g all > ../etc/out/script.out
+          cd ./src; python3 H1/script.py -g all > ../etc/out/script.out
       - run: echo "🍏 This job's status is ${{ job.status }}."

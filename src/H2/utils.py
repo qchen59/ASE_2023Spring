@@ -55,3 +55,16 @@ def cli(options):
                     v = sys.argv[n + 1]
         options[k] = coerce(v)
     return options
+
+# Read a csv file and apply the function 'fun' to the rowTable
+def csv(sFilename, fun):
+    src = open(sFilename, 'r')
+    reader = csv.reader(src)
+    for row in reader:
+        rowTable = []
+        # For each cell in the row, clean it with coerce and append it to the rowTable 
+        for cell in row:
+            rowTable.append(coerce(cell))
+        fun(rowTable)
+    src.close()
+    

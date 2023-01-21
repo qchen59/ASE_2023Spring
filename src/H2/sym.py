@@ -2,7 +2,11 @@ import math
 
 
 class Sym:
-    def __init__(self) -> None:
+    def __init__(self, at=0, txt="") -> None:
+        # New added in HW2
+        self.at = at
+        self.txt = txt
+
         self.n = 0
         self.has = {}
         self.most, self.mode = 0, None

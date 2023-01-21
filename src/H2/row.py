@@ -1,2 +1,4 @@
 class Row:
-    pass
+    def __init__(self, t):
+        self.cells = t
+

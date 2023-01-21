@@ -1,8 +1,12 @@
 # -- Summarizes a stream of numbers.
-
+import re
 
 class Num:
-    def __init__(self):
+    def __init__(self, at=0, txt=""):
+        # New added in HW2
+        self.at = at
+        self.txt = txt
+
         # number of numbers
         self.n = 0
         # mean
@@ -12,6 +16,11 @@ class Num:
         self.lo = float('inf')
         # largest number
         self.hi = float('-inf')
+
+        if re.search(r"-$", self.txt):
+            self.w = -1
+        else:
+            self.w = 1
 
     # add `n`, update lo,hi and stuff needed for standard deviation
     def add(self, n):
@@ -29,7 +38,7 @@ class Num:
             # Update the largest
             self.hi = max(n, self.hi)
 
-    # return mean
+    # return means
     def mid(self):
         return self.mu
 

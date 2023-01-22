@@ -1,7 +1,8 @@
-from config import egs, the
+import config
 from num import Num
 from sym import Sym
 from numerics import Numerics
+from utils import csv
 
 
 def numTest():
@@ -18,14 +19,14 @@ def randTest():
 
     numeric = Numerics()
     # Get set the seed from global setting
-    numeric.Seed = the['seed']
+    numeric.Seed = config.the['seed']
 
     # Add random numbers
     for i in range(10 ** 3):
         num1.add(numeric.rand(0, 1))
 
     # get the seed from global setting again (rand() alters the seed in class)
-    numeric.Seed = the['seed']
+    numeric.Seed = config.the['seed']
 
     # Add random numbers
     for i in range(10 ** 3):
@@ -45,5 +46,16 @@ def symTest():
 
 
 def theTest():
-    print(the)
-    return the
+    print(config.the)
+    return config.the
+
+
+def csvTest():
+    n = 0
+
+    def csvHelper(t):
+        nonlocal n
+        n += len(t)
+
+    csv(config.the['file'], csvHelper)
+    return n == 8 * 399

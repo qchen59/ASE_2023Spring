@@ -1,8 +1,7 @@
 # script.lua -> script.py
 from utils import eg, cli, settings
-from config import the, egs, help
-from tests import theTest, symTest, randTest, numTest
-
+from tests import theTest, symTest, randTest, numTest, csvTest
+import config
 
 class Main:
     # parse help string to extract a table of options
@@ -15,15 +14,15 @@ class Main:
         saved = {}
         fails = 0
         for k, v in cli(settings(help)).items():
-            the[k] = v
+            config.the[k] = v
             saved[k] = v
-        if the["help"]:
+        if config.the["help"]:
             print(help)
         else:
             for what, fun in funs.items():
-                if the["go"] == "all" or what == the["go"]:
+                if config.the["go"] == "all" or what == config.the["go"]:
                     for k, v in saved.items():
-                        the[k] = v
+                        config.the[k] = v
                     # Check the global variable Seed for Numeric
                     # the["seed"] = int(the["seed"])
                     if not funs[what]():
@@ -39,5 +38,6 @@ if __name__ == '__main__':
     eg("sym", "check syms", symTest)
     eg("rand", "generate, reset, regenerate same", randTest)
     eg("num", "check nums", numTest)
+    eg("csv", "read from csv", csvTest)
     m = Main()
-    m.main(help, egs)
+    m.main(config.help, config.egs)

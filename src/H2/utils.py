@@ -1,12 +1,11 @@
 import re
 import sys
-from config import egs, help
-
+import config
+from csv import reader
 
 def eg(key, str, fun):
-    global help
-    egs[key] = fun
-    help += "  -g  {}\t{}\n".format(key, str)
+    config.egs[key] = fun
+    config.help += "  -g  {}\t{}\n".format(key, str)
 
 
 def coerce(s: str):
@@ -59,8 +58,8 @@ def cli(options):
 # Read a csv file and apply the function 'fun' to the rowTable
 def csv(sFilename, fun):
     src = open(sFilename, 'r')
-    reader = csv.reader(src)
-    for row in reader:
+    r = reader(src)
+    for row in r:
         # For each cell in the row, clean it with coerce and append it to the rowTable 
         rowTable = [coerce(cell) for cell in row]
         fun(rowTable)

@@ -63,5 +63,14 @@ def csvTest():
 
 
 def dataTest():
-    data = Data(the['file'])
+    data = Data(config.the['file'])
     return len(data.rows) == 398 and data.cols.y[0].w == -1 and data.cols.x[1].at == 1 and len(data.cols.x) == 4
+
+
+def statsTest():
+    data = Data(config.the['file'])
+    print("x", "mid", data.stats("mid", data.cols.x, 2))
+    print("div", data.stats("div", data.cols.x, 2))
+    print("y", "mid", data.stats("mid", data.cols.y, 2))
+    print("div", data.stats("div", data.cols.y, 2))
+    return True

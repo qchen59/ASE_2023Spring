@@ -30,3 +30,6 @@ class Sym:
             e += fun(n / self.n)
 
         return -e
+
+    def rnd(self, x, n):
+        return x

@@ -1,6 +1,6 @@
 # script.lua -> script.py
 from utils import eg, cli, settings
-from tests import theTest, symTest, randTest, numTest, csvTest
+from tests import theTest, symTest, randTest, numTest, csvTest, dataTest, statsTest
 import config
 
 class Main:
@@ -39,5 +39,7 @@ if __name__ == '__main__':
     eg("rand", "generate, reset, regenerate same", randTest)
     eg("num", "check nums", numTest)
     eg("csv", "read from csv", csvTest)
+    eg("data","read DATA csv", dataTest)
+    eg("stats","stats from DATA", statsTest)
     m = Main()
     m.main(config.help, config.egs)

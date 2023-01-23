@@ -1,7 +1,6 @@
 import re
-
-from src.H2.num import Num
-from src.H2.sym import Sym
+from num import Num
+from sym import Sym
 
 
 class Col:
@@ -33,13 +32,15 @@ class Col:
                     self.x.append(col)
 
     # update the (not skipped) columns with details from `row`
-    def add(self, i, row):
-        for t in i['x']:
-            for col in t:
-                col.add(row.cells[col.at])
-        for t in i['y']:
-            for col in t:
-                col.add(row.cells[col.at])
+    def add(self, row):
+        for i in self.x:
+            i.add(row.cells[i.at])
+        for i in self.y:
+            i.add(row.cells[i.at])
+
+
+    def __repr__(self):
+        return str(self.__dict__)
 
 # Tests
 # col = Col(['Clndrs', 'Volume', 'HpX', 'Lbs-', 'Acc+', 'Model', 'origin', 'Mpg+'])

@@ -11,6 +11,5 @@ OPTIONS:
   -h  --help  show help            = false
   -s  --seed  random number seed   = 937162211
 ACTIONS:
-]]
 """
 egs = {}

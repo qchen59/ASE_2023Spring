@@ -1,5 +1,7 @@
 # -- Summarizes a stream of numbers.
 import re
+from numerics import Numerics
+
 
 class Num:
     def __init__(self, at=0, txt=""):
@@ -48,3 +50,13 @@ class Num:
             return 0
         else:
             return pow(self.m2 / (self.n - 1), 0.5)
+
+    def rnd(self, x, n):
+        if x == "?":
+            return x
+        else:
+            nu = Numerics()
+            return nu.rnd(x, n)
+
+    def __repr__(self):
+        return str(self.__dict__)

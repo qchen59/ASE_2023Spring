@@ -1,12 +1,12 @@
 import re
 import sys
-from config import egs, help
+import config
 
 
 def eg(key, str, fun):
-    global help
-    egs[key] = fun
-    help += "  -g  {}\t{}\n".format(key, str)
+
+    config.egs[key] = fun
+    config.help += "  -g  {}\t{}\n".format(key, str)
 
 
 def coerce(s: str):

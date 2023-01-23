@@ -11,10 +11,9 @@ class Lists:
                 newTable[k] = v
         return newTable
 
-    # map a function `fun`(k, v) over list (skip nil results)
     def kap(self, table, fun):
         newTable = {}
-        for k, v in table.items():
+        for k, v in enumerate(table):
             v, k = fun(k, v)
             if k is None:
                 newTable[len(newTable) + 1] = v

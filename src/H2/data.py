@@ -1,27 +1,33 @@
-from utils import csv, map
+from utils import csv
 from row import Row
 from col import Col
-from lists import kap
+from lists import Lists
+
 
 
 class Data:
     def __init__(self, src) -> None:
         self.rows = []
         self.cols = None
+        self.l = Lists()
+
+        def helper(x):
+            self.add(x)
+
         if type(src) == str:
-            csv(src)
+            csv(src, helper)
         else:
-            map(src)
+            self.l.map(src, helper)
 
     def add(self, t):
-        if self.cols:                       # if column names have been seen
-            t = t.cells and t or Row(t)     # ensure t is a row
+        if self.cols:  # if column names have been seen
+            t = Row(t)  # ensure t is a row
             self.rows.append(t)
             self.cols.add(t)
         else:
             self.cols = Col(t)
 
-    def clone():
+    def clone(self):
         # TODO: Did not understand. Will need the entire code to understand.
         pass
 
@@ -31,5 +37,6 @@ class Data:
                 val = col.div()
             else:
                 val = col.mid()
+
             return col.rnd(val, nPlaces), col.txt
-        return kap(cols or self.cols.y, fun)
+        return self.l.kap(cols or self.cols.y, fun)

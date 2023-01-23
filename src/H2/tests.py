@@ -2,6 +2,7 @@ import config
 from num import Num
 from sym import Sym
 from numerics import Numerics
+from data import Data
 from utils import csv
 
 
@@ -59,3 +60,8 @@ def csvTest():
 
     csv(config.the['file'], csvHelper)
     return n == 8 * 399
+
+
+def dataTest():
+    data = Data(the['file'])
+    return len(data.rows) == 398 and data.cols.y[0].w == -1 and data.cols.x[1].at == 1 and len(data.cols.x) == 4

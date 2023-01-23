@@ -2,6 +2,7 @@ from config import egs, the
 from num import Num
 from sym import Sym
 from numerics import Numerics
+from data import Data
 
 
 def numTest():
@@ -47,3 +48,8 @@ def symTest():
 def theTest():
     print(the)
     return the
+
+
+def dataTest():
+    data = Data(the['file'])
+    return len(data.rows) == 398 and data.cols.y[0].w == -1 and data.cols.x[1].at == 1 and len(data.cols.x) == 4

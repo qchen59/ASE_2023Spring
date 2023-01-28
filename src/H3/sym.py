@@ -33,3 +33,17 @@ class Sym:
 
     def rnd(self, x, n):
         return x
+
+    # Calculate the distance between two syms
+    def dist(self, s1, s2):
+        # If any of s1 or s2 is ?, we assume they are different
+        if s1 == "?" or s2 == "?":
+            return 1
+        else:
+            # compare s1 and s2
+            if s1 == s2:
+                # If s1 = s2, there is no difference
+                return 0
+            else:
+                return 1
+

@@ -38,6 +38,7 @@ def settings(s):
         t[k] = v
     return t
 
+
 # update key,val in `t` from command-line flags
 
 
@@ -55,6 +56,7 @@ def cli(options):
         options[k] = coerce(v)
     return options
 
+
 # Read a csv file and apply the function 'fun' to the rowTable
 def csv(sFilename, fun):
     src = open(sFilename, 'r')
@@ -64,4 +66,16 @@ def csv(sFilename, fun):
         rowTable = [coerce(cell) for cell in row]
         fun(rowTable)
     src.close()
-    
+
+
+# prints the tree generated from `DATA:tree`
+def show(node, what, cols, nPlaces, lvl=None):
+    if node:
+        lvl = lvl or 0
+        str = "| "
+        for i in range(len(node.data.rows)):
+            str += "  "
+        if not node.left or lvl == 0:
+            print(str, node.data.stats("mid", node.data.cols.y, nPlaces))
+        show(node.left, what, cols, nPlaces, lvl + 1)
+        show(node.right, what, cols, nPlaces, lvl + 1)

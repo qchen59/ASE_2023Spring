@@ -1,3 +1,5 @@
+from numerics import Numerics
+
 class Lists:
 
     # map a function `fun`(v) over list (skip nil results)
@@ -32,3 +34,15 @@ class Lists:
     # -- sort() is called to sort new table in ascending default order
     def keys(self, table):
         return self.sort(self.kap(table, lambda k, _: k))
+
+    # pick a random item from the table
+    def any(self, table):
+        numerics = Numerics()
+        return table[numerics.rint(0, len(table) - 1)]
+
+    # randomly pick n items from the table and store in a new table
+    def many(table, n):
+        newTable = []
+        for i in range(n):
+            newTable.append(any(table))
+        return newTable

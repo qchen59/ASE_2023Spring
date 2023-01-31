@@ -42,25 +42,24 @@ class Data:
             return col.rnd(val, nPlaces), col.txt
         return self.l.kap(cols or self.cols.y, fun)
 
-    def half(i, rows=None, cols=None, above=None):
+    def half(self, rows=None, cols=None, above=None):
         
         # imports from other functions
         numerics = Numerics()
-        lists = Lists()
 
         def project(row):
             return {'row': row, 'dist': numerics.cosine(dist(row, A), dist(row, B), c)}
         
         def dist(row1, row2):
-            return i.dist(row1, row2, cols)
+            return self.dist(row1, row2, cols)
     
-        rows = rows or i.rows
+        rows = rows or self.rows
         some = numerics.many(rows, the.Sample)
         A = above or numerics.any(some)
-        B = i.around(A, some)[int((the.Far * len(rows)) // 1)].row
+        B = self.around(A, some)[int((the.Far * len(rows)) // 1)].row
         c = dist(A, B)
         left, right = [], []
-        for n, tmp in enumerate(lists.sort(map(project, rows), key=lambda x: x['dist'])): # No idea if this is how it works
+        for n, tmp in enumerate(self.l.sort(map(project, rows), key=lambda x: x['dist'])): # No idea if this is how it works
             if n <= len(rows) // 2:
                 left.append(tmp['row'])
                 mid = tmp['row']

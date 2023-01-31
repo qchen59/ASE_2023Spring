@@ -59,7 +59,7 @@ class Data:
         B = self.around(A, some)[int((the.Far * len(rows)) // 1)].row
         c = dist(A, B)
         left, right = [], []
-        for n, tmp in enumerate(self.l.sort(map(project, rows), key=lambda x: x['dist'])): # No idea if this is how it works
+        for n, tmp in enumerate(self.l.sort(map(project, rows), lambda x: x['dist'])): # No idea if this is how it works
             if n <= len(rows) // 2:
                 left.append(tmp['row'])
                 mid = tmp['row']

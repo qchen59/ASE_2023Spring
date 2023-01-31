@@ -58,5 +58,8 @@ class Num:
             nu = Numerics()
             return nu.rnd(x, n)
 
+    def norm(self, n):
+        return n if n == "?" else (n - self.lo)/(self.hi - self.lo + 1E-32)
+
     def __repr__(self):
         return str(self.__dict__)

@@ -3,7 +3,8 @@ class Lists:
     # map a function `fun`(v) over list (skip nil results)
     def map(self, table, fun):
         newTable = {}
-        for k, v in table.items():
+        for k, v in enumerate(table):
+            print(k, v)
             v, k = fun(v)
             if k is None:
                 newTable[len(newTable) + 1] = v

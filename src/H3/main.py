@@ -1,7 +1,8 @@
 # script.lua -> script.py
 from utils import eg, cli, settings
-from tests import theTest, symTest, randTest, numTest, csvTest, dataTest, statsTest
+from tests import theTest, symTest, randTest, numTest, csvTest, dataTest, statsTest, cloneTest
 import config
+
 
 class Main:
     # parse help string to extract a table of options
@@ -39,7 +40,8 @@ if __name__ == '__main__':
     eg("rand", "generate, reset, regenerate same", randTest)
     eg("num", "check nums", numTest)
     eg("csv", "read from csv", csvTest)
-    eg("data","read DATA csv", dataTest)
-    eg("stats","stats from DATA", statsTest)
+    eg("data", "read DATA csv", dataTest)
+    eg("stats", "stats from DATA", statsTest)
+    eg("clone", "duplicate structure", cloneTest)
     m = Main()
     m.main(config.help, config.egs)

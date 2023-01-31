@@ -63,3 +63,24 @@ class Num:
 
     def __repr__(self):
         return str(self.__dict__)
+
+    # calculate the distance between two num
+    def dist(self, n1, n2):
+        # If both n1 and n2 are unknown, return 1
+        if n1 == "?" and n2 == "?":
+            return 1
+        # normalize
+        n1 = self.norm(n1)
+        n2 = self.norm(n2)
+        # If one of n1 or n2 is unknown, take the worst situations.
+        if n1 == "?":
+            if n2 < 0.5:
+                n1 = 1
+            else:
+                n1 = 0
+        if n2 == "?":
+            if n1 < 0.5:
+                n2 = 1
+            else:
+                n2 = 0
+        return abs(n1 - n2)

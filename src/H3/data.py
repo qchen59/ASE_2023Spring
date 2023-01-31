@@ -1,7 +1,10 @@
+import config
+import math
 from utils import csv
 from row import Row
 from col import Col
 from lists import Lists
+import config
 import math
 
 
@@ -40,6 +43,7 @@ class Data:
                 val = col.mid()
 
             return col.rnd(val, nPlaces), col.txt
+
         return self.l.kap(cols or self.cols.y, fun)
 
     def better(self, row1, row2):
@@ -50,3 +54,21 @@ class Data:
             s1 = s1 - math.exp(col.w * (x-y)/len(ys))
             s2 = s2 - math.exp(col.w * (y-x)/len(ys))
         return s1/len(ys) < s2/len(ys)
+
+    def dist(self, row1, row2, cols=None):
+        n = 0
+        d = 0
+        for col in cols or self.cols.x:
+            n += 1
+            d += pow(col.dist(row1.cells[col.at],
+                     row2.cells[col.at]), config.the.p)
+
+        return pow(d / n, 1 / config.the.p)
+
+    def around(self, row1, rows=None, cols=None):
+        l = Lists()
+
+        def helper(row2):
+            return {"row": row2, "dist": self.dist(row1, row2, cols)}
+
+        return l.sort(l.map(rows or self.rows, helper), l.lt("dist"))

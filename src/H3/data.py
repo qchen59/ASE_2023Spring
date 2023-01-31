@@ -56,7 +56,7 @@ class Data:
     
         rows = rows or i.rows
         some = numerics.many(rows, the.Sample)
-        A = above or any(some)
+        A = above or numerics.any(some)
         B = i.around(A, some)[int((the.Far * len(rows)) // 1)].row
         c = dist(A, B)
         left, right = [], []

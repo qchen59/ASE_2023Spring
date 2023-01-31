@@ -74,3 +74,13 @@ def statsTest():
     print("y", "mid", data.stats("mid", data.cols.y, 2))
     print("div", data.stats("div", data.cols.y, 2))
     return True
+
+
+def aroundTest():
+    data = Data(config.the['file'])
+    print(0, 0, data.rows[1].cells)
+    nu = Numerics()
+    for n, t in enumerate(data.around(data.rows[1])):
+        if n % 50 == 0:
+            print(n, nu.rnd(t.dist, 2), t.row.cells)
+    return True

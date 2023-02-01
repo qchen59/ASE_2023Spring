@@ -4,6 +4,8 @@ from numerics import Numerics
 
 
 class Lists:
+    def __init__(self) -> None:
+        self.nu = Numerics()
 
     # map a function `fun`(v) over list (skip nil results)
     def map(self, table, fun):
@@ -47,9 +49,7 @@ class Lists:
     # pick a random item from the table
 
     def any(self, table):
-        numerics = Numerics()
-        a = table[numerics.rint(0, len(table) - 1)]
-        return table[numerics.rint(0, len(table) - 1)]
+        return table[self.nu.rint(0, len(table) - 1)]
 
     # randomly pick n items from the table and store in a new table
     def many(self, table, n):

@@ -14,6 +14,7 @@ class Data:
         self.rows = []
         self.cols = None
         self.l = Lists()
+        self.nu = Numerics()
 
         def helper(x):
             self.add(x)
@@ -85,10 +86,9 @@ class Data:
     def half(self, rows=None, cols=None, above=None):
 
         # imports from other functions
-        numerics = Numerics()
 
         def project(row):
-            return {'row': row, 'dist': numerics.cosine(dist(row, A), dist(row, B), c)}
+            return {'row': row, 'dist': self.nu.cosine(dist(row, A), dist(row, B), c)}
 
         def dist(row1, row2):
             return self.dist(row1, row2, cols)
@@ -96,7 +96,7 @@ class Data:
         rows = rows or self.rows
         some = self.l.many(rows, config.the['Sample'])
         A = above or self.l.any(some)
-        b = self.around(A, some)[int((config.the['Far'] * len(rows)) // 1)]
+        b = self.around(A, some)
         B = self.around(A, some)[
             int((config.the['Far'] * len(rows)) // 1)]['row']
         c = dist(A, B)

@@ -94,13 +94,16 @@ class Data:
             return self.dist(row1, row2, cols)
 
         rows = rows or self.rows
-        some = numerics.many(rows, the.Sample)
-        A = above or numerics.any(some)
-        B = self.around(A, some)[int((the.Far * len(rows)) // 1)].row
+        some = self.l.many(rows, config.the['Sample'])
+        A = above or self.l.any(some)
+        b = self.around(A, some)[int((config.the['Far'] * len(rows)) // 1)]
+        B = self.around(A, some)[
+            int((config.the['Far'] * len(rows)) // 1)]['row']
         c = dist(A, B)
+
         left, right = [], []
         # No idea if this is how it works
-        for n, tmp in enumerate(self.l.sort(map(project, rows), lambda x: x['dist'])):
+        for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist'])):
             if n <= len(rows) // 2:
                 left.append(tmp['row'])
                 mid = tmp['row']

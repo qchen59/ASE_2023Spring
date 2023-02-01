@@ -18,8 +18,8 @@ class Numerics:
         return math.floor(n * mult + 0.5) / mult
 
     def cosine(self, a, b, c):
-        x1 = (a**2 + c**2 - b**2) / (2*c) # find the x from line connecting a to b
-        x2 = max(0, min(1, x1)) # x2 is x1 confined between 0 and 1
-        y = (a**2 - x2**2)**0.5 # find the y from line connecting a to b
+        # find the x from line connecting a to b
+        x1 = (a**2 + c**2 - b**2) / (2*c)
+        x2 = max(0, min(1, x1))  # x2 is x1 confined between 0 and 1
+        y = (a**2 - x2**2)**0.5  # find the y from line connecting a to b
         return x2, y
- 

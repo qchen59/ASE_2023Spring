@@ -48,11 +48,12 @@ class Lists:
 
     def any(self, table):
         numerics = Numerics()
+        a = table[numerics.rint(0, len(table) - 1)]
         return table[numerics.rint(0, len(table) - 1)]
 
     # randomly pick n items from the table and store in a new table
-    def many(table, n):
+    def many(self, table, n):
         newTable = []
         for i in range(n):
-            newTable.append(any(table))
+            newTable.append(self.any(table))
         return newTable

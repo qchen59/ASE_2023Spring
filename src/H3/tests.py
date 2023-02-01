@@ -92,3 +92,13 @@ def aroundTest():
         if (n+1) % 50 == 0:
             print(n+1, nu.rnd(t['dist'], 2), t['row'].cells)
     return True
+
+
+def halfTest():
+    data = Data(config.the['file'])
+    left, right, A, B, mid, C = data.half()
+    print(len(left), len(right), len(data.rows))
+    print(A.cells, C)
+    print(mid.cells)
+    print(B.cells)
+    return True

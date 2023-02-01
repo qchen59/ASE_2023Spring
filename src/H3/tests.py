@@ -3,7 +3,7 @@ from num import Num
 from sym import Sym
 from numerics import Numerics
 from data import Data
-from utils import csv
+from utils import csv, show
 
 
 def numTest():
@@ -102,3 +102,7 @@ def halfTest():
     print(mid.cells)
     print(B.cells)
     return True
+
+def optimizeTest():
+    data = Data(config.the['file'])
+    show(data.sway(),"mid",data.cols.y,1)

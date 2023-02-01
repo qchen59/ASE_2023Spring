@@ -103,6 +103,10 @@ def halfTest():
     print(B.cells)
     return True
 
+def optimizeTest():
+    data = Data(config.the['file'])
+    show(data.sway(),"mid",data.cols.y,1)
+
 def clusterTest():
     data = Data(config.the['file'])
     # print(data.cluster())

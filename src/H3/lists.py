@@ -30,8 +30,8 @@ class Lists:
 
     # return t, sorted by fun (default= <)
     def sort(self, table, fun=None):
-        table.sort(key=fun)
-        return table
+        return sorted(table, key=fun)
+         
 
     # return list of table keys, sorted
     # -- anonymous function acquires keys from table t

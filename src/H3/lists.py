@@ -1,11 +1,15 @@
+from utils import returnHandler
+
+
 class Lists:
 
     # map a function `fun`(v) over list (skip nil results)
     def map(self, table, fun):
         newTable = []
         for k, v in enumerate(table):
-            v, k = fun(v)
             print(f'{v=}\t{k=}')
+            v, k = returnHandler(fun(v), 2)
+            # v, k = fun(v)
             if k is None:
                 newTable.append(v)
             else:

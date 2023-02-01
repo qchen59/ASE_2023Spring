@@ -16,7 +16,7 @@ class Data:
 
         def helper(x):
             self.add(x)
-            return None, None
+            # return None, None
 
         if type(src) == str:
             csv(src, helper)
@@ -27,6 +27,7 @@ class Data:
         return str(self.__dict__)
 
     def add(self, t):
+        print(f'{t=}')
         if self.cols:  # if column names have been seen
             t = Row(t)  # ensure t is a row
             self.rows.append(t)
@@ -37,11 +38,12 @@ class Data:
     def clone(self, init={}):
         def helper(x):
             data.add(x)
-            return None, None
+            # return None, None
         # print(f'{init=}')
         print(f'{len(self.cols.names)=}')
         data = Data([self.cols.names])
 
+        print('calling clone add')
         self.l.map(init, helper)
         return data
 
@@ -78,7 +80,7 @@ class Data:
     def around(self, row1, rows=None, cols=None):
 
         def helper(row2):
-            return {"row": row2, "dist": self.dist(row1, row2, cols)}, None
+            return {"row": row2, "dist": self.dist(row1, row2, cols)}
 
         # return l.sort(l.map(rows or self.rows, helper), l.lt("dist"))
         r = self.l.map(rows or self.rows, helper)

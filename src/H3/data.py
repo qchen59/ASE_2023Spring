@@ -40,6 +40,7 @@ class Data:
     def clone(self, init={}):
         def helper(x):
             data.add(x)
+
         data = Data([self.cols.names])
         self.l.map(init, helper)
         return data
@@ -60,9 +61,9 @@ class Data:
         for col in ys:
             x = col.norm(row1.cells[col.at])
             y = col.norm(row2.cells[col.at])
-            s1 = s1 - math.exp(col.w * (x-y)/len(ys))
-            s2 = s2 - math.exp(col.w * (y-x)/len(ys))
-        return s1/len(ys) < s2/len(ys)
+            s1 = s1 - math.exp(col.w * (x - y) / len(ys))
+            s2 = s2 - math.exp(col.w * (y - x) / len(ys))
+        return s1 / len(ys) < s2 / len(ys)
 
     def dist(self, row1, row2, cols=None):
         n = 0
@@ -70,7 +71,7 @@ class Data:
         for col in cols or self.cols.x:
             n += 1
             d += pow(col.dist(row1.cells[col.at],
-                     row2.cells[col.at]), config.the['p'])
+                              row2.cells[col.at]), config.the['p'])
 
         return pow(d / n, 1 / config.the['p'])
 
@@ -111,3 +112,14 @@ class Data:
                 right.append(tmp['row'])
 
         return left, right, A, B, mid, c
+
+    def cluster(self, rows=None, min=None, cols=None, above=None):
+        rows = rows or self.rows
+        min = min or len(rows) ** config.the['min']
+        cols = cols or self.cols.x
+        node = {"data": self.clone(rows)}
+        if len(rows) > 2 * min:
+            left, right, node["A"], node["B"], node["mid"], c = self.half(rows, cols, above)
+            node["left"] = self.cluster(left, min, cols, node["A"])
+            node["right"] = self.cluster(right, min, cols, node["B"])
+        return node

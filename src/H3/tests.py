@@ -64,6 +64,7 @@ def csvTest():
 
 def dataTest():
     data = Data(config.the['file'])
+    print(data)
     return len(data.rows) == 398 and data.cols.y[0].w == -1 and data.cols.x[1].at == 1 and len(data.cols.x) == 4
 
 
@@ -79,14 +80,15 @@ def statsTest():
 def cloneTest():
     data1 = Data(config.the['file'])
     data2 = data1.clone(data1.rows)
-    return len(data1.rows) == len(data2.rows) and data1.cols.y[1].w == data2.cols.y[1].w and data1.cols.x[1].at == data2.cols.x[1].at and len(data1.cols.x) == len(data2.cols.x)
+    return len(data1.rows) == len(data2.rows) and data1.cols.y[0].w == data2.cols.y[0].w and data1.cols.x[0].at == data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
 
 
 def aroundTest():
     data = Data(config.the['file'])
-    print(0, 0, data.rows[1].cells)
+    print(0, 0, data.rows[0].cells)
     nu = Numerics()
-    for n, t in enumerate(data.around(data.rows[1])):
-        if n % 50 == 0:
-            print(n, nu.rnd(t.dist, 2), t.row.cells)
+    p = data.around(data.rows[0])
+    for n, t in enumerate(data.around(data.rows[0])):
+        if (n+1) % 50 == 0:
+            print(n+1, nu.rnd(t['dist'], 2), t['row'].cells)
     return True

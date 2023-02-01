@@ -16,11 +16,15 @@ class Data:
 
         def helper(x):
             self.add(x)
+            return None, None
 
         if type(src) == str:
             csv(src, helper)
         else:
             self.l.map(src, helper)
+
+    def __repr__(self):
+        return str(self.__dict__)
 
     def add(self, t):
         if self.cols:  # if column names have been seen
@@ -31,8 +35,14 @@ class Data:
             self.cols = Col(t)
 
     def clone(self, init={}):
+        def helper(x):
+            data.add(x)
+            return None, None
+        # print(f'{init=}')
+        print(f'{len(self.cols.names)=}')
         data = Data([self.cols.names])
-        self.l.map(init, lambda x: data.add(x))
+
+        self.l.map(init, helper)
         return data
 
     def stats(self, what, cols, nPlaces):
@@ -61,14 +71,15 @@ class Data:
         for col in cols or self.cols.x:
             n += 1
             d += pow(col.dist(row1.cells[col.at],
-                     row2.cells[col.at]), config.the.p)
+                     row2.cells[col.at]), config.the['p'])
 
-        return pow(d / n, 1 / config.the.p)
+        return pow(d / n, 1 / config.the['p'])
 
     def around(self, row1, rows=None, cols=None):
-        l = Lists()
 
         def helper(row2):
-            return {"row": row2, "dist": self.dist(row1, row2, cols)}
+            return {"row": row2, "dist": self.dist(row1, row2, cols)}, None
 
-        return l.sort(l.map(rows or self.rows, helper), l.lt("dist"))
+        # return l.sort(l.map(rows or self.rows, helper), l.lt("dist"))
+        r = self.l.map(rows or self.rows, helper)
+        return self.l.sort(self.l.map(rows or self.rows, helper), lambda x: x['dist'])

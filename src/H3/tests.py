@@ -109,5 +109,5 @@ def optimizeTest():
 
 def clusterTest():
     data = Data(config.the['file'])
-    # print(data.cluster())
     show(data.cluster(), "mid", data.cols.y, 1)
+    return True

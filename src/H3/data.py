@@ -71,7 +71,6 @@ class Data:
             n += 1
             d += pow(col.dist(row1.cells[col.at],
                      row2.cells[col.at]), config.the['p'])
-
         return pow(d / n, 1 / config.the['p'])
 
     def around(self, row1, rows=None, cols=None):
@@ -102,7 +101,7 @@ class Data:
         c = dist(A, B)
 
         left, right = [], []
-        # No idea if this is how it works
+
         for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist'])):
             if n <= len(rows) // 2:
                 left.append(tmp['row'])
@@ -121,7 +120,7 @@ class Data:
         if len(rows) > 2*min:
             left, right, node["A"], node["B"], node["mid"], c = self.half(rows,cols,above)
             
-            if self.better(node["A"], node["B"]):
+            if self.better(node["B"], node["A"]):
                 left, right, node["A"], node["B"] = right, left, node["B"], node["A"]
             
             node["left"]  = self.sway(left,  min, cols, node["A"])

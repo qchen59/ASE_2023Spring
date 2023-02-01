@@ -30,16 +30,7 @@ class Lists:
 
     # return t, sorted by fun (default= <)
     def sort(self, table, fun=None):
-        try:
-            s = sorted(table, key=fun)
-            print(f"{s=}")
-            return s
-        except:
-            # print(f"{table=}")
-            for i in table:
-                if isinstance(i['dist'], complex):
-                    print(i['dist'])
-            return sorted(table, key=fun)
+        return sorted(table, key=fun)
          
 
     # return list of table keys, sorted

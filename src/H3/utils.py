@@ -73,13 +73,17 @@ def csv(sFilename, fun):
 def show(node, what, cols, nPlaces, lvl=None):
     if node:
         lvl = lvl or 0
-        str = "| "
-        for i in range(len(node.data.rows)):
-            str += "  "
-        if not node.left or lvl == 0:
-            print(str, node.data.stats("mid", node.data.cols.y, nPlaces))
-        show(node.left, what, cols, nPlaces, lvl + 1)
-        show(node.right, what, cols, nPlaces, lvl + 1)
+        if "left" not in node or lvl == 0:
+            print("| " * lvl + str(len(node["data"].rows)) + " ", end="")
+            print(node["data"].stats("mid", node["data"].cols.y, nPlaces))
+        else:
+            print("| " * lvl + str(len(node["data"].rows)) + " ")
+            
+        if "left" in node:
+            show(node["left"], what, cols, nPlaces, lvl + 1)
+
+        if "right" in node:
+            show(node["right"], what, cols, nPlaces, lvl + 1)
 
 
 def returnHandler(value, n=1):

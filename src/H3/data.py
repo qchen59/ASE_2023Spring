@@ -102,7 +102,7 @@ class Data:
 
         left, right = [], []
 
-        for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist'])):
+        for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist']), 1):
             if n <= len(rows) // 2:
                 left.append(tmp['row'])
                 mid = tmp['row']
@@ -120,8 +120,10 @@ class Data:
         if len(rows) > 2*min:
             left, right, node["A"], node["B"], node["mid"], c = self.half(rows,cols,above)
             
+            print(f'is node B better than node A? {self.better(node["B"], node["A"])} \tnodeA: {node["A"]} \tnodeB: {node["B"]}')
             if self.better(node["B"], node["A"]):
                 left, right, node["A"], node["B"] = right, left, node["B"], node["A"]
+                print(f"old left: {right} {len(right)}, new left: {left} {len(left)}")
             
             node["left"]  = self.sway(left,  min, cols, node["A"])
         

@@ -75,13 +75,18 @@ def show(node, what, cols, nPlaces, lvl=None):
         lvl = lvl or 0
         if "left" not in node or lvl == 0:
             print("| " * lvl + str(len(node["data"].rows)) + " ", end="")
-            print(node["data"].stats("mid", node["data"].cols.y, nPlaces))
+
+            # Orders data from (Lbs-, Acc+, Mpg+) to (Acc+, Lbs-, Mpg+)
+            myDict = node["data"].stats("mid", node["data"].cols.y, nPlaces)
+            myKeys = list(myDict.keys())
+            myKeys.sort()
+            sorted_dict = {i: myDict[i] for i in myKeys}
+            print(sorted_dict)
         else:
             print("| " * lvl + str(len(node["data"].rows)) + " ")
 
         if "left" in node:
             show(node["left"], what, cols, nPlaces, lvl + 1)
-
         if "right" in node:
             show(node["right"], what, cols, nPlaces, lvl + 1)
 

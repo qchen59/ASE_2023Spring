@@ -1,5 +1,7 @@
 from utils import returnHandler
 
+from numerics import Numerics
+
 
 class Lists:
 
@@ -42,3 +44,15 @@ class Lists:
             return a[x] < b[x]
 
         return helper
+    # pick a random item from the table
+
+    def any(self, table):
+        numerics = Numerics()
+        return table[numerics.rint(0, len(table) - 1)]
+
+    # randomly pick n items from the table and store in a new table
+    def many(table, n):
+        newTable = []
+        for i in range(n):
+            newTable.append(any(table))
+        return newTable

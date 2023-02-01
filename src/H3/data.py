@@ -6,6 +6,7 @@ from col import Col
 from lists import Lists
 import config
 import math
+from numerics import Numerics
 
 
 class Data:
@@ -80,3 +81,30 @@ class Data:
         # return l.sort(l.map(rows or self.rows, helper), l.lt("dist"))
         r = self.l.map(rows or self.rows, helper)
         return self.l.sort(self.l.map(rows or self.rows, helper), lambda x: x['dist'])
+
+    def half(self, rows=None, cols=None, above=None):
+
+        # imports from other functions
+        numerics = Numerics()
+
+        def project(row):
+            return {'row': row, 'dist': numerics.cosine(dist(row, A), dist(row, B), c)}
+
+        def dist(row1, row2):
+            return self.dist(row1, row2, cols)
+
+        rows = rows or self.rows
+        some = numerics.many(rows, the.Sample)
+        A = above or numerics.any(some)
+        B = self.around(A, some)[int((the.Far * len(rows)) // 1)].row
+        c = dist(A, B)
+        left, right = [], []
+        # No idea if this is how it works
+        for n, tmp in enumerate(self.l.sort(map(project, rows), lambda x: x['dist'])):
+            if n <= len(rows) // 2:
+                left.append(tmp['row'])
+                mid = tmp['row']
+            else:
+                right.append(tmp['row'])
+
+        return left, right, A, B, mid, c

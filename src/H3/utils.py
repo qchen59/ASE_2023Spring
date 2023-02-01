@@ -85,12 +85,10 @@ def show(node, what, cols, nPlaces, lvl=None):
 def returnHandler(value, n=1):
     # for None
     if value is None:
-        print('entered None case')
         return [None]*n
 
     # for list, set, dict, tuple
     if type(value) in [list, set, dict, tuple]:
-        print('entered list case')
         values_to_return = []
         remaining = n
         if n <= len(value):
@@ -108,7 +106,6 @@ def returnHandler(value, n=1):
     remaining = n-1
     # for others (int,str,etc)
     if remaining != 0:
-        print('entered remaining case')
         while remaining != 0:
             values_to_return.append(None)
             remaining -= 1

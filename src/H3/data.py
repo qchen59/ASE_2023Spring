@@ -27,9 +27,9 @@ class Data:
         return str(self.__dict__)
 
     def add(self, t):
-        print(f'{t=}')
         if self.cols:  # if column names have been seen
-            t = Row(t)  # ensure t is a row
+            if type(t) != Row:
+                t = Row(t)  # ensure t is a row
             self.rows.append(t)
             self.cols.add(t)
         else:
@@ -38,12 +38,7 @@ class Data:
     def clone(self, init={}):
         def helper(x):
             data.add(x)
-            # return None, None
-        # print(f'{init=}')
-        print(f'{len(self.cols.names)=}')
         data = Data([self.cols.names])
-
-        print('calling clone add')
         self.l.map(init, helper)
         return data
 

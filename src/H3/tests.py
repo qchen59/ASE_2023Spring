@@ -3,7 +3,7 @@ from num import Num
 from sym import Sym
 from numerics import Numerics
 from data import Data
-from utils import csv
+from utils import csv, show
 
 
 def numTest():
@@ -74,3 +74,41 @@ def statsTest():
     print("y", "mid", data.stats("mid", data.cols.y, 2))
     print("div", data.stats("div", data.cols.y, 2))
     return True
+
+
+def cloneTest():
+    data1 = Data(config.the['file'])
+    data2 = data1.clone(data1.rows)
+    return len(data1.rows) == len(data2.rows) and data1.cols.y[0].w == data2.cols.y[0].w and data1.cols.x[0].at == data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
+
+
+def aroundTest():
+    data = Data(config.the['file'])
+    print(0, 0, data.rows[0].cells)
+    nu = Numerics()
+    p = data.around(data.rows[0])
+    for n, t in enumerate(data.around(data.rows[0])):
+        if (n+1) % 50 == 0:
+            print(n+1, nu.rnd(t['dist'], 2), t['row'].cells)
+    return True
+
+
+def halfTest():
+    data = Data(config.the['file'])
+    left, right, A, B, mid, C = data.half()
+    print(len(left), len(right), len(data.rows))
+    print(A.cells, C)
+    print(mid.cells)
+    print(B.cells)
+    return True
+
+def optimizeTest():
+    data = Data(config.the['file'])
+    show(data.sway(), "mid",data.cols.y, 1)
+    return True
+
+def clusterTest():
+    data = Data(config.the['file'])
+    show(data.cluster(), "mid", data.cols.y, 1)
+    return True
+

@@ -42,5 +42,3 @@ class Col:
     def __repr__(self):
         return str(self.__dict__)
 
-# Tests
-# col = Col(['Clndrs', 'Volume', 'HpX', 'Lbs-', 'Acc+', 'Model', 'origin', 'Mpg+'])

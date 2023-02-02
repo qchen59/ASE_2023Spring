@@ -13,9 +13,13 @@ jobs:
           python-version: 3.9
       - name: test hw1
         run: |
-          cd ./src; python3 H1/script.py -g all > ../etc/out/script_hw1.out
+          cd ./src/H1; python3 script.py -g all > ../../etc/out/script_hw1.out
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: test hw2
         run: |
-          cd ./src; python3 H2/main.py -g all >../etc/out/script_hw2.out
+          cd ./src/H2; python3 main.py -g all > ../../etc/out/script_hw2.out
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: test hw3
+        run: |
+          cd ./src/H3; python3 main.py -g all > ../../etc/out/script_hw3.out
       - run: echo "🍏 This job's status is ${{ job.status }}."

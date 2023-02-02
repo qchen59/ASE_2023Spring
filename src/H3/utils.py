@@ -84,7 +84,7 @@ def show(node, what, cols, nPlaces, lvl=None):
             print(sorted_dict)
         else:
             print("| " * lvl + str(len(node["data"].rows)) + " ")
-            
+
         if "left" in node:
             show(node["left"], what, cols, nPlaces, lvl + 1)
         if "right" in node:

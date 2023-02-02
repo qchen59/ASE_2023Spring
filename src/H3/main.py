@@ -1,6 +1,6 @@
 # script.lua -> script.py
 from utils import eg, cli, settings
-from tests import theTest, symTest, randTest, numTest, csvTest, dataTest, statsTest, cloneTest, aroundTest, halfTest, optimizeTest
+from tests import theTest, symTest, randTest, numTest, csvTest, dataTest, statsTest, cloneTest, aroundTest, halfTest, optimizeTest, clusterTest
 import config
 
 
@@ -46,5 +46,6 @@ if __name__ == '__main__':
     eg("around", "sorting nearest neighbors", aroundTest)
     eg("half", "1-level bi-clustering", halfTest)
     eg("optimize", "semi-supervised optimization", optimizeTest)
+    eg("cluster", "N-level bi-clustering", clusterTest)
     m = Main()
     m.main(config.help, config.egs)

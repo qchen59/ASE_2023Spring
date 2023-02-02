@@ -107,3 +107,8 @@ def optimizeTest():
     data = Data(config.the['file'])
     show(data.sway(),"mid",data.cols.y,1)
     return True
+
+def clusterTest():
+    data = Data(config.the['file'])
+    show(data.cluster(), "mid", data.cols.y, 1)
+    return True

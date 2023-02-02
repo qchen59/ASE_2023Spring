@@ -46,10 +46,11 @@ class Lists:
             return a[x] < b[x]
 
         return helper
-    # pick a random item from the table
 
+    # pick a random item from the table
     def any(self, table):
-        return table[self.nu.rint(0, len(table) - 1)]
+        a = self.nu.rint(len(table)) - 1
+        return table[a]
 
     # randomly pick n items from the table and store in a new table
     def many(self, table, n):

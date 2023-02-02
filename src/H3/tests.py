@@ -64,7 +64,6 @@ def csvTest():
 
 def dataTest():
     data = Data(config.the['file'])
-    print(data)
     return len(data.rows) == 398 and data.cols.y[0].w == -1 and data.cols.x[1].at == 1 and len(data.cols.x) == 4
 
 
@@ -105,10 +104,11 @@ def halfTest():
 
 def optimizeTest():
     data = Data(config.the['file'])
-    show(data.sway(),"mid",data.cols.y,1)
+    show(data.sway(), "mid",data.cols.y, 1)
     return True
 
 def clusterTest():
     data = Data(config.the['file'])
     show(data.cluster(), "mid", data.cols.y, 1)
     return True
+

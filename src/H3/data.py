@@ -37,13 +37,14 @@ class Data:
         else:
             self.cols = Col(t)
 
+    # clone the data
     def clone(self, init={}):
         def helper(x):
             data.add(x)
         data = Data([self.cols.names])
         self.l.map(init, helper)
         return data
-
+    # calculate the stats (mean, stand deviations)
     def stats(self, what, cols, nPlaces):
         def fun(k, col):
             if what == 'div':
@@ -55,6 +56,7 @@ class Data:
 
         return self.l.kap(cols or self.cols.y, fun)
 
+    # calculate which row is better using continuous domination
     def better(self, row1, row2):
         s1, s2, ys = 0, 0, self.cols.y
         for col in ys:
@@ -64,31 +66,24 @@ class Data:
             s2 = s2 - math.exp(col.w * (y-x)/len(ys))
         return s1/len(ys) < s2/len(ys)
 
+    # calculate the distance between two rows
     def dist(self, row1, row2, cols=None):
         n = 0
         d = 0
         for col in cols or self.cols.x:
             n += 1
-            d += pow(col.dist(row1.cells[col.at],
-                     row2.cells[col.at]), config.the['p'])
+            d += col.dist(row1.cells[col.at], row2.cells[col.at]) ** config.the['p']
+        return (d / n) ** (1 / config.the['p'])
 
-        return pow(d / n, 1 / config.the['p'])
-
+    # find the rows around (sort other rows by distance to row)
     def around(self, row1, rows=None, cols=None):
-
         def helper(row2):
             return {"row": row2, "dist": self.dist(row1, row2, cols)}
-
-        # return l.sort(l.map(rows or self.rows, helper), l.lt("dist"))
-        r = self.l.map(rows or self.rows, helper)
         return self.l.sort(self.l.map(rows or self.rows, helper), lambda x: x['dist'])
 
+    # divides data using 2 far points
     def half(self, rows=None, cols=None, above=None):
-
-        # imports from other functions
-
         def project(row):
-            # print(f"Cosine Value: {self.nu.cosine(dist(row, A), dist(row, B), c)}")
             x2, y = self.nu.cosine(dist(row, A), dist(row, B), c)
             return {'row': row, 'dist': x2}
 
@@ -98,25 +93,19 @@ class Data:
         rows = rows or self.rows
         some = self.l.many(rows, config.the['Sample'])
         A = above or self.l.any(some)
-        b = self.around(A, some)
         B = self.around(A, some)[
             int((config.the['Far'] * len(rows)) // 1)]['row']
         c = dist(A, B)
-        # print(f"Dist A-B: {c}")
-
         left, right = [], []
-
-        for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist']), 1):
-            # print(tmp)
-            if n <= len(rows) // 2:
-                # print(n)
+        for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist']),1):
+            if n <= len(rows)// 2:
                 left.append(tmp['row'])
                 mid = tmp['row']
             else:
                 right.append(tmp['row'])
-
         return left, right, A, B, mid, c
 
+    # returns best half, recursively
     def sway(self, rows=None, min=None, cols=None, above=None):
         rows = rows or self.rows
         min = min or len(rows)**config.the["min"]
@@ -125,20 +114,17 @@ class Data:
         
         if len(rows) > 2*min:
             left, right, node["A"], node["B"], node["mid"], c = self.half(rows,cols,above)
-            
-            print(f'is node B better than node A? {self.better(node["B"], node["A"])} \tnodeA: {node["A"]} \tnodeB: {node["B"]}')
             if self.better(node["B"], node["A"]):
                 left, right, node["A"], node["B"] = right, left, node["B"], node["A"]
-                print(f"old left: {right} {len(right)}, new left: {left} {len(left)}")
-            
-            node["left"]  = self.sway(left,  min, cols, node["A"])
+
+            node["left"] = self.sway(left,  min, cols, node["A"])
         
         return node
 
+    # returns rows, recursively halved
     def cluster(self, rows=None, min=None, cols=None, above=None):
         rows = rows or self.rows
         min = min or len(rows) ** config.the['min']
-        # print(f"min: {min}")
         cols = cols or self.cols.x
         node = {"data": self.clone(rows)}
         if len(rows) > 2 * min:

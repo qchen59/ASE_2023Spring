@@ -78,10 +78,13 @@ class Data:
         def helper(row2):
             return {"row": row2, "dist": self.dist(row1, row2, cols)}
 
+        # return l.sort(l.map(rows or self.rows, helper), l.lt("dist"))
         r = self.l.map(rows or self.rows, helper)
         return self.l.sort(self.l.map(rows or self.rows, helper), lambda x: x['dist'])
 
     def half(self, rows=None, cols=None, above=None):
+
+        # imports from other functions
 
         def project(row):
             return {'row': row, 'dist': self.nu.cosine(dist(row, A), dist(row, B), c)}
@@ -117,8 +120,11 @@ class Data:
         if len(rows) > 2*min:
             left, right, node["A"], node["B"], node["mid"], c = self.half(rows,cols,above)
             
+            print(f'is node B better than node A? {self.better(node["B"], node["A"])} \tnodeA: {node["A"]} \tnodeB: {node["B"]}')
             if self.better(node["B"], node["A"]):
-                left, right, node["A"], node["B"] = right, left, node["B"], node["A"]            
+                left, right, node["A"], node["B"] = right, left, node["B"], node["A"]
+                print(f"old left: {right} {len(right)}, new left: {left} {len(left)}")
+            
             node["left"]  = self.sway(left,  min, cols, node["A"])
         
         return node

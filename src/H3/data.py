@@ -71,6 +71,7 @@ class Data:
             n += 1
             d += pow(col.dist(row1.cells[col.at],
                      row2.cells[col.at]), config.the['p'])
+
         return pow(d / n, 1 / config.the['p'])
 
     def around(self, row1, rows=None, cols=None):
@@ -87,7 +88,9 @@ class Data:
         # imports from other functions
 
         def project(row):
-            return {'row': row, 'dist': self.nu.cosine(dist(row, A), dist(row, B), c)}
+            # print(f"Cosine Value: {self.nu.cosine(dist(row, A), dist(row, B), c)}")
+            x2, y = self.nu.cosine(dist(row, A), dist(row, B), c)
+            return {'row': row, 'dist': x2}
 
         def dist(row1, row2):
             return self.dist(row1, row2, cols)
@@ -99,11 +102,14 @@ class Data:
         B = self.around(A, some)[
             int((config.the['Far'] * len(rows)) // 1)]['row']
         c = dist(A, B)
+        # print(f"Dist A-B: {c}")
 
         left, right = [], []
 
         for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist']), 1):
+            # print(tmp)
             if n <= len(rows) // 2:
+                # print(n)
                 left.append(tmp['row'])
                 mid = tmp['row']
             else:
@@ -132,6 +138,7 @@ class Data:
     def cluster(self, rows=None, min=None, cols=None, above=None):
         rows = rows or self.rows
         min = min or len(rows) ** config.the['min']
+        # print(f"min: {min}")
         cols = cols or self.cols.x
         node = {"data": self.clone(rows)}
         if len(rows) > 2 * min:

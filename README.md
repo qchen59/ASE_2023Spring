@@ -21,7 +21,7 @@ This is the homework Repository for 2023 Spring CSC 591 Automated Software Engin
 
 - [HW 1 documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ASE_2023Spring/blob/main/docs/H1/index.html) 
 - [HW 2 documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ASE_2023Spring/blob/main/docs/H2/index.html)
-
+- [HW 3 documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ASE_2023Spring/blob/main/docs/H3/index.html)
 ### Generate the documentation
 `` pycco -i H1/*.py -d ../docs/H1 ``
 

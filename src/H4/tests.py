@@ -6,6 +6,7 @@ from data import Data
 # from utils import csv, show
 from lists import Lists
 import csv
+from utils import csv, show
 
 
 def numTest():
@@ -115,7 +116,6 @@ def clusterTest():
     return True
 
 def repColsTest():
-
     data = {}
     with open(config.the["file"], "r") as file:
         reader = csv.reader(file)

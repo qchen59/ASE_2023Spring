@@ -44,6 +44,7 @@ if __name__ == '__main__':
     eg("the", "show settings", theTest)
     eg("sym", "check syms", symTest)
     eg("repcols","checking repcols", repColsTest)
+    
     # Tests not included in HW3
     # eg("rand", "generate, reset, regenerate same", randTest)
     # eg("csv", "read from csv", csvTest)

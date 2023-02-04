@@ -108,11 +108,11 @@ class Lists:
 
 
 
-    function repgrid(sFile,     t,rows,cols)
-  t = dofile(sFile) 
-  rows = repRows(t, transpose(t.cols)) 
-  cols = repCols(t.cols)
-  show(rows:cluster())
-  show(cols:cluster())
-  repPlace(rows)
-end
+#     function repgrid(sFile,     t,rows,cols)
+#   t = dofile(sFile) 
+#   rows = repRows(t, transpose(t.cols)) 
+#   cols = repCols(t.cols)
+#   show(rows:cluster())
+#   show(cols:cluster())
+#   repPlace(rows)
+# end

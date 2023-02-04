@@ -2,6 +2,7 @@ import re
 import sys
 import config
 from csv import reader
+from lists import copy
 
 
 def eg(key, str, fun):
@@ -118,3 +119,25 @@ def returnHandler(value, n=1):
         while remaining != 0:
             values_to_return.append(None)
             remaining -= 1
+
+
+def transpose(t):
+    u = []
+    for i in range(len(t[0])):
+        u.append([])
+        for j in range(len(t)):
+            u[i].append(t[j][i])
+    return u
+
+
+def repRows(t, rows):
+    rows = copy(rows)
+    for j, s in enumerate(rows[-1]):
+        rows[0][j] = rows[0][j]+':'+s
+    rows[-1] = None
+    for n, row in enumerate(rows):
+        if n == 0:
+            row.append("thingX")
+        else:
+            u = t.rows[len(t.rows) - n + 1]
+            row.append(u[-1])

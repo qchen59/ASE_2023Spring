@@ -41,9 +41,11 @@ class Data:
     def clone(self, init={}):
         def helper(x):
             data.add(x)
+
         data = Data([self.cols.names])
         self.l.map(init, helper)
         return data
+
     # calculate the stats (mean, stand deviations)
     def stats(self, what, cols, nPlaces):
         def fun(k, col):
@@ -62,9 +64,9 @@ class Data:
         for col in ys:
             x = col.norm(row1.cells[col.at])
             y = col.norm(row2.cells[col.at])
-            s1 = s1 - math.exp(col.w * (x-y)/len(ys))
-            s2 = s2 - math.exp(col.w * (y-x)/len(ys))
-        return s1/len(ys) < s2/len(ys)
+            s1 = s1 - math.exp(col.w * (x - y) / len(ys))
+            s2 = s2 - math.exp(col.w * (y - x) / len(ys))
+        return s1 / len(ys) < s2 / len(ys)
 
     # calculate the distance between two rows
     def dist(self, row1, row2, cols=None):
@@ -79,6 +81,7 @@ class Data:
     def around(self, row1, rows=None, cols=None):
         def helper(row2):
             return {"row": row2, "dist": self.dist(row1, row2, cols)}
+
         return self.l.sort(self.l.map(rows or self.rows, helper), lambda x: x['dist'])
 
     # divides data using 2 far points
@@ -97,8 +100,8 @@ class Data:
             int((config.the['Far'] * len(rows)) // 1)]['row']
         c = dist(A, B)
         left, right = [], []
-        for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist']),1):
-            if n <= len(rows)// 2:
+        for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist']), 1):
+            if n <= len(rows) // 2:
                 left.append(tmp['row'])
                 mid = tmp['row']
             else:
@@ -108,17 +111,17 @@ class Data:
     # returns best half, recursively
     def sway(self, rows=None, min=None, cols=None, above=None):
         rows = rows or self.rows
-        min = min or len(rows)**config.the["min"]
+        min = min or len(rows) ** config.the["min"]
         cols = cols or self.cols.x
         node = {"data": self.clone(rows)}
-        
-        if len(rows) > 2*min:
-            left, right, node["A"], node["B"], node["mid"], c = self.half(rows,cols,above)
+
+        if len(rows) > 2 * min:
+            left, right, node["A"], node["B"], node["mid"], c = self.half(rows, cols, above)
             if self.better(node["B"], node["A"]):
                 left, right, node["A"], node["B"] = right, left, node["B"], node["A"]
 
-            node["left"] = self.sway(left,  min, cols, node["A"])
-        
+            node["left"] = self.sway(left, min, cols, node["A"])
+
         return node
 
     # returns rows, recursively halved
@@ -132,3 +135,8 @@ class Data:
             node["left"] = self.cluster(left, min, cols, node["A"])
             node["right"] = self.cluster(right, min, cols, node["B"])
         return node
+
+    # sort other `rows` by distance to `row`
+    def furthest(self, row1, row2, cols):
+        t = self.around(row1, row2, cols)
+        return t[len(t) - 1]

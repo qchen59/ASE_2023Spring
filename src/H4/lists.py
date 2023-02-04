@@ -1,5 +1,5 @@
 from utils import returnHandler
-
+import copy
 from numerics import Numerics
 
 
@@ -31,7 +31,6 @@ class Lists:
     # return t, sorted by fun (default= <)
     def sort(self, table, fun=None):
         return sorted(table, key=fun)
-         
 
     # return list of table keys, sorted
     # -- anonymous function acquires keys from table t
@@ -58,3 +57,10 @@ class Lists:
         for i in range(n):
             newTable.append(self.any(table))
         return newTable
+
+    # make a deep copy
+    def copy(self, t):
+        return copy.deepcopy(t)
+
+    def last(self, t):
+        return t[len(t)-1]

@@ -35,13 +35,13 @@ class Main:
 
 
 if __name__ == '__main__':
-    eg("clone", "duplicate structure", cloneTest)
-    eg("around", "sorting nearest neighbors", aroundTest)
-    eg("cluster", "N-level bi-clustering", clusterTest)
-    eg("data", "read DATA csv", dataTest)
-    eg("half", "1-level bi-clustering", halfTest)
+    # eg("clone", "duplicate structure", cloneTest)
+    # eg("around", "sorting nearest neighbors", aroundTest)
+    # eg("cluster", "N-level bi-clustering", clusterTest)
+    # eg("data", "read DATA csv", dataTest)
+    # eg("half", "1-level bi-clustering", halfTest)
     eg("num", "check nums", numTest)
-    eg("optimize", "semi-supervised optimization", optimizeTest)
+    # eg("optimize", "semi-supervised optimization", optimizeTest)
     eg("the", "show settings", theTest)
     eg("sym", "check syms", symTest)
     eg("copy", "check copy", copyTest)

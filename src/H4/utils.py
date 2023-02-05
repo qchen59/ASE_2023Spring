@@ -2,8 +2,12 @@ import re
 import sys
 import config
 from csv import reader
-from lists import copy
+from lists import Lists
+import re
+import json
+import data
 
+l = Lists()
 
 def eg(key, str, fun):
     config.egs[key] = fun
@@ -91,34 +95,28 @@ def show(node, what, cols, nPlaces, lvl=None):
         if "right" in node:
             show(node["right"], what, cols, nPlaces, lvl + 1)
 
+def processLua(file):
+    f = open(file, "r")
+    # skip first line
+    f.readline()
+    f.readline()
+    fs = f.read()
+    fs = re.sub("\'", "\"", fs)
+    fs = re.sub("=", ":", fs)
+    fs = re.sub("{", "[", fs)
+    fs = re.sub("}", "]", fs)
+    fs = re.sub("_", "null", fs)
+    fs = re.sub("\n]", "", fs)
+    fs = re.sub("domain", "\"domain\"", fs)
+    fs = re.sub("cols", "\"cols\"", fs)
+    fs = re.sub("rows", "\"rows\"", fs)
+    fs = "{" + fs + "}"
+    # print(fs)
+    fs = json.loads(fs)
+    # print(fs)
+    return fs
 
-def returnHandler(value, n=1):
-    # for None
-    if value is None:
-        return [None]*n
-
-    # for list, set, dict, tuple
-    if type(value) in [list, set, dict, tuple]:
-        values_to_return = []
-        remaining = n
-        if n <= len(value):
-            values_to_return = [value]
-            remaining -= 1
-
-        if remaining != 0:
-            while remaining != 0:
-                values_to_return.append(None)
-                remaining -= 1
-
-        return values_to_return
-
-    values_to_return = [value]
-    remaining = n-1
-    # for others (int,str,etc)
-    if remaining != 0:
-        while remaining != 0:
-            values_to_return.append(None)
-            remaining -= 1
+processLua("../../etc/data/repgrid1.csv")
 
 
 def transpose(t):
@@ -131,7 +129,7 @@ def transpose(t):
 
 
 def repRows(t, rows):
-    rows = copy(rows)
+    rows = l.copy(rows)
     for j, s in enumerate(rows[-1]):
         rows[0][j] = rows[0][j]+':'+s
     rows[-1] = None
@@ -141,3 +139,45 @@ def repRows(t, rows):
         else:
             u = t.rows[len(t.rows) - n + 1]
             row.append(u[-1])
+
+def repCols(cols):
+    cols = l.copy(cols)
+    for col in cols:
+        col[-1] = str(col[0]) + ":" + str(col[-1])
+        for j in range(1, len(col)-1):
+            col[j-1] = col[j]
+
+    def numPlusStr(k, v):
+        return "Num" + str(k), None
+    #insert into the cols table using helper function
+    cols.insert(0, list(l.kap(cols[0], numPlusStr).values())[:-1]) # Need another way to insert() into list of cols
+    cols[0][len(cols[0]) - 1] = "thingX"
+    return data.Data(cols)
+
+
+def repPlace( data, n, g, max_x, max_y, x, y, c):
+    n, g = 20, {}
+    g = [ [' ' for j in range(n+1)] for i in range(n+1)]
+    max_y = 0
+    print('')
+
+    for r, row in enumerate(data['rows']):
+        c = chr(64 + r)
+        print(c, row['cells'][-1])
+        x, y = int(row['x'] * n), int(row['y'] * n)
+        max_y = max(max_y, y + 1)
+        g[y + 1][x + 1] = c
+    print('')
+
+    for y in range(max_y):
+        print(g[y])
+
+
+def repGrid(sFile, table):
+    # table = doFile(sFile)  -- Require a parsing function in utils.py that reads the repgrid1.csv file into a dict
+    rows = repRows(table, transpose(table.cols))
+    cols = repCols(table.cols)
+    show(rows.cluster())
+    show(cols.cluster())
+
+    repPlace(rows)

@@ -3,7 +3,7 @@ from num import Num
 from sym import Sym
 from numerics import Numerics
 from data import Data
-from utils import csv, show,repCols, repRows, transpose, repPlace, repgrid
+from utils import csv, show, repCols, repRows, transpose, repPlace, repGrid, processLua
 from lists import Lists
 
 l = Lists()
@@ -127,38 +127,45 @@ def copyTest():
     print("after", t2)
     return True
 
+
 def recolsTest():
-    t = repCols(exec(open(config.the['file']).read()).cols)
+    fs = processLua(config.the['file'])
+    t = repCols(fs['cols'])
     # cols and rows objects
-    l.map(t['cols'].all, lambda x: print(x))
-    l.map(t['rows'], lambda x: print(x))
+    l.map(t.cols.all, lambda x: print(x))
+    l.map(t.rows, lambda x: print(x))
     return True
+
 
 def synonymsTests():
     show(repCols(exec(open(config.the['file']).read()).cols).cluster())
     return True
 
+
 def reprowsTest():
-    t = exec(open(config.the['file']).read())
-    rows = repRows(t, transpose(t['cols']))
-    l.map(rows['cols'].all, lambda x: print(x))
-    l.map(rows['rows'], lambda x: print(x))
+    fs = processLua(config.the['file'])
+    t = repCols(fs['cols'])
+    rows = repRows(t, transpose(t.cols))
+    l.map(rows.cols.all, lambda x: print(x))
+    l.map(rows.rows, lambda x: print(x))
     return True
+
 
 def prototypesTest():
     t = exec(open(config.the['file']).read())
-    rows = repRows(t, transpose(t['cols']))
+    rows = repRows(t, transpose(t.cols))
     repPlace(rows)
     return True
 
+
 def positionTest():
     t = exec(open(config.the['file']).read())
-    rows = repRows(t, transpose(t['cols']))
+    rows = repRows(t, transpose(t.cols))
     rows.cluster()
     repPlace(rows)
     return True
 
-def everyTest():
-    repgrid(config.the['file'])
-    return True
 
+def everyTest():
+    repGrid(config.the['file'])
+    return True

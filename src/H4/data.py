@@ -1,6 +1,6 @@
 import config
 import math
-from utils import csv
+import utils
 from row import Row
 from col import Col
 from lists import Lists
@@ -21,7 +21,7 @@ class Data:
             # return None, None
 
         if type(src) == str:
-            csv(src, helper)
+            utils.csv(src, helper)
         else:
             self.l.map(src, helper)
 

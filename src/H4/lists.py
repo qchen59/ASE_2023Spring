@@ -1,4 +1,3 @@
-from utils import returnHandler, show
 import copy
 from numerics import Numerics
 
@@ -7,11 +6,39 @@ class Lists:
     def __init__(self) -> None:
         self.nu = Numerics()
 
+    def returnHandler(self, value, n=1):
+        # for None
+        if value is None:
+            return [None]*n
+
+        # for list, set, dict, tuple
+        if type(value) in [list, set, dict, tuple]:
+            values_to_return = []
+            remaining = n
+            if n <= len(value):
+                values_to_return = [value]
+                remaining -= 1
+
+            if remaining != 0:
+                while remaining != 0:
+                    values_to_return.append(None)
+                    remaining -= 1
+
+            return values_to_return
+
+        values_to_return = [value]
+        remaining = n-1
+        # for others (int,str,etc)
+        if remaining != 0:
+            while remaining != 0:
+                values_to_return.append(None)
+                remaining -= 1
+
     # map a function `fun`(v) over list (skip nil results)
     def map(self, table, fun):
         newTable = []
         for k, v in enumerate(table):
-            v, k = returnHandler(fun(v), 2)
+            v, k = self.returnHandler(fun(v), 2)
             if k is None:
                 newTable.append(v)
             else:
@@ -31,10 +58,6 @@ class Lists:
     # return t, sorted by fun (default= <)
     def sort(self, table, fun=None):
         return sorted(table, key=fun)
-<<<<<<< HEAD
-=======
-         
->>>>>>> origin/niraj_hw4
 
     # return list of table keys, sorted
     # -- anonymous function acquires keys from table t
@@ -69,58 +92,15 @@ class Lists:
     def last(self, t):
         return t[len(t)-1]
 
-def repCols(self, cols):
-
-    for col in cols:
-        col[-1] = str(col[0]) + ":" + str(col[-1])
-        for j in range(1, len(col)):
-            col[j-1] = col[j]
-        col = col[:-1] # remove last element
-
-    def numPlusStr(k, v):
-        return "Num" + str(k)
-
-    #insert into the cols table using helper function
-    cols.insert(0, self.kap(cols[0], numPlusStr)) # Need another way to insert() into list of cols
-    cols[0][len(cols[0]) - 1] = "thingX"
-    return cols
-
-
-def repPlace(self, data, n, g, max_x, max_y, x, y, c):
-    n, g = 20, {}
-    g = [ [' ' for j in range(n+1)] for i in range(n+1)]
-    max_y = 0
-    print('')
-
-    for r, row in enumerate(data['rows']):
-        c = chr(64 + r)
-        print(c, row['cells'][-1])
-        x, y = int(row['x'] * n), int(row['y'] * n)
-        max_y = max(max_y, y + 1)
-        g[y + 1][x + 1] = c
-    print('')
-
-    for y in range(max_y):
-        print(g[y])
-
-
-def repGrid(self, sFile, table):
-    # table = doFile(sFile)  -- Require a parsing function in utils.py that reads the repgrid1.csv file into a dict
-    rows = self.repRows(table, self.transpose(table.cols))
-    cols = self.repCols(table.cols)
-    show(rows.cluster())
-    show(cols.cluster())
-
-    self.repPlace(rows)
 
 
 
 
-#     function repgrid(sFile,     t,rows,cols)
-#   t = dofile(sFile)
-#   rows = repRows(t, transpose(t.cols))
-#   cols = repCols(t.cols)
-#   show(rows:cluster())
-#   show(cols:cluster())
-#   repPlace(rows)
-# end
+    #     function repgrid(sFile,     t,rows,cols)
+    #   t = dofile(sFile)
+    #   rows = repRows(t, transpose(t.cols))
+    #   cols = repCols(t.cols)
+    #   show(rows:cluster())
+    #   show(cols:cluster())
+    #   repPlace(rows)
+    # end

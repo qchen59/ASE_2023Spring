@@ -1,5 +1,3 @@
-dog,cat
-
 local _ = " "
 return {
  domain="dissementian platforms",

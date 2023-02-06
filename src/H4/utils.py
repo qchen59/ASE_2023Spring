@@ -122,9 +122,8 @@ def processLua(file):
     # print(fs)
     fs = json.loads(fs)
     # print(fs)
+    # print(json.dumps(fs, indent=4))
     return fs
-
-processLua("../../etc/data/repgrid1.csv")
 
 
 def transpose(t):
@@ -164,28 +163,28 @@ def repCols(cols):
     return data.Data(cols)
 
 
-def repPlace( data, n, g, max_x, max_y, x, y, c):
+def repPlace(data):
     n, g = 20, {}
     g = [ [' ' for j in range(n+1)] for i in range(n+1)]
     max_y = 0
     print('')
 
-    for r, row in enumerate(data['rows']):
-        c = chr(64 + r)
-        print(c, row['cells'][-1])
-        x, y = int(row['x'] * n), int(row['y'] * n)
+    for r, row in enumerate(data.rows):
+        c = chr(64 + r + 1)
+        print(c, row.cells[-1])
+        x, y = int(row.x * n), int(row.y * n)
         max_y = max(max_y, y + 1)
         g[y + 1][x + 1] = c
     print('')
 
-    for y in range(max_y):
+    for y in range(max_y+1):
         print(g[y])
 
 
-def repGrid(sFile, table):
-    # table = doFile(sFile)  -- Require a parsing function in utils.py that reads the repgrid1.csv file into a dict
-    rows = repRows(table, transpose(table.cols))
-    cols = repCols(table.cols)
+def repGrid(sFile):
+    table = processLua(sFile)
+    rows = repRows(table, transpose(table['cols']))
+    cols = repCols(table['cols'])
     show(rows.cluster())
     show(cols.cluster())
 

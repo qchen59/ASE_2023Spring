@@ -85,6 +85,8 @@ class Data:
     def half(self, rows=None, cols=None, above=None):
         def project(row):
             x2, y = self.nu.cosine(dist(row, A), dist(row, B), c)
+            row.x = row.x or x2
+            row.y = row.y or y
             return {'row': row, 'dist': x2}
 
         def dist(row1, row2):

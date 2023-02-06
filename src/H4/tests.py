@@ -155,7 +155,7 @@ def reprowsTest():
 def prototypesTest():
     t = processLua(config.the['file'])
     rows = repRows(t, transpose(t['cols']))
-    repPlace(rows)
+    show(rows.cluster())
     return True
 
 

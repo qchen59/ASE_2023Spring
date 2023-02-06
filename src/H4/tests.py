@@ -145,24 +145,23 @@ def synonymsTests():
 
 
 def reprowsTest():
-    fs = processLua(config.the['file'])
-    t = repCols(fs['cols'])
-    rows = repRows(t, transpose(t.cols))
+    t = processLua(config.the['file'])
+    rows = repRows(t, transpose(t['cols']))
     l.map(rows.cols.all, lambda x: print(x))
     l.map(rows.rows, lambda x: print(x))
     return True
 
 
 def prototypesTest():
-    t = exec(open(config.the['file']).read())
-    rows = repRows(t, transpose(t.cols))
+    t = processLua(config.the['file'])
+    rows = repRows(t, transpose(t['cols']))
     repPlace(rows)
     return True
 
 
 def positionTest():
-    t = exec(open(config.the['file']).read())
-    rows = repRows(t, transpose(t.cols))
+    t = processLua(config.the['file'])
+    rows = repRows(t, transpose(t['cols']))
     rows.cluster()
     repPlace(rows)
     return True

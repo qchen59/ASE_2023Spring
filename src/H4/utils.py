@@ -140,13 +140,14 @@ def repRows(t, rows):
     rows = l.copy(rows)
     for j, s in enumerate(rows[-1]):
         rows[0][j] = rows[0][j]+':'+s
-    rows[-1] = None
+    rows = rows[:-1]
     for n, row in enumerate(rows):
         if n == 0:
             row.append("thingX")
         else:
-            u = t.rows[len(t.rows) - n + 1]
+            u = t['rows'][len(t['rows']) - n]
             row.append(u[-1])
+    return data.Data(rows)
 
 def repCols(cols):
     cols = l.copy(cols)

@@ -3,11 +3,14 @@ import sys
 import config
 from csv import reader
 from lists import Lists
+from numerics import Numerics
 import re
 import json
 import data
 
 l = Lists()
+n = Numerics()
+
 
 def eg(key, str, fun):
     config.egs[key] = fun
@@ -75,21 +78,26 @@ def csv(sFilename, fun):
 
 
 # prints the tree generated from `DATA:tree`
-def show(node, what, cols, nPlaces, lvl=None):
+def show(node, what=None, cols=None, nPlaces=None, lvl=None):
     if node:
         lvl = lvl or 0
-        if "left" not in node or lvl == 0:
-            print("| " * lvl + str(len(node["data"].rows)) + " ", end="")
-
-            # Orders data from (Lbs-, Acc+, Mpg+) to (Acc+, Lbs-, Mpg+)
-            myDict = node["data"].stats("mid", node["data"].cols.y, nPlaces)
-            myKeys = list(myDict.keys())
-            myKeys.sort()
-            sorted_dict = {i: myDict[i] for i in myKeys}
-            print(sorted_dict)
+        # if "left" not in node or lvl == 0:
+        #     print("|.." * lvl + str(n.rnd(100*node['c'])) + " ", end="")
+        #
+        #     # Orders data from (Lbs-, Acc+, Mpg+) to (Acc+, Lbs-, Mpg+)
+        #     myDict = node["data"].stats("mid", node["data"].cols.y, nPlaces)
+        #     myKeys = list(myDict.keys())
+        #     myKeys.sort()
+        #     sorted_dict = {i: myDict[i] for i in myKeys}
+        #     print(sorted_dict)
+        # else:
+        #     print("|.." * lvl + str(n.rnd(100*node['c'])) + " ")
+        s = "|.." * lvl
+        if "left" not in node:
+            s += l.last(l.last(node['data'].rows).cells)
         else:
-            print("| " * lvl + str(len(node["data"].rows)) + " ")
-
+            s += str(round(n.rnd(100*node['c'])))
+        print(s)
         if "left" in node:
             show(node["left"], what, cols, nPlaces, lvl + 1)
         if "right" in node:

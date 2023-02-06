@@ -138,7 +138,9 @@ def recolsTest():
 
 
 def synonymsTests():
-    show(repCols(exec(open(config.the['file']).read()).cols).cluster())
+    fs = processLua(config.the['file'])
+    t = repCols(fs['cols'])
+    show(t.cluster())
     return True
 
 

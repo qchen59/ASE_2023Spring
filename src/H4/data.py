@@ -91,10 +91,8 @@ class Data:
             return self.dist(row1, row2, cols)
 
         rows = rows or self.rows
-        some = self.l.many(rows, config.the['Sample'])
-        A = above or self.l.any(some)
-        B = self.around(A, some)[
-            int((config.the['Far'] * len(rows)) // 1)]['row']
+        A = above or self.l.any(rows)
+        B = self.furthest(A, rows)['row']
         c = dist(A, B)
         left, right = [], []
         for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist']),1):
@@ -122,18 +120,17 @@ class Data:
         return node
 
     # returns rows, recursively halved
-    def cluster(self, rows=None, min=None, cols=None, above=None):
+    def cluster(self, rows=None, cols=None, above=None):
         rows = rows or self.rows
-        min = min or len(rows) ** config.the['min']
         cols = cols or self.cols.x
         node = {"data": self.clone(rows)}
-        if len(rows) > 2 * min:
-            left, right, node["A"], node["B"], node["mid"], c = self.half(rows, cols, above)
-            node["left"] = self.cluster(left, min, cols, node["A"])
-            node["right"] = self.cluster(right, min, cols, node["B"])
+        if len(rows) >= 2:
+            left, right, node["A"], node["B"], node["mid"], node['c'] = self.half(rows, cols, above)
+            node["left"] = self.cluster(left, cols, node["A"])
+            node["right"] = self.cluster(right, cols, node["B"])
         return node
 
     # sort other `rows` by distance to `row`
-    def furthest(self, row1, row2, cols):
+    def furthest(self, row1, row2, cols=None):
         t = self.around(row1, row2, cols)
         return t[len(t) - 1]

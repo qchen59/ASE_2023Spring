@@ -87,7 +87,7 @@ class Data:
             x2, y = self.nu.cosine(dist(row, A), dist(row, B), c)
             row.x = row.x or x2
             row.y = row.y or y
-            return {'row': row, 'dist': x2}
+            return {'row': row, 'x': x2, 'y': y}
 
         def dist(row1, row2):
             return self.dist(row1, row2, cols)
@@ -97,7 +97,8 @@ class Data:
         B = self.furthest(A, rows)['row']
         c = dist(A, B)
         left, right = [], []
-        for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist']),1):
+        sm = self.l.sort(self.l.map(rows, project), lambda x: x['x'])
+        for n, tmp in enumerate(sm,1):
             if n <= len(rows)// 2:
                 left.append(tmp['row'])
                 mid = tmp['row']
@@ -135,4 +136,5 @@ class Data:
     # sort other `rows` by distance to `row`
     def furthest(self, row1, row2, cols=None):
         t = self.around(row1, row2, cols)
+        # print("t", t)
         return t[len(t) - 1]

@@ -1,0 +1,168 @@
+✅ pass: num
+{'seed': 937162211, 'dump': False, 'file': '../../etc/data/repgrid1.csv', 'go': 'all', 'help': False, 'p': 2}
+✅ pass: the
+✅ pass: sym
+b4 {'a': 1, 'b': {'c': 2, 'd': [3]}}
+after {'a': 1, 'b': {'c': 2, 'd': [10000]}}
+✅ pass: copy
+{'at': 0, 'txt': 'Num0', 'n': 8, 'mu': 1.75, 'm2': 13.5, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 1, 'txt': 'Num1', 'n': 8, 'mu': 2.375, 'm2': 17.875, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 2, 'txt': 'Num2', 'n': 8, 'mu': 1.5, 'm2': 6.000000000000001, 'lo': 1, 'hi': 3, 'w': 1}
+{'at': 3, 'txt': 'Num3', 'n': 8, 'mu': 2.125, 'm2': 18.875, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 4, 'txt': 'Num4', 'n': 8, 'mu': 1.8749999999999998, 'm2': 14.874999999999998, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 5, 'txt': 'Num5', 'n': 8, 'mu': 3.0, 'm2': 32.0, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 6, 'txt': 'Num6', 'n': 8, 'mu': 3.5, 'm2': 20.000000000000004, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 7, 'txt': 'Num7', 'n': 8, 'mu': 4.125, 'm2': 10.874999999999998, 'lo': 2, 'hi': 5, 'w': 1}
+{'at': 8, 'txt': 'Num8', 'n': 8, 'mu': 2.5, 'm2': 16.0, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 9, 'txt': 'Num9', 'n': 8, 'mu': 2.375, 'm2': 15.875, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 10, 'txt': 'thingX', 'n': 0, 'has': {}, 'most': 0, 'mode': None}
+{'cells': [5, 3, 3, 1, 1, 1, 1, 3, 5, 5, 5, 'DevelopmentTool:Application'], 'x': None, 'y': None}
+{'cells': [2, 1, 1, 5, 5, 5, 5, 5, 1, 2, 2, 'Multimedia:Programming'], 'x': None, 'y': None}
+{'cells': [1, 3, 1, 3, 2, 5, 4, 3, 1, 1, 1, 'CommunicationTechnology:ApplicationTechnology'], 'x': None, 'y': None}
+{'cells': [2, 1, 1, 1, 3, 5, 3, 2, 2, 2, 2, 'HumanOrientedTool:SystemTool'], 'x': None, 'y': None}
+{'cells': [1, 5, 3, 4, 1, 1, 4, 5, 4, 4, 4, 'ConventionalCommunication:NovelCommunication'], 'x': None, 'y': None}
+{'cells': [1, 4, 1, 1, 1, 1, 1, 5, 3, 1, 1, 'OnlyActAsProgrammed:Semi-autonomous'], 'x': None, 'y': None}
+{'cells': [1, 1, 1, 1, 1, 1, 5, 5, 1, 1, 1, 'ConventionalSystem:IntelligentSystem'], 'x': None, 'y': None}
+{'cells': [1, 1, 1, 1, 1, 5, 5, 5, 3, 3, 3, 'TargetedOnInterface:TargetedOnOverallSystem'], 'x': None, 'y': None}
+✅ pass: repcols
+74
+|..51
+|..|..30
+|..|..|..HumanOrientedTool:SystemTool
+|..|..|..CommunicationTechnology:ApplicationTechnology
+|..|..49
+|..|..|..Multimedia:Programming
+|..|..|..TargetedOnInterface:TargetedOnOverallSystem
+|..61
+|..|..54
+|..|..|..ConventionalCommunication:NovelCommunication
+|..|..|..DevelopmentTool:Application
+|..|..43
+|..|..|..ConventionalSystem:IntelligentSystem
+|..|..|..OnlyActAsProgrammed:Semi-autonomous
+✅ pass: synonyms
+{'at': 0, 'txt': 'DevelopmentTool:Application', 'n': 10, 'mu': 2.8, 'm2': 27.6, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 1, 'txt': 'Multimedia:Programming', 'n': 10, 'mu': 3.2, 'm2': 33.6, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 2, 'txt': 'CommunicationTechnology:ApplicationTechnology', 'n': 10, 'mu': 2.4, 'm2': 18.4, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 3, 'txt': 'HumanOrientedTool:SystemTool', 'n': 10, 'mu': 2.2000000000000006, 'm2': 13.599999999999998, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 4, 'txt': 'ConventionalCommunication:NovelCommunication', 'n': 10, 'mu': 3.2, 'm2': 23.6, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 5, 'txt': 'OnlyActAsProgrammed:Semi-autonomous', 'n': 10, 'mu': 1.9, 'm2': 20.9, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 6, 'txt': 'ConventionalSystem:IntelligentSystem', 'n': 10, 'mu': 1.8, 'm2': 25.6, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 7, 'txt': 'TargetedOnInterface:TargetedOnOverallSystem', 'n': 10, 'mu': 2.5999999999999996, 'm2': 30.4, 'lo': 1, 'hi': 5, 'w': 1}
+{'at': 8, 'txt': 'thingX', 'n': 0, 'has': {}, 'most': 0, 'mode': None}
+{'cells': [5, 2, 1, 2, 1, 1, 1, 1, 'ElectronicPublishing'], 'x': None, 'y': None}
+{'cells': [3, 1, 3, 1, 5, 4, 1, 1, 'VirtualReality'], 'x': None, 'y': None}
+{'cells': [3, 1, 1, 1, 3, 1, 1, 1, 'MultimediaAndHypermedia'], 'x': None, 'y': None}
+{'cells': [1, 5, 3, 1, 4, 1, 1, 1, 'VisualProgramming'], 'x': None, 'y': None}
+{'cells': [1, 5, 2, 3, 1, 1, 1, 1, 'CrossPlatformGUIs'], 'x': None, 'y': None}
+{'cells': [1, 5, 5, 5, 1, 1, 1, 5, 'ObjectOrientedSystems'], 'x': None, 'y': None}
+{'cells': [1, 5, 4, 3, 4, 1, 5, 5, 'KnowledgeBasedSystems'], 'x': None, 'y': None}
+{'cells': [3, 5, 3, 2, 5, 5, 5, 5, 'IntelligentAgents'], 'x': None, 'y': None}
+{'cells': [5, 1, 1, 2, 4, 3, 1, 3, 'InformationHighway'], 'x': None, 'y': None}
+{'cells': [5, 2, 1, 2, 4, 1, 1, 3, 'BroadbandNetworks'], 'x': None, 'y': None}
+✅ pass: reprows
+74
+|..48
+|..|..46
+|..|..|..CrossPlatformGUIs
+|..|..|..ElectronicPublishing
+|..|..75
+|..|..|..ObjectOrientedSystems
+|..|..|..44
+|..|..|..|..MultimediaAndHypermedia
+|..|..|..|..VisualProgramming
+|..65
+|..|..42
+|..|..|..IntelligentAgents
+|..|..|..KnowledgeBasedSystems
+|..|..43
+|..|..|..BroadbandNetworks
+|..|..|..34
+|..|..|..|..VirtualReality
+|..|..|..|..InformationHighway
+✅ pass: prototypes
+
+A ElectronicPublishing
+B VirtualReality
+C MultimediaAndHypermedia
+D VisualProgramming
+E CrossPlatformGUIs
+F ObjectOrientedSystems
+G KnowledgeBasedSystems
+H IntelligentAgents
+I InformationHighway
+J BroadbandNetworks
+
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', 'E', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'H', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'G', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', 'F', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', 'A', 'C', ' ', ' ', 'J', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+✅ pass: position
+74
+|..48
+|..|..46
+|..|..|..CrossPlatformGUIs
+|..|..|..ElectronicPublishing
+|..|..75
+|..|..|..ObjectOrientedSystems
+|..|..|..44
+|..|..|..|..MultimediaAndHypermedia
+|..|..|..|..VisualProgramming
+|..65
+|..|..42
+|..|..|..IntelligentAgents
+|..|..|..KnowledgeBasedSystems
+|..|..43
+|..|..|..BroadbandNetworks
+|..|..|..34
+|..|..|..|..VirtualReality
+|..|..|..|..InformationHighway
+
+74
+|..51
+|..|..30
+|..|..|..HumanOrientedTool:SystemTool
+|..|..|..CommunicationTechnology:ApplicationTechnology
+|..|..49
+|..|..|..Multimedia:Programming
+|..|..|..TargetedOnInterface:TargetedOnOverallSystem
+|..61
+|..|..54
+|..|..|..ConventionalCommunication:NovelCommunication
+|..|..|..DevelopmentTool:Application
+|..|..43
+|..|..|..ConventionalSystem:IntelligentSystem
+|..|..|..OnlyActAsProgrammed:Semi-autonomous
+
+A ElectronicPublishing
+B VirtualReality
+C MultimediaAndHypermedia
+D VisualProgramming
+E CrossPlatformGUIs
+F ObjectOrientedSystems
+G KnowledgeBasedSystems
+H IntelligentAgents
+I InformationHighway
+J BroadbandNetworks
+
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', 'E', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'H', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'G', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', 'F', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', 'A', 'C', ' ', ' ', 'J', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+✅ pass: every

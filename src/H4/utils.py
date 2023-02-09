@@ -81,17 +81,6 @@ def csv(sFilename, fun):
 def show(node, what=None, cols=None, nPlaces=None, lvl=None):
     if node:
         lvl = lvl or 0
-        # if "left" not in node or lvl == 0:
-        #     print("|.." * lvl + str(n.rnd(100*node['c'])) + " ", end="")
-        #
-        #     # Orders data from (Lbs-, Acc+, Mpg+) to (Acc+, Lbs-, Mpg+)
-        #     myDict = node["data"].stats("mid", node["data"].cols.y, nPlaces)
-        #     myKeys = list(myDict.keys())
-        #     myKeys.sort()
-        #     sorted_dict = {i: myDict[i] for i in myKeys}
-        #     print(sorted_dict)
-        # else:
-        #     print("|.." * lvl + str(n.rnd(100*node['c'])) + " ")
         s = "|.." * lvl
         if "left" not in node:
             s += l.last(l.last(node['data'].rows).cells)
@@ -103,6 +92,7 @@ def show(node, what=None, cols=None, nPlaces=None, lvl=None):
         if "right" in node:
             show(node["right"], what, cols, nPlaces, lvl + 1)
 
+# Convert the lua script to json
 def processLua(file):
     f = open(file, "r")
     # skip first line
@@ -119,13 +109,11 @@ def processLua(file):
     fs = re.sub("cols", "\"cols\"", fs)
     fs = re.sub("rows", "\"rows\"", fs)
     fs = "{" + fs + "}"
-    # print(fs)
     fs = json.loads(fs)
     # print(fs)
-    # print(json.dumps(fs, indent=4))
     return fs
 
-
+# Transpose the data
 def transpose(t):
     u = []
     for i in range(len(t[0])):
@@ -134,7 +122,7 @@ def transpose(t):
             u[i].append(t[j][i])
     return u
 
-
+# Process the rows from repGrid
 def repRows(t, rows):
     rows = l.copy(rows)
     for j, s in enumerate(rows[-1]):
@@ -148,6 +136,7 @@ def repRows(t, rows):
             row.append(u[-1])
     return data.Data(rows)
 
+# Process the cols from repGrid
 def repCols(cols):
     cols = l.copy(cols)
     for col in cols:
@@ -162,7 +151,7 @@ def repCols(cols):
     cols[0][len(cols[0]) - 1] = "thingX"
     return data.Data(cols)
 
-
+# Display the examples location based on their x and y
 def repPlace(data):
     n, g = 20, {}
     g = [ [' ' for j in range(n+1)] for i in range(n+1)]
@@ -180,12 +169,12 @@ def repPlace(data):
     for y in range(max_y+1):
         print(g[y])
 
-
+# Run cluster on rows, cols and repPlace
 def repGrid(sFile):
     table = processLua(sFile)
     rows = repRows(table, transpose(table['cols']))
     cols = repCols(table['cols'])
     show(rows.cluster())
+    print()
     show(cols.cluster())
-
     repPlace(rows)

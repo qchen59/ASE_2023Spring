@@ -1,5 +1,5 @@
 # script.lua -> script.py
-from utils import eg, cli, settings
+from utils import eg, cli, settings, repGrid
 from tests import theTest, symTest, randTest, numTest, csvTest, dataTest, statsTest, cloneTest, aroundTest, halfTest, \
     optimizeTest, clusterTest, copyTest, recolsTest, reprowsTest, synonymsTests, prototypesTest, positionTest, everyTest
 import config
@@ -58,3 +58,6 @@ if __name__ == '__main__':
     # eg("stats", "stats from DATA", statsTest)
     m = Main()
     m.main(config.help, config.egs)
+    # repGrid("../../etc/data/interview1.csv")
+    # repGrid("../../etc/data/interview2.csv")
+    # repGrid("../../etc/data/interview3.csv")

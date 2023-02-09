@@ -1,4 +1,4 @@
-{'seed': 937162211, 'dump': False, 'file': '../etc/data/auto93.csv', 'go': 'all', 'help': False}
+{'seed': 937162211, 'dump': False, 'file': '../../etc/data/auto93.csv', 'go': 'all', 'help': False}
 ✅ pass: the
 ✅ pass: sym
 ✅ pass: rand

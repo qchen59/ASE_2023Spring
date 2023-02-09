@@ -17,9 +17,13 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: test hw2
         run: |
-          cd ./src/H2; python3 main.py -g all > ../../etc/out/script_hw2.out
+          cd ./src/H2; python3 main.py -g all > ../../etc/out/data_hw2.out
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: test hw3
         run: |
-          cd ./src/H3; python3 main.py -g all > ../../etc/out/script_hw3.out
+          cd ./src/H3; python3 main.py -g all > ../../etc/out/cluster_hw3.out
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: test hw4
+        run: |
+          cd ./src/H4; python3 main.py -g all > ../../etc/out/grid_hw4.out
       - run: echo "🍏 This job's status is ${{ job.status }}."

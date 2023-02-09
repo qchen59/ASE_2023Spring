@@ -3,7 +3,10 @@ from num import Num
 from sym import Sym
 from numerics import Numerics
 from data import Data
-from utils import csv, show
+from utils import csv, show, repCols, repRows, transpose, repPlace, repGrid, processLua
+from lists import Lists
+
+l = Lists()
 
 
 def numTest():
@@ -79,7 +82,8 @@ def statsTest():
 def cloneTest():
     data1 = Data(config.the['file'])
     data2 = data1.clone(data1.rows)
-    return len(data1.rows) == len(data2.rows) and data1.cols.y[0].w == data2.cols.y[0].w and data1.cols.x[0].at == data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
+    return len(data1.rows) == len(data2.rows) and data1.cols.y[0].w == data2.cols.y[0].w and data1.cols.x[0].at == \
+           data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
 
 
 def aroundTest():
@@ -88,8 +92,8 @@ def aroundTest():
     nu = Numerics()
     p = data.around(data.rows[0])
     for n, t in enumerate(data.around(data.rows[0])):
-        if (n+1) % 50 == 0:
-            print(n+1, nu.rnd(t['dist'], 2), t['row'].cells)
+        if (n + 1) % 50 == 0:
+            print(n + 1, nu.rnd(t['dist'], 2), t['row'].cells)
     return True
 
 
@@ -102,13 +106,67 @@ def halfTest():
     print(B.cells)
     return True
 
+
 def optimizeTest():
     data = Data(config.the['file'])
-    show(data.sway(), "mid",data.cols.y, 1)
+    show(data.sway(), "mid", data.cols.y, 1)
     return True
+
 
 def clusterTest():
     data = Data(config.the['file'])
     show(data.cluster(), "mid", data.cols.y, 1)
     return True
 
+
+def copyTest():
+    t1 = {'a': 1, 'b': {'c': 2, 'd': [3]}}
+    t2 = l.copy(t1)
+    t2['b']['d'][0] = 10000
+    print("b4", t1)
+    print("after", t2)
+    return True
+
+
+def recolsTest():
+    fs = processLua(config.the['file'])
+    t = repCols(fs['cols'])
+    # cols and rows objects
+    l.map(t.cols.all, lambda x: print(x))
+    l.map(t.rows, lambda x: print(x))
+    return True
+
+
+def synonymsTests():
+    fs = processLua(config.the['file'])
+    t = repCols(fs['cols'])
+    show(t.cluster())
+    return True
+
+
+def reprowsTest():
+    t = processLua(config.the['file'])
+    rows = repRows(t, transpose(t['cols']))
+    l.map(rows.cols.all, lambda x: print(x))
+    l.map(rows.rows, lambda x: print(x))
+    return True
+
+
+def prototypesTest():
+    t = processLua(config.the['file'])
+    rows = repRows(t, transpose(t['cols']))
+    show(rows.cluster())
+    return True
+
+
+def positionTest():
+    t = processLua(config.the['file'])
+    rows = repRows(t, transpose(t['cols']))
+    rows.cluster()
+    repPlace(rows)
+    return True
+
+
+def everyTest():
+    repGrid(config.the['file'])
+    return True

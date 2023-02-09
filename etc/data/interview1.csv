@@ -1,0 +1,20 @@
+local _ = " "
+return {
+ domain="Cars",
+ cols={   {'SmallExterior', 1, 4, 1, 2, 1, 5, 2, 3, 4, 3, 'LargeExterior'},
+          {'CurvedExterior', 1, 4, 1, 2, 3, 5, 3, 5, 3, 4, 'AngledExterior'},
+          {'Affordable', 3, 2, 5, 4, 1, 3, 3, 4, 5, 2, 'Expensive'},
+          {'MinimalDriverConsole' , 1, 3, 3, 3, 2, 4, 3, 2, 3, 4, 'ClutteredDriverConsole'},
+          {'FunctionBased', 4, 2, 5, 4, 1, 1, 3, 3, 5, 5, 'EnjoymentBased'},
+          {'QuietEngine', 1, 2, 4, 3, 2, 4, 3, 1, 5, 5, 'LoudEngine'}},
+rows={                      { _, _, _, _, _, _, _, _, _, 'FordMustang'},
+                            { _, _, _, _, _, _, _, _, 'LamborghiniUrus'},
+                            { _, _, _, _, _, _, _, 'Polestar2'},
+                            { _, _, _, _, _, _, 'InfinityQ60'},
+                            { _, _, _, _, _,  'FordF150'},
+                            { _, _, _, _,  'ToyotaCamry'},
+                            { _, _, _,  'AudiA8'},
+                            { _, _,  'Porsche911'},
+                            { _, 'HondaCRV'},
+                            {'TeslaModel3'}}
+}

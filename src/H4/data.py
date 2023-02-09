@@ -1,6 +1,6 @@
 import config
 import math
-from utils import csv
+import utils
 from row import Row
 from col import Col
 from lists import Lists
@@ -21,7 +21,7 @@ class Data:
             # return None, None
 
         if type(src) == str:
-            csv(src, helper)
+            utils.csv(src, helper)
         else:
             self.l.map(src, helper)
 
@@ -85,19 +85,20 @@ class Data:
     def half(self, rows=None, cols=None, above=None):
         def project(row):
             x2, y = self.nu.cosine(dist(row, A), dist(row, B), c)
-            return {'row': row, 'dist': x2}
+            row.x = row.x or x2
+            row.y = row.y or y
+            return {'row': row, 'x': x2, 'y': y}
 
         def dist(row1, row2):
             return self.dist(row1, row2, cols)
 
         rows = rows or self.rows
-        some = self.l.many(rows, config.the['Sample'])
-        A = above or self.l.any(some)
-        B = self.around(A, some)[
-            int((config.the['Far'] * len(rows)) // 1)]['row']
+        A = above or self.l.any(rows)
+        B = self.furthest(A, rows)['row']
         c = dist(A, B)
         left, right = [], []
-        for n, tmp in enumerate(self.l.sort(self.l.map(rows, project), lambda x: x['dist']),1):
+        sm = self.l.sort(self.l.map(rows, project), lambda x: x['x'])
+        for n, tmp in enumerate(sm,1):
             if n <= len(rows)// 2:
                 left.append(tmp['row'])
                 mid = tmp['row']
@@ -111,24 +112,29 @@ class Data:
         min = min or len(rows)**config.the["min"]
         cols = cols or self.cols.x
         node = {"data": self.clone(rows)}
-        
+
         if len(rows) > 2*min:
             left, right, node["A"], node["B"], node["mid"], c = self.half(rows,cols,above)
             if self.better(node["B"], node["A"]):
                 left, right, node["A"], node["B"] = right, left, node["B"], node["A"]
 
             node["left"] = self.sway(left,  min, cols, node["A"])
-        
+
         return node
 
     # returns rows, recursively halved
-    def cluster(self, rows=None, min=None, cols=None, above=None):
+    def cluster(self, rows=None, cols=None, above=None):
         rows = rows or self.rows
-        min = min or len(rows) ** config.the['min']
         cols = cols or self.cols.x
         node = {"data": self.clone(rows)}
-        if len(rows) > 2 * min:
-            left, right, node["A"], node["B"], node["mid"], c = self.half(rows, cols, above)
-            node["left"] = self.cluster(left, min, cols, node["A"])
-            node["right"] = self.cluster(right, min, cols, node["B"])
+        if len(rows) >= 2:
+            left, right, node["A"], node["B"], node["mid"], node['c'] = self.half(rows, cols, above)
+            node["left"] = self.cluster(left, cols, node["A"])
+            node["right"] = self.cluster(right, cols, node["B"])
         return node
+
+    # sort other `rows` by distance to `row`
+    def furthest(self, row1, row2, cols=None):
+        t = self.around(row1, row2, cols)
+        # print("t", t)
+        return t[len(t) - 1]

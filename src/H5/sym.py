@@ -47,6 +47,3 @@ class Sym:
             else:
                 return 1
 
-    def __repr__(self):
-        return str(self.__dict__)
-

@@ -1,52 +1,44 @@
 import config
 from num import Num
 from sym import Sym
-from numerics import Numerics
+import numerics
 from data import Data
-from utils import csv, show, repCols, repRows, transpose, repPlace, repGrid, processLua
-from lists import Lists
-
-l = Lists()
+from utils import csv, show
+import lists
 
 
 def numTest():
     num = Num()
-    numeric = Numerics()
     for x in [1, 1, 1, 1, 2, 2, 3]:
         num.add(x)
-    return 11 / 7 == num.mid() and 0.787 == numeric.rnd(num.div())
+    return 11 / 7 == num.mid() and 0.787 == numerics.rnd(num.div())
 
 
 def randTest():
     # Generate 2 nums from Num()
     num1, num2 = Num(), Num()
-
-    numeric = Numerics()
-    # Get set the seed from global setting
-    numeric.Seed = config.the['seed']
-
+    numerics.Seed = config.the['seed']
     # Add random numbers
     for i in range(10 ** 3):
-        num1.add(numeric.rand(0, 1))
+        num1.add(numerics.rand(0, 1))
 
     # get the seed from global setting again (rand() alters the seed in class)
-    numeric.Seed = config.the['seed']
+    numerics.Seed = config.the['seed']
 
     # Add random numbers
     for i in range(10 ** 3):
-        num2.add(numeric.rand(0, 1))
+        num2.add(numerics.rand(0, 1))
 
     # Test comparison
-    m1, m2 = numeric.rnd(num1.mid(), 10), numeric.rnd(num2.mid(), 10)
-    return m1 == m2 and .5 == numeric.rnd(m1, 1)
+    m1, m2 = numerics.rnd(num1.mid(), 10), numerics.rnd(num2.mid(), 10)
+    return m1 == m2 and .5 == numerics.rnd(m1, 1)
 
 
 def symTest():
     sym = Sym()
     for x in ["a", "a", "a", "a", "b", "b", "c"]:
         sym.add(x)
-    numeric = Numerics()
-    return "a" == sym.mid() and 1.379 == numeric.rnd(sym.div())
+    return "a" == sym.mid() and 1.379 == numerics.rnd(sym.div())
 
 
 def theTest():
@@ -89,11 +81,10 @@ def cloneTest():
 def aroundTest():
     data = Data(config.the['file'])
     print(0, 0, data.rows[0].cells)
-    nu = Numerics()
     p = data.around(data.rows[0])
     for n, t in enumerate(data.around(data.rows[0])):
         if (n + 1) % 50 == 0:
-            print(n + 1, nu.rnd(t['dist'], 2), t['row'].cells)
+            print(n + 1, numerics.rnd(t['dist'], 2), t['row'].cells)
     return True
 
 
@@ -119,54 +110,20 @@ def clusterTest():
     return True
 
 
-def copyTest():
-    t1 = {'a': 1, 'b': {'c': 2, 'd': [3]}}
-    t2 = l.copy(t1)
-    t2['b']['d'][0] = 10000
-    print("b4", t1)
-    print("after", t2)
-    return True
-
-
-def recolsTest():
-    fs = processLua(config.the['file'])
-    t = repCols(fs['cols'])
-    # cols and rows objects
-    l.map(t.cols.all, lambda x: print(x))
-    l.map(t.rows, lambda x: print(x))
-    return True
-
-
-def synonymsTests():
-    fs = processLua(config.the['file'])
-    t = repCols(fs['cols'])
-    show(t.cluster())
-    return True
-
-
-def reprowsTest():
-    t = processLua(config.the['file'])
-    rows = repRows(t, transpose(t['cols']))
-    l.map(rows.cols.all, lambda x: print(x))
-    l.map(rows.rows, lambda x: print(x))
-    return True
-
-
-def prototypesTest():
-    t = processLua(config.the['file'])
-    rows = repRows(t, transpose(t['cols']))
-    show(rows.cluster())
-    return True
-
-
-def positionTest():
-    t = processLua(config.the['file'])
-    rows = repRows(t, transpose(t['cols']))
-    rows.cluster()
-    repPlace(rows)
-    return True
-
-
-def everyTest():
-    repGrid(config.the['file'])
+def cliffsTest():
+    assert numerics.cliffsDelta([8, 7, 6, 2, 5, 8, 7, 3], [8, 7, 6, 2, 5, 8, 7, 3]) == False
+    assert numerics.cliffsDelta([8, 7, 6, 2, 5, 8, 7, 3], [9, 9, 7, 8, 10, 9, 6]) == True
+    t1, t2 = [], []
+    for i in range(1000):
+        t1.append(numerics.rand())
+    for i in range(1000):
+        t2.append(numerics.rand()**0.5)
+    assert numerics.cliffsDelta(t1, t1) == False
+    assert numerics.cliffsDelta(t1, t2) == True
+    diff, j = False, 1.0
+    while not diff:
+        t3 = lists.map(t1, lambda x: x*j)
+        diff = numerics.cliffsDelta(t1, t3)
+        print(">", numerics.rnd(j), diff)
+        j *= 1.025
     return True

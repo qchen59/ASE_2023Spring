@@ -1,29 +1,27 @@
 import config
 import math
-import utils
+from utils import csv
 from row import Row
 from col import Col
-from lists import Lists
+import lists
 import config
 import math
-from numerics import Numerics
+import numerics
 
 
 class Data:
     def __init__(self, src) -> None:
         self.rows = []
         self.cols = None
-        self.l = Lists()
-        self.nu = Numerics()
 
         def helper(x):
             self.add(x)
             # return None, None
 
         if type(src) == str:
-            utils.csv(src, helper)
+            csv(src, helper)
         else:
-            self.l.map(src, helper)
+            lists.map(src, helper)
 
     def __repr__(self):
         return str(self.__dict__)
@@ -42,7 +40,7 @@ class Data:
         def helper(x):
             data.add(x)
         data = Data([self.cols.names])
-        self.l.map(init, helper)
+        lists.map(init, helper)
         return data
     # calculate the stats (mean, stand deviations)
     def stats(self, what, cols, nPlaces):
@@ -54,7 +52,7 @@ class Data:
 
             return col.rnd(val, nPlaces), col.txt
 
-        return self.l.kap(cols or self.cols.y, fun)
+        return lists.kap(cols or self.cols.y, fun)
 
     # calculate which row is better using continuous domination
     def better(self, row1, row2):
@@ -79,26 +77,25 @@ class Data:
     def around(self, row1, rows=None, cols=None):
         def helper(row2):
             return {"row": row2, "dist": self.dist(row1, row2, cols)}
-        return self.l.sort(self.l.map(rows or self.rows, helper), lambda x: x['dist'])
+        return lists.sort(lists.map(rows or self.rows, helper), lambda x: x['dist'])
 
     # divides data using 2 far points
     def half(self, rows=None, cols=None, above=None):
         def project(row):
-            x2, y = self.nu.cosine(dist(row, A), dist(row, B), c)
-            row.x = row.x or x2
-            row.y = row.y or y
-            return {'row': row, 'x': x2, 'y': y}
+            x2, y = numerics.cosine(dist(row, A), dist(row, B), c)
+            return {'row': row, 'dist': x2}
 
         def dist(row1, row2):
             return self.dist(row1, row2, cols)
 
         rows = rows or self.rows
-        A = above or self.l.any(rows)
-        B = self.furthest(A, rows)['row']
+        some = lists.many(rows, config.the['Halves'])
+        A = (config.the['Reuse'] and above) or lists.any(some)
+        B = self.around(A, some)[
+            int((config.the['Far'] * len(rows)) // 1)]['row']
         c = dist(A, B)
         left, right = [], []
-        sm = self.l.sort(self.l.map(rows, project), lambda x: x['x'])
-        for n, tmp in enumerate(sm,1):
+        for n, tmp in enumerate(lists.sort(lists.map(rows, project), lambda x: x['dist']),1):
             if n <= len(rows)// 2:
                 left.append(tmp['row'])
                 mid = tmp['row']
@@ -112,29 +109,24 @@ class Data:
         min = min or len(rows)**config.the["min"]
         cols = cols or self.cols.x
         node = {"data": self.clone(rows)}
-
+        
         if len(rows) > 2*min:
             left, right, node["A"], node["B"], node["mid"], c = self.half(rows,cols,above)
             if self.better(node["B"], node["A"]):
                 left, right, node["A"], node["B"] = right, left, node["B"], node["A"]
 
             node["left"] = self.sway(left,  min, cols, node["A"])
-
+        
         return node
 
     # returns rows, recursively halved
-    def cluster(self, rows=None, cols=None, above=None):
+    def cluster(self, rows=None, min=None, cols=None, above=None):
         rows = rows or self.rows
+        min = min or len(rows) ** config.the['min']
         cols = cols or self.cols.x
         node = {"data": self.clone(rows)}
-        if len(rows) >= 2:
-            left, right, node["A"], node["B"], node["mid"], node['c'] = self.half(rows, cols, above)
-            node["left"] = self.cluster(left, cols, node["A"])
-            node["right"] = self.cluster(right, cols, node["B"])
+        if len(rows) > 2 * min:
+            left, right, node["A"], node["B"], node["mid"], c = self.half(rows, cols, above)
+            node["left"] = self.cluster(left, min, cols, node["A"])
+            node["right"] = self.cluster(right, min, cols, node["B"])
         return node
-
-    # sort other `rows` by distance to `row`
-    def furthest(self, row1, row2, cols=None):
-        t = self.around(row1, row2, cols)
-        # print("t", t)
-        return t[len(t) - 1]

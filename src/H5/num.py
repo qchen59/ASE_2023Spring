@@ -1,6 +1,6 @@
 # -- Summarizes a stream of numbers.
 import re
-from numerics import Numerics
+import numerics
 
 
 class Num:
@@ -55,8 +55,7 @@ class Num:
         if x == "?":
             return x
         else:
-            nu = Numerics()
-            return nu.rnd(x, n)
+            return numerics.rnd(x, n)
 
     def norm(self, n):
         return n if n == "?" else (n - self.lo)/(self.hi - self.lo + 1E-32)

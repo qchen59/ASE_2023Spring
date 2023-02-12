@@ -5,6 +5,8 @@ import numerics
 from data import Data
 from utils import csv, show
 import lists
+from utils import returnHandler
+from discretization import bins, value
 
 
 def numTest():
@@ -75,7 +77,7 @@ def cloneTest():
     data1 = Data(config.the['file'])
     data2 = data1.clone(data1.rows)
     return len(data1.rows) == len(data2.rows) and data1.cols.y[0].w == data2.cols.y[0].w and data1.cols.x[0].at == \
-           data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
+        data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
 
 
 def aroundTest():
@@ -111,8 +113,10 @@ def clusterTest():
 
 
 def cliffsTest():
-    assert numerics.cliffsDelta([8, 7, 6, 2, 5, 8, 7, 3], [8, 7, 6, 2, 5, 8, 7, 3]) == False
-    assert numerics.cliffsDelta([8, 7, 6, 2, 5, 8, 7, 3], [9, 9, 7, 8, 10, 9, 6]) == True
+    assert numerics.cliffsDelta([8, 7, 6, 2, 5, 8, 7, 3], [
+                                8, 7, 6, 2, 5, 8, 7, 3]) == False
+    assert numerics.cliffsDelta([8, 7, 6, 2, 5, 8, 7, 3], [
+                                9, 9, 7, 8, 10, 9, 6]) == True
     t1, t2 = [], []
     for i in range(1000):
         t1.append(numerics.rand())
@@ -127,3 +131,18 @@ def cliffsTest():
         print(">", numerics.rnd(j), diff)
         j *= 1.025
     return True
+
+
+def binsTest():
+    data: Data = Data.read(config.the.file)
+    best, rest = returnHandler(data.sway())
+    n: numerics = numerics()
+    print('all', '', '', '', {'best': len(best), 'rest': len(rest)})
+    b4 = None
+    for k, t in enumerate(bins(data.cols.x, {'best': best.rows, 'rest': rest.rows})):
+        for _, range in enumerate(t):
+            if range.txt != b4:
+                print()
+            b4 = range.txt
+            print(range.txt, range.lo, range.hi, n.rnd(
+                value(range.y.has, len(best.rows), len(rest.rows), "best")), range.y.has)

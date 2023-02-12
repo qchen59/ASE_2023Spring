@@ -1,8 +1,9 @@
 # script.lua -> script.py
 from utils import eg, cli, settings
-from tests import theTest, symTest, randTest, numTest, csvTest, dataTest, statsTest, cloneTest, aroundTest, halfTest, optimizeTest, clusterTest,cliffsTest
+from tests import theTest, symTest, randTest, numTest, csvTest, dataTest, statsTest, cloneTest, aroundTest, halfTest, optimizeTest, clusterTest, cliffsTest, binsTest
 import config
 import numerics
+
 
 class Main:
     # parse help string to extract a table of options
@@ -44,10 +45,10 @@ if __name__ == '__main__':
     eg("optimize", "semi-supervised optimization", optimizeTest)
     eg("the", "show settings", theTest)
     eg("sym", "check syms", symTest)
-    eg("cliffs","stats tests", cliffsTest)
+    eg("cliffs", "stats tests", cliffsTest)
     eg("rand", "generate, reset, regenerate same", randTest)
     eg("csv", "read from csv", csvTest)
     eg("stats", "stats from DATA", statsTest)
+    eg("bins", "find deltas between best and rest", binsTest)
     m = Main()
     m.main(config.help, config.egs)
-

@@ -43,6 +43,7 @@ class Data:
         lists.map(init, helper)
         return data
     # calculate the stats (mean, stand deviations)
+
     def stats(self, what, cols, nPlaces):
         def fun(k, col):
             if what == 'div':
@@ -70,7 +71,8 @@ class Data:
         d = 0
         for col in cols or self.cols.x:
             n += 1
-            d += col.dist(row1.cells[col.at], row2.cells[col.at]) ** config.the['p']
+            d += col.dist(row1.cells[col.at],
+                          row2.cells[col.at]) ** config.the['p']
         return (d / n) ** (1 / config.the['p'])
 
     # find the rows around (sort other rows by distance to row)
@@ -95,8 +97,8 @@ class Data:
             int((config.the['Far'] * len(rows)) // 1)]['row']
         c = dist(A, B)
         left, right = [], []
-        for n, tmp in enumerate(lists.sort(lists.map(rows, project), lambda x: x['dist']),1):
-            if n <= len(rows)// 2:
+        for n, tmp in enumerate(lists.sort(lists.map(rows, project), lambda x: x['dist']), 1):
+            if n <= len(rows) // 2:
                 left.append(tmp['row'])
                 mid = tmp['row']
             else:
@@ -109,14 +111,15 @@ class Data:
         min = min or len(rows)**config.the["min"]
         cols = cols or self.cols.x
         node = {"data": self.clone(rows)}
-        
+
         if len(rows) > 2*min:
-            left, right, node["A"], node["B"], node["mid"], c = self.half(rows,cols,above)
+            left, right, node["A"], node["B"], node["mid"], c = self.half(
+                rows, cols, above)
             if self.better(node["B"], node["A"]):
                 left, right, node["A"], node["B"] = right, left, node["B"], node["A"]
 
             node["left"] = self.sway(left,  min, cols, node["A"])
-        
+
         return node
 
     # returns rows, recursively halved
@@ -126,7 +129,16 @@ class Data:
         cols = cols or self.cols.x
         node = {"data": self.clone(rows)}
         if len(rows) > 2 * min:
-            left, right, node["A"], node["B"], node["mid"], c = self.half(rows, cols, above)
+            left, right, node["A"], node["B"], node["mid"], c = self.half(
+                rows, cols, above)
             node["left"] = self.cluster(left, min, cols, node["A"])
             node["right"] = self.cluster(right, min, cols, node["B"])
         return node
+
+    def read(self, sfile):
+        data = Data()
+
+        def helper(x):
+            data.add(x)
+        csv(sfile, helper)
+        return data

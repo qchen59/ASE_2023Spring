@@ -25,7 +25,7 @@ def RANGE(at, txt, lo, hi):
 # -- to themselves but `NUM`s get mapped to one of `the.bins` values.
 # -- Called by function `bins`.
 def bin(col, x):
-    if x == "?" or isinstance(col, sym.Sym) :
+    if x == "?" or isinstance(col, sym.Sym):
         return x
     tmp = (col.hi - col.lo) / (config.the['bins'] - 1)
     if col.hi == col.lo:
@@ -33,12 +33,16 @@ def bin(col, x):
     else:
         return math.floor(x / tmp + 0.5) * tmp
 # Update a RANGE to cover `x` and `y`
+
+
 def extend(range, n, s):
     range['lo'] = min(n, range['lo'])
     range['hi'] = max(n, range['hi'])
     range['y'].add(s)
 
 # -- Return self
+
+
 def itself(x):
     return x
 
@@ -46,6 +50,8 @@ def itself(x):
 # -- (stopping when no more fuse-ings can be found). When done,
 # -- make the ranges run from minus to plus infinity
 # -- (with no gaps in between).
+
+
 def bins(cols, rowss):
     out = []
     for col in cols:
@@ -56,11 +62,21 @@ def bins(cols, rowss):
                 if x != "?":
                     k = bin(col, x)
                     ranges[k] = ranges[k] or RANGE(cols.at, col.txt, x)
-                    extend(ranges[k],x,y)
-        ranges = lists.sort(lists.map(ranges,itself), lambda x: x['lo'])
+                    extend(ranges[k], x, y)
+        ranges = lists.sort(lists.map(ranges, itself), lambda x: x['lo'])
         if isinstance(col, sym.Sym):
             out.append(ranges)
         else:
             merge.mergeAny(ranges)
         return out
 
+
+def value(has, nB=1, nR=1, sGoal=True):
+    b, r = 0, 0
+    for x, n in enumerate(has):
+        if x == sGoal:
+            b += n
+        else:
+            r += n
+    b, r = b / (nB + 1 / float('inf')), r / (nR + 1 / float('inf'))
+    return b**2/(b+r)

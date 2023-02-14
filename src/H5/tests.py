@@ -134,15 +134,14 @@ def cliffsTest():
 
 
 def binsTest():
-    data: Data = Data.read(config.the.file)
-    best, rest = returnHandler(data.sway())
-    n: numerics = numerics()
-    print('all', '', '', '', {'best': len(best), 'rest': len(rest)})
+    data = Data(config.the['file'])
+    best, rest = data.sway2()
+    print('all', '', '', '', {'best': len(best.rows), 'rest': len(rest.rows)})
     b4 = None
     for k, t in enumerate(bins(data.cols.x, {'best': best.rows, 'rest': rest.rows})):
         for _, range in enumerate(t):
             if range.txt != b4:
                 print()
             b4 = range.txt
-            print(range.txt, range.lo, range.hi, n.rnd(
+            print(range.txt, range.lo, range.hi, numerics.rnd(
                 value(range.y.has, len(best.rows), len(rest.rows), "best")), range.y.has)

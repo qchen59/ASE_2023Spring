@@ -42,7 +42,7 @@ def mergeAny(ranges0, noGaps=None):
 def merge2(col1, col2):
     isNew = merge(col1, col2)
     ## need the div() function here based on col being a NUM or SYM
-    if div(isNew) <= (div(col1) * col1['n'] + div(col2) * col2['n']) / isNew['n']:
+    if isNew.div() <= (col1.div * col1['n'] + col2.div * col2['n']) / isNew['n']:
         return isNew
 
 def merge(col1, col2):

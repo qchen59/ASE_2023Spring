@@ -2,7 +2,7 @@ import config
 from num import Num
 from sym import Sym
 import numerics
-from data import Data
+from data import Data, read
 from utils import csv, show
 import lists
 from utils import returnHandler
@@ -135,10 +135,11 @@ def cliffsTest():
 
 def binsTest():
     data = Data(config.the['file'])
+    print(data)
     best, rest = data.sway2()
     print('all', '', '', '', {'best': len(best.rows), 'rest': len(rest.rows)})
     b4 = None
-    for k, t in enumerate(bins(data.cols.x, {'best': best.rows, 'rest': rest.rows})):
+    for k, t in enumerate(bins(data.cols.x, [ best.rows, rest.rows])):
         for _, range in enumerate(t):
             if range.txt != b4:
                 print()

@@ -17,14 +17,17 @@ def diffs(nums1, nums2):
 # -- the range `lo` to `hi` some independent variable in column number `at` whose name is `txt`.
 # -- Note that the way this is used (in the `bins` function, below)
 # -- for  symbolic columns, `lo` is always the same as `hi`.
-def RANGE(at, txt, lo, hi):
-    return {'at': at, 'txt': txt, 'lo': lo, 'hi': lo or hi, 'y': sym()}
+def RANGE(at, txt, lo, hi=None):
+    if hi is None:
+        hi = lo
+    return {'at': at, 'txt': txt, 'lo': lo, 'hi': hi, 'y': sym.Sym()}
 
 
 # -- Map `x` into a small number of bins. `SYM`s just get mapped
 # -- to themselves but `NUM`s get mapped to one of `the.bins` values.
 # -- Called by function `bins`.
 def bin(col, x):
+    # print(x)
     if x == "?" or isinstance(col, sym.Sym):
         return x
     tmp = (col.hi - col.lo) / (config.the['bins'] - 1)
@@ -54,15 +57,22 @@ def itself(x):
 
 def bins(cols, rowss):
     out = []
+    print(cols)
+    print('rowss', rowss)
     for col in cols:
-        ranges = []
+        ranges = [None for i in range(200)]
         for y, rows in enumerate(rowss):
+            print('rows')
+            print(rows)
             for row in rows:
-                x = row[col.at]
+                x = row.cells[col.at]
                 if x != "?":
-                    k = bin(col, x)
-                    ranges[k] = ranges[k] or RANGE(cols.at, col.txt, x)
+                    k = int(bin(col, x))
+                    print('k', k)
+                    ranges[k] = ranges[k] or RANGE(col.at, col.txt, x)
                     extend(ranges[k], x, y)
+        ranges = [r for r in ranges if r is not None]
+        print('ranges', ranges)
         ranges = lists.sort(lists.map(ranges, itself), lambda x: x['lo'])
         if isinstance(col, sym.Sym):
             out.append(ranges)

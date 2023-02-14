@@ -152,11 +152,11 @@ class Data:
             node["right"] = self.cluster(right, min, cols, node["B"])
         return node
 
-    def read(self, sfile):
-        data = Data()
+def read(sfile):
+    data = Data()
 
-        def helper(x):
-            data.add(x)
+    def helper(x):
+        data.add(x)
 
-        csv(sfile, helper)
-        return data
+    csv(sfile, helper)
+    return data

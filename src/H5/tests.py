@@ -163,3 +163,4 @@ def swayTest():
     print("N=",len(rest.rows))
     print("\nall ~= best?", diffs(best.cols.y, data.cols.y))
     print("best ~= rest?", diffs(best.cols.y, rest.cols.y))
+    return True

@@ -80,7 +80,7 @@ def cloneTest():
     data1 = Data(config.the['file'])
     data2 = data1.clone(data1.rows)
     return len(data1.rows) == len(data2.rows) and data1.cols.y[0].w == data2.cols.y[0].w and data1.cols.x[0].at == \
-        data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
+           data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
 
 
 def aroundTest():
@@ -117,19 +117,19 @@ def clusterTest():
 
 def cliffsTest():
     assert numerics.cliffsDelta([8, 7, 6, 2, 5, 8, 7, 3], [
-                                8, 7, 6, 2, 5, 8, 7, 3]) == False
+        8, 7, 6, 2, 5, 8, 7, 3]) == False
     assert numerics.cliffsDelta([8, 7, 6, 2, 5, 8, 7, 3], [
-                                9, 9, 7, 8, 10, 9, 6]) == True
+        9, 9, 7, 8, 10, 9, 6]) == True
     t1, t2 = [], []
     for i in range(1000):
         t1.append(numerics.rand())
     for i in range(1000):
-        t2.append(numerics.rand()**0.5)
+        t2.append(numerics.rand() ** 0.5)
     assert numerics.cliffsDelta(t1, t1) == False
     assert numerics.cliffsDelta(t1, t2) == True
     diff, j = False, 1.0
     while not diff:
-        t3 = lists.map(t1, lambda x: x*j)
+        t3 = lists.map(t1, lambda x: x * j)
         diff = numerics.cliffsDelta(t1, t3)
         print(">", numerics.rnd(j), diff)
         j *= 1.025
@@ -138,29 +138,32 @@ def cliffsTest():
 
 def binsTest():
     data = Data(config.the['file'])
-    print(data)
+    # print(data)
     best, rest = data.sway2()
     print('all', '', '', '', {'best': len(best.rows), 'rest': len(rest.rows)})
     b4 = None
-    for k, t in enumerate(bins(data.cols.x, [ best.rows, rest.rows])):
+    b = bins(data.cols.x, {'best':best.rows, 'rest':rest.rows})
+    for k, t in enumerate(b):
         for _, range in enumerate(t):
-            if range.txt != b4:
+            if range['txt'] != b4:
                 print()
-            b4 = range.txt
-            print(range.txt, range.lo, range.hi, numerics.rnd(
-                value(range.y.has, len(best.rows), len(rest.rows), "best")), range.y.has)
+            b4 = range['txt']
+            print(range['txt'], range['lo'], range['hi'], numerics.rnd(
+                value(range['y'].has, len(best.rows), len(rest.rows), "best")), range['y'].has)
+    return True
+
 def swayTest():
     data = Data(config.the['file'])
-    best,rest = data.sway2()
+    best, rest = data.sway2()
     print("\nall ", data.stats())
-    print("    ",   data.stats('div'))
-    print("N=",len(data.rows))
+    print("    ", data.stats('div'))
+    print("N=", len(data.rows))
     print("\nbest", best.stats())
-    print("    ",   best.stats('div'))
-    print("N=",len(best.rows))
+    print("    ", best.stats('div'))
+    print("N=", len(best.rows))
     print("\nrest", rest.stats())
-    print("    ",   rest.stats('div'))
-    print("N=",len(rest.rows))
+    print("    ", rest.stats('div'))
+    print("N=", len(rest.rows))
     print("\nall ~= best?", diffs(best.cols.y, data.cols.y))
     print("best ~= rest?", diffs(best.cols.y, rest.cols.y))
     return True

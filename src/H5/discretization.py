@@ -17,9 +17,9 @@ def diffs(nums1, nums2):
 # -- Note that the way this is used (in the `bins` function, below)
 # -- for  symbolic columns, `lo` is always the same as `hi`.
 def RANGE(at, txt, lo, hi=None):
-    if hi is None:
-        hi = lo
-    return {'at': at, 'txt': txt, 'lo': lo, 'hi': hi, 'y': sym.Sym()}
+    # if hi is None:
+    #     hi = lo
+    return {'at': at, 'txt': txt, 'lo': lo, 'hi': hi or lo, 'y': sym.Sym()}
 
 
 # -- Map `x` into a small number of bins. `SYM`s just get mapped
@@ -56,33 +56,30 @@ def itself(x):
 
 def bins(cols, rowss):
     out = []
-    print(cols)
-    print('rowss', rowss)
     for col in cols:
-        ranges = [None for i in range(200)]
-        for y, rows in enumerate(rowss):
-            print('rows')
-            print(rows)
+        ranges = {}
+        for y, rows in rowss.items():
             for row in rows:
                 x = row.cells[col.at]
                 if x != "?":
-                    k = int(bin(col, x))
-                    print('k', k)
-                    ranges[k] = ranges[k] or RANGE(col.at, col.txt, x)
+                    k = bin(col, x)
+                    if k in ranges:
+                        ranges[k] = ranges[k]
+                    else:
+                        ranges[k] = RANGE(col.at, col.txt, x)
                     extend(ranges[k], x, y)
-        ranges = [r for r in ranges if r is not None]
-        print('ranges', ranges)
+        ranges = list(ranges.values())
         ranges = lists.sort(lists.map(ranges, itself), lambda x: x['lo'])
         if isinstance(col, sym.Sym):
             out.append(ranges)
         else:
-            merge.mergeAny(ranges)
-        return out
+            out.append(merge.mergeAny(ranges))
+    return out
 
 
 def value(has, nB=1, nR=1, sGoal=True):
     b, r = 0, 0
-    for x, n in enumerate(has):
+    for x, n in has.items():
         if x == sGoal:
             b += n
         else:

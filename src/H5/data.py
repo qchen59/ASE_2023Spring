@@ -46,13 +46,12 @@ class Data:
 
     # calculate the stats (mean, stand deviations)
 
-    def stats(self, what, cols, nPlaces):
+    def stats(self, what='mid', cols=None, nPlaces=2):
         def fun(k, col):
             if what == 'div':
                 val = col.div()
             else:
                 val = col.mid()
-
             return col.rnd(val, nPlaces), col.txt
 
         return lists.kap(cols or self.cols.y, fun)
@@ -97,8 +96,9 @@ class Data:
         some = lists.many(rows, config.the['Halves'])
         A = (config.the['Reuse'] and above) or lists.any(some)
         B = self.around(A, some)[
-            int((config.the['Far'] * len(rows)) // 1)]['row']
+            int((config.the['Far'] * len(some)) // 1)-1]['row']
         c = dist(A, B)
+        # print(int((config.the['Far'] * len(some)) // 1), A,B,c)
         left, right = [], []
         for n, tmp in enumerate(lists.sort(lists.map(rows, project), lambda x: x['dist']), 1):
             if n <= len(rows) // 2:
@@ -127,7 +127,7 @@ class Data:
 
     def sway2(self):
         def worker(rows, worse, above=None):
-            if len(rows) <= (len(self.rows)) ** config.the['min']:
+            if len(rows) <= len(self.rows) ** config.the['min']:
                 return rows, lists.many(worse, config.the['rest'] * len(rows))
             else:
                 l, r, A, B, m, c = self.half(rows, self.cols.x, above)

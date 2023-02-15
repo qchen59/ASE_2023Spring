@@ -12,7 +12,6 @@ def diffs(nums1, nums2):
 
     return lists.kap(nums1, helper)
 
-
 # -- Create a RANGE  that tracks the y dependent values seen in
 # -- the range `lo` to `hi` some independent variable in column number `at` whose name is `txt`.
 # -- Note that the way this is used (in the `bins` function, below)

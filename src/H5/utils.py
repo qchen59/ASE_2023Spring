@@ -2,6 +2,7 @@ import re
 import sys
 import config
 from csv import reader
+import math
 
 
 def eg(key, str, fun):
@@ -94,7 +95,7 @@ def show(node, what, cols, nPlaces, lvl=None):
 def returnHandler(value, n=1):
     # for None
     if value is None:
-        return [None]*n
+        return [None] * n
 
     # for list, set, dict, tuple
     if type(value) in [list, set, dict, tuple]:
@@ -112,10 +113,18 @@ def returnHandler(value, n=1):
         return values_to_return
 
     values_to_return = [value]
-    remaining = n-1
+    remaining = n - 1
     # for others (int,str,etc)
     if remaining != 0:
         while remaining != 0:
             values_to_return.append(None)
             remaining -= 1
     return values_to_return
+
+
+# Return the `p`-ratio item in `t`; e.g. `per(t,.5)` returns the medium.
+def per(t, p):
+    p = math.floor(((p or .5) * len(t)) + .5)
+    idx = max(1, min(len(t), p))-1
+    # print("idx",idx)
+    return t[idx]

@@ -6,7 +6,7 @@ from data import Data, read
 from utils import csv, show
 import lists
 from utils import returnHandler
-from discretization import bins, value
+from discretization import bins, value, diffs
 
 
 def numTest():
@@ -61,6 +61,9 @@ def csvTest():
 
 def dataTest():
     data = Data(config.the['file'])
+    col = data.cols.x[0]
+    print(col.lo, col.hi, col.mid(), col.div())
+    print(data.stats())
     return len(data.rows) == 398 and data.cols.y[0].w == -1 and data.cols.x[1].at == 1 and len(data.cols.x) == 4
 
 
@@ -146,3 +149,17 @@ def binsTest():
             b4 = range.txt
             print(range.txt, range.lo, range.hi, numerics.rnd(
                 value(range.y.has, len(best.rows), len(rest.rows), "best")), range.y.has)
+def swayTest():
+    data = Data(config.the['file'])
+    best,rest = data.sway2()
+    print("\nall ", data.stats())
+    print("    ",   data.stats('div'))
+    print("N=",len(data.rows))
+    print("\nbest", best.stats())
+    print("    ",   best.stats('div'))
+    print("N=",len(best.rows))
+    print("\nrest", rest.stats())
+    print("    ",   rest.stats('div'))
+    print("N=",len(rest.rows))
+    print("\nall ~= best?", diffs(best.cols.y, data.cols.y))
+    print("best ~= rest?", diffs(best.cols.y, rest.cols.y))

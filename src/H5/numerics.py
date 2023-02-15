@@ -42,7 +42,7 @@ def cliffsDelta(ns1, ns2):
     if len(ns1) > 10 * len(ns2):
         ns1 = lists.many(ns1, 10 * len(ns2))
     if len(ns2) > 10 * len(ns1):
-        ns1 = lists.many(ns2, 10 * len(ns1))
+        ns2 = lists.many(ns2, 10 * len(ns1))
     n, gt, lt = 0, 0, 0
     for x in ns1:
         for y in ns2:

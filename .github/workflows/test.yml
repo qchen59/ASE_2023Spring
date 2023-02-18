@@ -27,7 +27,7 @@ jobs:
         run: |
           cd ./src/H4; python3 main.py -g all > ../../etc/out/grid_hw4.out
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: test hw4
-          run: |
+      - name: test hw5
+        run: |
             cd ./src/H5; python3 main.py -g all > ../../etc/out/bins_hw5.out
       - run: echo "🍏 This job's status is ${{ job.status }}."

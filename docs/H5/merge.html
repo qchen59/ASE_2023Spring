@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>merge.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>merge.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>function mergeAny(ranges0,     noGaps)
+  function noGaps(t)
+    for j = 2,#t do t[j].lo = t[j-1].hi end
+    t[1].lo  = -m.huge
+    t[#t].hi =  m.huge
+    return t 
+  end ------
+  local ranges1,j,left,right,y = {},1
+  while j &lt;= #ranges0 do
+    left, right = ranges0[j], ranges0[j+1]
+    if right then
+      y = merge2(left.y, right.y)
+      if y then
+        j = j+1 &ndash; next round, skip over right.
+        left.hi, left.y = right.hi, y end end
+    push(ranges1,left)
+    j = j+1 
+  end
+  return #ranges0==#ranges1 and noGaps(ranges0) or mergeAny(ranges1) end</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">import</span> <span class="nn">sym</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">mergeAny</span><span class="p">(</span><span class="n">ranges0</span><span class="p">,</span> <span class="n">noGaps</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">noGaps</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+            <span class="n">t</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;lo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="s1">&#39;hi&#39;</span><span class="p">]</span>
+        <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;lo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
+        <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;hi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">t</span>
+
+    <span class="n">ranges1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="p">[],</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">ranges0</span><span class="p">):</span>
+        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">ranges0</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ranges0</span><span class="p">)</span> <span class="k">else</span> <span class="n">ranges0</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>print(right)
+print(left)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">right</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">merge2</span><span class="p">(</span><span class="n">left</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">right</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>print(y)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="k">if</span> <span class="n">y</span><span class="p">:</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">left</span><span class="p">[</span><span class="s1">&#39;hi&#39;</span><span class="p">],</span> <span class="n">left</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">right</span><span class="p">[</span><span class="s1">&#39;hi&#39;</span><span class="p">],</span> <span class="n">y</span>
+        <span class="n">ranges1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>print(j)
+print(len(ranges0), len(ranges1))</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">noGaps</span><span class="p">(</span><span class="n">ranges0</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ranges0</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">ranges1</span><span class="p">)</span> <span class="k">else</span> <span class="n">mergeAny</span><span class="p">(</span><span class="n">ranges1</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">merge2</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">):</span>
+    <span class="n">isNew</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>print(&ldquo;isNew&rdquo;, isNew)</p>
+<h1>need the div() function here based on col being a NUM or SYM</h1>
+<p>print(&ldquo;new&rdquo;,isNew.div() )</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">isNew</span><span class="o">.</span><span class="n">div</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">col1</span><span class="o">.</span><span class="n">div</span><span class="p">()</span> <span class="o">*</span> <span class="n">col1</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="n">col2</span><span class="o">.</span><span class="n">div</span><span class="p">()</span> <span class="o">*</span> <span class="n">col2</span><span class="o">.</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">isNew</span><span class="o">.</span><span class="n">n</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">isNew</span>
+    <span class="k">return</span> <span class="kc">None</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">):</span>
+    <span class="n">isNew</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">col1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">sym</span><span class="o">.</span><span class="n">Sym</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">col2</span><span class="o">.</span><span class="n">has</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">isNew</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">col2</span><span class="o">.</span><span class="n">has</span><span class="p">:</span>
+            <span class="n">isNew</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">isNew</span><span class="o">.</span><span class="n">lo</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">col1</span><span class="o">.</span><span class="n">lo</span><span class="p">,</span> <span class="n">col2</span><span class="o">.</span><span class="n">lo</span><span class="p">)</span>
+        <span class="n">isNew</span><span class="o">.</span><span class="n">hi</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">col1</span><span class="o">.</span><span class="n">hi</span><span class="p">,</span> <span class="n">col2</span><span class="o">.</span><span class="n">hi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">isNew</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

@@ -1,7 +1,7 @@
 # -- Summarizes a stream of numbers.
 import re
-from numerics import Numerics
-
+import numerics
+from utils import per
 
 class Num:
     def __init__(self, at=0, txt=""):
@@ -18,6 +18,8 @@ class Num:
         self.lo = float('inf')
         # largest number
         self.hi = float('-inf')
+        self.has = []
+        self.ok = False
 
         if re.search(r"-$", self.txt):
             self.w = -1
@@ -39,24 +41,31 @@ class Num:
             self.lo = min(n, self.lo)
             # Update the largest
             self.hi = max(n, self.hi)
+            self.has.append(n)
+
+    def has_sort(self):
+        if not self.ok:
+            self.has = sorted(self.has)
+            self.ok = True
+        return self.has
 
     # return means
     def mid(self):
-        return self.mu
+        return per(self.has_sort(), .5)
 
-    # return standard deviation using Welford's algorithm http://t.ly/nn_W
+        # return standard deviation using Welford's algorithm http://t.ly/nn_W
     def div(self):
-        if self.m2 < 0 or self.n < 2:
-            return 0
-        else:
-            return pow(self.m2 / (self.n - 1), 0.5)
+        # if self.m2 < 0 or self.n < 2:
+        #     return 0
+        # else:
+        #     return pow(self.m2 / (self.n - 1), 0.5)
+        return (per(self.has_sort(),.9) - per(self.has_sort(), .1))/2.58
 
     def rnd(self, x, n):
         if x == "?":
             return x
         else:
-            nu = Numerics()
-            return nu.rnd(x, n)
+            return numerics.rnd(x, n)
 
     def norm(self, n):
         return n if n == "?" else (n - self.lo)/(self.hi - self.lo + 1E-32)

@@ -11,11 +11,16 @@ class Sym:
         self.has = {}
         self.most, self.mode = 0, None
 
-    def add(self, x):
+    def add(self, x, n=None):
         if x != "?":
-            self.n += 1
+            n = n or 1
+            self.n += n
             # increase count of symbol in dictionary "has"
-            self.has[x] = 1 + self.has.get(x, 0)
+            if x in self.has:
+                self.has[x] += n
+            else:
+                self.has[x] = n
+
             if self.has[x] > self.most:
                 self.most, self.mode = self.has[x], x
 
@@ -46,7 +51,6 @@ class Sym:
                 return 0
             else:
                 return 1
-
     def __repr__(self):
         return str(self.__dict__)
 

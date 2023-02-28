@@ -18,6 +18,7 @@
 #   end
 #   return #ranges0==#ranges1 and noGaps(ranges0) or mergeAny(ranges1) end
 from copy import deepcopy
+from lists import map, kap
 import sym
 def mergeAny(ranges0, noGaps=None):
     def noGaps(t):
@@ -64,6 +65,47 @@ def merge(col1, col2):
         isNew.lo = min(col1.lo, col2.lo)
         isNew.hi = max(col1.hi, col2.hi)
     return isNew
+
+def showRule(rule, merges, merge, pretty):
+    def pretty(range):
+        return range['lo'] if range['lo'] == range['hi'] else [range['lo'], range['hi']]
+    
+    def merges(attr, ranges):
+        return list(map(merge(sorted(ranges, key=lambda r: r['lo'])), pretty)), attr
+    
+    def merge(t0):
+        t, j = [], 0
+        while j < len(t0):
+            left, right = t0[j], t0[j + 1] if j + 1 < len(t0) else None
+            if right and left['hi'] == right['lo']:
+                left['hi'] = right['hi']
+                j += 1
+            t.append({'lo': left['lo'], 'hi': left['hi']})
+            j += 1
+        return t if len(t0) == len(t) else merge(t)
+    
+    return kap(rule, merges)
+
+def selects(rule, rows, disjunction, conjunction):
+    def disjunction(ranges, row):
+        for range in ranges:
+            lo, hi, at = range['lo'], range['hi'], range['at']
+            x = row[at]
+            if x == "?":
+                return True
+            if lo == hi == x:
+                return True
+            if lo <= x and x < hi:
+                return True
+        return False
+    
+    def conjunction(row):
+        for ranges in rule:
+            if not disjunction(ranges, row):
+                return False
+        return True
+    
+    return map(rows, lambda r: r if conjunction(r) else None)
 
 
 

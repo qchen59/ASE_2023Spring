@@ -66,6 +66,17 @@ class Data:
             s2 = s2 - math.exp(col.w * (y - x) / len(ys))
         return s1 / len(ys) < s2 / len(ys)
 
+    def betters(self, n):
+        def helper(r1, r2):
+            return self.better(r1,r2)
+        tmp = lists.sort(self.rows, helper)
+        # return  n and slice(tmp,1,n), slice(tmp,n+1)  or tmp  end
+        if n:
+            return tmp[:n], tmp[n:]
+        else:
+            tmp
+
+
     # calculate the distance between two rows
     def dist(self, row1, row2, cols=None):
         n = 0

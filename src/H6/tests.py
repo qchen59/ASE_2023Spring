@@ -142,7 +142,7 @@ def binsTest():
     best, rest = data.sway2()
     print('all', '', '', '', {'best': len(best.rows), 'rest': len(rest.rows)})
     b4 = None
-    b = bins(data.cols.x, {'best':best.rows, 'rest':rest.rows})
+    b = bins(data.cols.x, {'best': best.rows, 'rest': rest.rows})
     for k, t in enumerate(b):
         for _, range in enumerate(t):
             if range['txt'] != b4:
@@ -151,6 +151,7 @@ def binsTest():
             print(range['txt'], range['lo'], range['hi'], numerics.rnd(
                 value(range['y'].has, len(best.rows), len(rest.rows), "best")), range['y'].has)
     return True
+
 
 def swayTest():
     data = Data(config.the['file'])
@@ -167,3 +168,17 @@ def swayTest():
     print("\nall ~= best?", diffs(best.cols.y, data.cols.y))
     print("best ~= rest?", diffs(best.cols.y, rest.cols.y))
     return True
+
+
+def xplnTest():
+    data = Data(config.the['file'])
+    best, rest, evals = data.sway2()
+    rule, most = xpln(data, best, rest)
+    print("\n-----------\nexplain=", showRule(rule))
+    data1 = Data(data, selects(rule, data.rows))
+    print("all               ", data.stats(), data.stats('div'))
+    print(f"sway with {evals:5} evals", best.stats(), best.stats('div'))
+    print(f"xpln on {evals:5} evals", data1.stats(), data1.stats('div'))
+    top, _ = data.betters(len(best.rows))
+    top = Data(data, top)
+    print(f"sort with {len(data.rows):5} evals", top.stats(), top.stats('div'))

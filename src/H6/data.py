@@ -150,6 +150,20 @@ class Data:
         best, rest = worker(self.rows, [])
         return self.clone(best), self.clone(rest)
 
+    def sway3(self):
+        def worker(rows, worse, evals0, above=None):
+            if len(rows) <= len(self.rows) ** config.the['min']:
+                return rows, lists.many(worse, config.the['rest'] * len(rows)), evals0
+            else:
+                l, r, A, B, m, c, evals = self.half(rows, self.cols.x, above) # half() needs HW6 adjustment to return evals
+                if self.better(B, A):
+                    l, r, A, B = r, l, B, A
+                lists.map(r, lambda x: worse.append(x))
+                return worker(l, worse, evals + evals0, A)
+
+        best, rest, evals = worker(self.rows, [], 0)
+        return Data(best), Data(rest), evals
+
     # returns rows, recursively halved
     def cluster(self, rows=None, min=None, cols=None, above=None):
         rows = rows or self.rows

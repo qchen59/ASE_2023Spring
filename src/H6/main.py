@@ -1,6 +1,6 @@
 # script.lua -> script.py
 from utils import eg, cli, settings
-from tests import theTest, symTest, randTest, numTest, csvTest, dataTest, statsTest, cloneTest, aroundTest, halfTest, optimizeTest, clusterTest, cliffsTest, binsTest, swayTest
+from tests import theTest, symTest, randTest, numTest, csvTest, dataTest, statsTest, cloneTest, aroundTest, halfTest, optimizeTest, clusterTest, cliffsTest, binsTest, swayTest, xplnTest
 import config
 import numerics
 
@@ -51,5 +51,6 @@ if __name__ == '__main__':
     eg("stats", "stats from DATA", statsTest)
     eg("bins", "find deltas between best and rest", binsTest)
     eg("sway", "optimizing", swayTest)
+    eg("xpln","explore explanation sets", xplnTest)
     m = Main()
     m.main(config.help, config.egs)

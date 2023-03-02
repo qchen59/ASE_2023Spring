@@ -7,6 +7,7 @@ from utils import csv, show
 import lists
 from utils import returnHandler
 from discretization import bins, value, diffs
+from merge import selects, showRule
 
 
 def numTest():
@@ -172,7 +173,7 @@ def swayTest():
 
 def xplnTest():
     data = Data(config.the['file'])
-    best, rest, evals = data.sway2()
+    best, rest, evals = data.sway3()
     rule, most = xpln(data, best, rest)
     print("\n-----------\nexplain=", showRule(rule))
     data1 = Data(data, selects(rule, data.rows))

@@ -119,6 +119,37 @@ class Data:
                 right.append(tmp['row'])
         return left, right, A, B, mid, c
 
+    # divides data using 2 far points
+    def half2(self, rows=None, cols=None, above=None):
+        def project(row):
+            x2, y = numerics.cosine(dist(row, A), dist(row, B), c)
+            return {'row': row, 'dist': x2}
+
+        def dist(row1, row2):
+            return self.dist(row1, row2, cols)
+
+        rows = rows or self.rows
+        some = lists.many(rows, config.the['Halves'])
+        A = (config.the['Reuse'] and above) or lists.any(some)
+        B = self.around(A, some)[
+            int((config.the['Far'] * len(some)) // 1)-1]['row']
+        c = dist(A, B)
+        # print(int((config.the['Far'] * len(some)) // 1), A,B,c)
+        left, right = [], []
+        for n, tmp in enumerate(lists.sort(lists.map(rows, project), lambda x: x['dist']), 1):
+            if n <= len(rows) // 2:
+                left.append(tmp['row'])
+                mid = tmp['row']
+            else:
+                right.append(tmp['row'])
+
+        if config.the['Reuse'] and above:
+            evals = 1
+        else:
+            evals = 2
+        return left, right, A, B, mid, c, evals
+
+
     # returns best half, recursively
     def sway(self, rows=None, min=None, cols=None, above=None):
         rows = rows or self.rows
@@ -155,14 +186,14 @@ class Data:
             if len(rows) <= len(self.rows) ** config.the['min']:
                 return rows, lists.many(worse, config.the['rest'] * len(rows)), evals0
             else:
-                l, r, A, B, m, c, evals = self.half(rows, self.cols.x, above) # half() needs HW6 adjustment to return evals
+                l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above) # half() needs HW6 adjustment to return evals
                 if self.better(B, A):
                     l, r, A, B = r, l, B, A
                 lists.map(r, lambda x: worse.append(x))
                 return worker(l, worse, evals + evals0, A)
 
         best, rest, evals = worker(self.rows, [], 0)
-        return Data(best), Data(rest), evals
+        return self.clone(best), self.clone(rest), evals
 
     # returns rows, recursively halved
     def cluster(self, rows=None, min=None, cols=None, above=None):

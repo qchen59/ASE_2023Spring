@@ -174,6 +174,13 @@ def swayTest():
 def xplnTest():
     data = Data(config.the['file'])
     best, rest, evals = data.sway3()
+    # print(best)
+    # print("-------")
+    # print(rest)
+    # print("-------")
+    # print(evals)
+    # print("-------")
+
     rule, most = xpln(data, best, rest)
     print("\n-----------\nexplain=", showRule(rule))
     data1 = Data(data, selects(rule, data.rows))

@@ -8,6 +8,7 @@ import lists
 from utils import returnHandler
 from discretization import bins, value, diffs
 from merge import selects, showRule
+from xpln import xpln
 
 
 def numTest():
@@ -182,11 +183,11 @@ def xplnTest():
     # print("-------")
 
     rule, most = xpln(data, best, rest)
-    print("\n-----------\nexplain=", showRule(rule))
-    data1 = Data(data, selects(rule, data.rows))
-    print("all               ", data.stats(), data.stats('div'))
-    print(f"sway with {evals:5} evals", best.stats(), best.stats('div'))
-    print(f"xpln on {evals:5} evals", data1.stats(), data1.stats('div'))
-    top, _ = data.betters(len(best.rows))
-    top = Data(data, top)
-    print(f"sort with {len(data.rows):5} evals", top.stats(), top.stats('div'))
+    # print("\n-----------\nexplain=", showRule(rule))
+    # data1 = Data(data, selects(rule, data.rows))
+    # print("all               ", data.stats(), data.stats('div'))
+    # print(f"sway with {evals:5} evals", best.stats(), best.stats('div'))
+    # print(f"xpln on {evals:5} evals", data1.stats(), data1.stats('div'))
+    # top, _ = data.betters(len(best.rows))
+    # top = Data(data, top)
+    # print(f"sort with {len(data.rows):5} evals", top.stats(), top.stats('div'))

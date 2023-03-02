@@ -1,8 +1,10 @@
 from lists import map, sort, gt
 from numerics import rnd
+import merge
+from discretization import bins, value
 
 
-def rule(ranges, maxSize):
+def RULE(ranges, maxSize):
     t = {}
     for range in ranges:
         t[range.txt] = t[range.txt] or []
@@ -41,31 +43,31 @@ def firstN(sortedRanges, scoreFun):
             our, most = rule, tmp
     return out, most
 
-def xpln(data, best, rest, maxSizes):
+def xpln(data, best, rest, maxSizes={}):
     def v(has):
         return value(has, len(best.rows), len(rest.rows), 'best')
 
     def score(ranges):
         rule = RULE(ranges, maxSizes)
         if rule:
-            print(showRule(rule))
-            bestr = selects(rule, best.rows)
-            restr = selects(rule, rest.rows)
+            print(merge.showRule(rule))
+            bestr = merge.selects(rule, best.rows)
+            restr = merge.selects(rule, rest.rows)
             if len(bestr) + len(restr) > 0:
                 return v({
                     "best": len(bestr),
                     "rest": len(restr)
                 }), rule
     tmp, maxSizes = [], {}
-    for _, ranges in enumerate(bins(data.cols.x), {"best": len(bestr), "rest": len(restr)}):
-        maxSizes[ranges[0].txt] = len(ranges)
+    for _, ranges in enumerate(bins(data.cols.x,{"best": best.rows, "rest": rest.rows})):
+        maxSizes[ranges[0]['txt']] = len(ranges)
         print()
         for _, range in enumerate(ranges):
-            print(range.txt, range.lo, range.hi)
+            print(range['txt'], range['lo'], range['hi'])
             tmp.append({
                 'range': range,
                 'max': len(ranges),
-                'val': v(range.y.has)
+                'val': v(range['y'].has)
             })
-    rule, most = firstN(sort(tmp, gt('val'), score))
+    rule, most = firstN(sorted(tmp, key=lambda x: x['val'],reverse=True), score)
     return rule, most

@@ -65,4 +65,4 @@ def lt(x):
 
 
 def gt(x):
-    return lambda a, b: a[x] > b[x]
+    return lambda x: x['val']

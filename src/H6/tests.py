@@ -175,6 +175,8 @@ def swayTest():
 def xplnTest():
     data = Data(config.the['file'])
     best, rest, evals = data.sway3()
+    # print(data)
+    # print("-------")
     # print(best)
     # print("-------")
     # print(rest)

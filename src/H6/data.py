@@ -193,6 +193,12 @@ class Data:
                 return worker(l, worse, evals + evals0, A)
 
         best, rest, evals = worker(self.rows, [], 0)
+        print(best)
+        print("-------")
+        print(rest)
+        print("-------")
+        print(evals)
+        print("-------")
         return self.clone(best), self.clone(rest), evals
 
     # returns rows, recursively halved

@@ -58,3 +58,11 @@ def many(table, n):
     for i in range(n):
         newTable.append(any(table))
     return newTable
+
+
+def lt(x):
+    return lambda a, b: a[x] < b[x]
+
+
+def gt(x):
+    return lambda a, b: a[x] > b[x]

@@ -1,3 +1,7 @@
+from lists import map
+from numerics import rnd
+
+
 def rule(ranges, maxSize):
     t = {}
     for range in ranges:
@@ -17,3 +21,22 @@ def prune(rule, maxSize):
     if n > 0:
         return rule
 
+def on(x):
+    return lambda t: t[x]
+
+def firstN(sortedRanges, scoreFun):
+    print("")
+    map(sortedRanges, lambda r: print(r['range']['txt'], r['range']['lo'], r['range']['hi'], rnd(r['val']), r['range']['y'].has))
+    first = sortedRanges[0]['val']
+
+    def useful(range):
+        if range['val'] > 0.05 and range['val'] > first / 10:
+            return range
+
+    sortedRanges = map(sortedRanges, useful)
+    most, out = -1
+    for n in range(len(sortedRanges)):
+        tmp, rule = scoreFun(map(sortedRanges[:n], on('range')))
+        if tmp and tmp > most:
+            our, most = rule, tmp
+    return out, most

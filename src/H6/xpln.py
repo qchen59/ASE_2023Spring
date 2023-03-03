@@ -2,24 +2,27 @@ from lists import map, sort, gt
 from numerics import rnd
 import merge
 from discretization import bins, value
+from merge import showRule
 
 
 def RULE(ranges, maxSize):
     t = {}
     for range in ranges:
-        t[range.txt] = t[range.txt] or []
-        t[range.txt].append({'lo': range.lo, 'hi': range.hi, 'at': range.at})
+        if range['txt'] not in t:
+            t[range['txt']] = []
+        t[range['txt']].append({'lo': range['lo'], 'hi': range['hi'], 'at': range['at']})
     return prune(t, maxSize)
 
 
 def prune(rule, maxSize):
     n = 0
-    for txt, ranges in enumerate(rule):
+    for txt, ranges in rule.items():
         n += 1
         # TODO: check if this is correct
         if len(ranges) == maxSize[txt]:
             n -= 1
-            rule[txt] = None
+            # rule[txt] = None
+            rule.remove(txt)
     if n > 0:
         return rule
 
@@ -36,11 +39,14 @@ def firstN(sortedRanges, scoreFun):
             return range
 
     sortedRanges = map(sortedRanges, useful)
-    most, out = -1
+    most, out = -1, None
+    sortedRanges = [i for i in sortedRanges if i]
     for n in range(len(sortedRanges)):
-        tmp, rule = scoreFun(map(sortedRanges[:n], on('range')))
+        t = map(sortedRanges[:n+1], lambda x: x['range'])
+        tmp, rule = scoreFun(t)
+        # print("tmp",tmp, most, rule)
         if tmp and tmp > most:
-            our, most = rule, tmp
+            out, most = rule, tmp
     return out, most
 
 def xpln(data, best, rest, maxSizes={}):
@@ -50,14 +56,16 @@ def xpln(data, best, rest, maxSizes={}):
     def score(ranges):
         rule = RULE(ranges, maxSizes)
         if rule:
-            print(merge.showRule(rule))
+            # print("rule--------------")
+            # print(rule)
+            print(showRule(rule))
             bestr = merge.selects(rule, best.rows)
             restr = merge.selects(rule, rest.rows)
+            bestr = [b for b in bestr if b]
+            restr = [r for r in restr if r]
             if len(bestr) + len(restr) > 0:
-                return v({
-                    "best": len(bestr),
-                    "rest": len(restr)
-                }), rule
+                return v({"best": len(bestr),"rest": len(restr)}), rule
+        return None, None
     tmp, maxSizes = [], {}
     for _, ranges in enumerate(bins(data.cols.x,{"best": best.rows, "rest": rest.rows})):
         maxSizes[ranges[0]['txt']] = len(ranges)

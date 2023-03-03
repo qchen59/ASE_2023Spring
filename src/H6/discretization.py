@@ -12,6 +12,7 @@ def diffs(nums1, nums2):
 
     return lists.kap(nums1, helper)
 
+
 # -- Create a RANGE  that tracks the y dependent values seen in
 # -- the range `lo` to `hi` some independent variable in column number `at` whose name is `txt`.
 # -- Note that the way this is used (in the `bins` function, below)
@@ -34,6 +35,8 @@ def bin(col, x):
         return 1
     else:
         return math.floor(x / tmp + 0.5) * tmp
+
+
 # Update a RANGE to cover `x` and `y`
 
 
@@ -42,11 +45,13 @@ def extend(range, n, s):
     range['hi'] = max(n, range['hi'])
     range['y'].add(s)
 
+
 # -- Return self
 
 
 def itself(x):
     return x
+
 
 # -- Given a sorted list of ranges, try fusing adjacent items
 # -- (stopping when no more fuse-ings can be found). When done,
@@ -73,8 +78,41 @@ def bins(cols, rowss):
         if isinstance(col, sym.Sym):
             out.append(ranges)
         else:
-            out.append(merge.mergeAny(ranges))
+            # out.append(merge.mergeAny(ranges))
+            out.append(merge.mergeAny2(ranges, len(out)/config.the['bins'], config.the['d']*col.div()))
+    # print(out)
+    # print("------")
     return out
+
+
+# def bins2(cols, rowss):
+#     def with1Col(col):
+#         n, ranges = withAllRows(col)
+#         ranges = lists.sort(lists.map(ranges, itself), lambda x: x['lo'])
+#         if isinstance(col, sym.Sym):
+#             return ranges
+#         else:
+#             return merge.mergeAny(ranges, n/config.the['bins'], config.the[])
+#
+#     def withAllRows(col):
+#         def xy(x, y):
+#             nonlocal n
+#             if x != "?":
+#                 n += 1
+#                 k = bin(col, x)
+#                 if k in ranges:
+#                     ranges[k] = ranges[k]
+#                 else:
+#                     ranges[k] = RANGE(col.at, col.txt, x)
+#                 extend(ranges[k], x, y)
+#
+#         n, ranges = 0, {}
+#         for y, rows in rowss.items():
+#             for row in rows:
+#                 xy(row.cells[col.at], y)
+#         return n, ranges
+#
+#     return lists.map(cols, with1Col)
 
 
 def value(has, nB=1, nR=1, sGoal=True):
@@ -84,5 +122,7 @@ def value(has, nB=1, nR=1, sGoal=True):
             b += n
         else:
             r += n
+    # print("value1",b,r)
     b, r = b / (nB + 1 / float('inf')), r / (nR + 1 / float('inf'))
-    return b**2/(b+r)
+    # print("value",b,r)
+    return b ** 2 / (b + r)

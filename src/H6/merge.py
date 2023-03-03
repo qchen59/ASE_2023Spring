@@ -45,6 +45,40 @@ def mergeAny(ranges0, noGaps=None):
     # print(len(ranges0), len(ranges1))
     return noGaps(ranges0) if len(ranges0) == len(ranges1) else mergeAny(ranges1)
 
+def mergeAny2(ranges0, nSmall,nFar, noGaps=None):
+    def noGaps(t):
+        for j in range(1, len(t)):
+            t[j]['lo'] = t[j - 1]['hi']
+        t[0]['lo'] = float('-inf')
+        t[-1]['hi'] = float('inf')
+        return t
+
+    ranges1, j = [], 0
+    while j < len(ranges0):
+        left, right = ranges0[j], None if j + 1 >= len(ranges0) else ranges0[j + 1]
+        # print(right)
+        # print(left)
+        if right:
+            y = merged(left['y'], right['y'], nSmall, nFar)
+            # print(y)
+            if y:
+                j += 1
+                left['hi'], left['y'] = right['hi'], y
+        ranges1.append(left)
+        j += 1
+        # print(j)
+    # print(len(ranges0), len(ranges1))
+    return noGaps(ranges0) if len(ranges0) == len(ranges1) else mergeAny2(ranges1,  nSmall,nFar)
+
+def merged(col1, col2, nSmall=None, nFar=None, new=None):
+    new = merge(col1, col2)
+    if (nSmall and col1.n < nSmall) or (col2.n < nSmall):
+        return new
+    if nFar and not isinstance(col1, sym.Sym) and abs(col1.mid() - col2.mid()) < nFar:
+        return new
+    if new.div() <= (col1.div()*col1.n + col2.div()*col2.n)/new.n:
+        return new
+
 def merge2(col1, col2):
     isNew = merge(col1, col2)
     # print("isNew", isNew)
@@ -66,11 +100,12 @@ def merge(col1, col2):
         isNew.hi = max(col1.hi, col2.hi)
     return isNew
 
-def showRule(rule, merges, merge, pretty):
+def showRule(rule):
     def pretty(range):
         return range['lo'] if range['lo'] == range['hi'] else [range['lo'], range['hi']]
     
     def merges(attr, ranges):
+        # print(attr,ranges)
         return list(map(merge(sorted(ranges, key=lambda r: r['lo'])), pretty)), attr
     
     def merge(t0):
@@ -83,14 +118,25 @@ def showRule(rule, merges, merge, pretty):
             t.append({'lo': left['lo'], 'hi': left['hi']})
             j += 1
         return t if len(t0) == len(t) else merge(t)
-    
-    return kap(rule, merges)
 
-def selects(rule, rows, disjunction, conjunction):
+    return kap2(rule, merges)
+
+def kap2(table, fun):
+    newTable = {}
+    for k, v in table.items():
+        v, k = fun(k, v)
+        if k is None:
+            newTable[len(newTable) + 1] = v
+        else:
+            newTable[k] = v
+    return newTable
+
+def selects(rule, rows):
+    # print("rule,rows", rule, rows)
     def disjunction(ranges, row):
         for range in ranges:
             lo, hi, at = range['lo'], range['hi'], range['at']
-            x = row[at]
+            x = row.cells[at]
             if x == "?":
                 return True
             if lo == hi == x:
@@ -100,7 +146,7 @@ def selects(rule, rows, disjunction, conjunction):
         return False
     
     def conjunction(row):
-        for ranges in rule:
+        for ranges in rule.values():
             if not disjunction(ranges, row):
                 return False
         return True

@@ -7,10 +7,11 @@ import lists
 import config
 import math
 import numerics
+import functools
 
 
 class Data:
-    def __init__(self, src) -> None:
+    def __init__(self, src, rows=None) -> None:
         self.rows = []
         self.cols = None
 
@@ -66,15 +67,28 @@ class Data:
             s2 = s2 - math.exp(col.w * (y - x) / len(ys))
         return s1 / len(ys) < s2 / len(ys)
 
+    def better2(self, row1, row2):
+        s1, s2, ys = 0, 0, self.cols.y
+        for col in ys:
+            x = col.norm(row1.cells[col.at])
+            y = col.norm(row2.cells[col.at])
+            s1 = s1 - math.exp(col.w * (x - y) / len(ys))
+            s2 = s2 - math.exp(col.w * (y - x) / len(ys))
+        return s1 / len(ys) - s2 / len(ys)
+
     def betters(self, n):
-        def helper(r1, r2):
-            return self.better(r1,r2)
-        tmp = lists.sort(self.rows, helper)
+        def helper(item1, item2):
+            return self.better2(item1, item2)
+        # tmp = lists.sort(self.rows, helper)
+        tmp = self.rows
+        cmp = functools.cmp_to_key(helper)
+        tmp.sort(key=cmp)
+
         # return  n and slice(tmp,1,n), slice(tmp,n+1)  or tmp  end
         if n:
             return tmp[:n], tmp[n:]
         else:
-            tmp
+            return tmp
 
 
     # calculate the distance between two rows
@@ -136,6 +150,7 @@ class Data:
         c = dist(A, B)
         # print(int((config.the['Far'] * len(some)) // 1), A,B,c)
         left, right = [], []
+        # print(lists.sort(lists.map(rows, project), lambda x: x['dist']))
         for n, tmp in enumerate(lists.sort(lists.map(rows, project), lambda x: x['dist']), 1):
             if n <= len(rows) // 2:
                 left.append(tmp['row'])
@@ -147,6 +162,7 @@ class Data:
             evals = 1
         else:
             evals = 2
+        # print("-----------------")
         return left, right, A, B, mid, c, evals
 
 
@@ -183,22 +199,25 @@ class Data:
 
     def sway3(self):
         def worker(rows, worse, evals0, above=None):
-            if len(rows) <= len(self.rows) ** config.the['min']:
+            if len(rows) < len(self.rows) ** config.the['min']:
                 return rows, lists.many(worse, config.the['rest'] * len(rows)), evals0
             else:
                 l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above) # half() needs HW6 adjustment to return evals
+                # print(A,B,c,evals)
                 if self.better(B, A):
                     l, r, A, B = r, l, B, A
+                # print(l)
+                # print("-------")
                 lists.map(r, lambda x: worse.append(x))
                 return worker(l, worse, evals + evals0, A)
 
         best, rest, evals = worker(self.rows, [], 0)
-        print(best)
-        print("-------")
-        print(rest)
-        print("-------")
-        print(evals)
-        print("-------")
+        # print(best)
+        # print("-------")
+        # print(rest)
+        # print("-------")
+        # print(evals)
+        # print("-------")
         return self.clone(best), self.clone(rest), evals
 
     # returns rows, recursively halved

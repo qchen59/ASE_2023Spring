@@ -185,11 +185,14 @@ def xplnTest():
     # print("-------")
 
     rule, most = xpln(data, best, rest)
-    # print("\n-----------\nexplain=", showRule(rule))
-    # data1 = Data(data, selects(rule, data.rows))
-    # print("all               ", data.stats(), data.stats('div'))
-    # print(f"sway with {evals:5} evals", best.stats(), best.stats('div'))
-    # print(f"xpln on {evals:5} evals", data1.stats(), data1.stats('div'))
-    # top, _ = data.betters(len(best.rows))
-    # top = Data(data, top)
-    # print(f"sort with {len(data.rows):5} evals", top.stats(), top.stats('div'))
+    print("\n-----------\nexplain=", showRule(rule))
+    selected = selects(rule, data.rows)
+    selected = [s for s in selected if s]
+    data1 = data.clone(selected)
+    print("all                  ", data.stats(), data.stats('div'))
+    print("sway with %5s evals"%evals, best.stats(), best.stats('div'))
+    print("xpln on   %5s evals"%evals, data1.stats(), data1.stats('div'))
+    top, _ = data.betters(len(best.rows))
+    top = data.clone(top)
+    print("sort with %5s evals"%len(data.rows), top.stats(), top.stats('div'))
+    return True

@@ -123,13 +123,14 @@ def merge(col1, col2):
         isNew.hi = max(col1.hi, col2.hi)
     return isNew
 
-def showRule(rule, merges, merge, pretty):
+def showRule(rule):
     def pretty(range):
         return range['lo'] if range['lo'] == range['hi'] else [range['lo'], range['hi']]
-    
+
     def merges(attr, ranges):
+        # print(attr,ranges)
         return list(map(merge(sorted(ranges, key=lambda r: r['lo'])), pretty)), attr
-    
+
     def merge(t0):
         t, j = [], 0
         while j < len(t0):

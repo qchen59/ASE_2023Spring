@@ -20,8 +20,31 @@
 from copy import deepcopy
 from lists import map, kap
 import sym
-def mergeAny(ranges0, noGaps=None):
-    def noGaps(t):
+FAIL = '\033[91m'
+ENDC = '\033[0m'
+
+def mergeAny(ranges0: list[dict]) -> list[dict]:
+    """Given a sorted list of ranges, try fusing adjacent items
+    (stopping when no more fuse-ings can be found). When done,
+    make the ranges run from minus to plus infinity
+    (with no gaps in between).
+
+    Args:
+        ranges0 (list[dict]): Example = `[{'at': 0, 'txt': 'Clndrs', 'lo': -inf, 'hi': 3, 'y': Sym}]`
+
+    Returns:
+        list[dict]: Example = `[{'at': 0, 'txt': 'Clndrs', 'lo': -inf, 'hi': 3, 'y': Sym}]`
+    """
+
+    def noGaps(t: list[dict]) -> list[dict]:
+        """_summary_
+
+        Args:
+            t (list[dict]): Example = `[{'at': 0, 'txt': 'Clndrs', 'lo': -inf, 'hi': 3, 'y': Sym}]`
+
+        Returns:
+            list[dict]: Example = `[{'at': 0, 'txt': 'Clndrs', 'lo': -inf, 'hi': 3, 'y': Sym}]`
+        """
         for j in range(1, len(t)):
             t[j]['lo'] = t[j - 1]['hi']
         t[0]['lo'] = float('-inf')
@@ -82,7 +105,7 @@ def merged(col1, col2, nSmall=None, nFar=None, new=None):
 def merge2(col1, col2):
     isNew = merge(col1, col2)
     # print("isNew", isNew)
-    ## need the div() function here based on col being a NUM or SYM
+    # need the div() function here based on col being a NUM or SYM
     # print("new",isNew.div() )
     if isNew.div() <= (col1.div() * col1.n + col2.div() * col2.n) / isNew.n:
         return isNew
@@ -100,12 +123,11 @@ def merge(col1, col2):
         isNew.hi = max(col1.hi, col2.hi)
     return isNew
 
-def showRule(rule):
+def showRule(rule, merges, merge, pretty):
     def pretty(range):
         return range['lo'] if range['lo'] == range['hi'] else [range['lo'], range['hi']]
     
     def merges(attr, ranges):
-        # print(attr,ranges)
         return list(map(merge(sorted(ranges, key=lambda r: r['lo'])), pretty)), attr
     
     def merge(t0):

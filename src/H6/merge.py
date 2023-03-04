@@ -94,6 +94,7 @@ def mergeAny2(ranges0, nSmall,nFar, noGaps=None):
     return noGaps(ranges0) if len(ranges0) == len(ranges1) else mergeAny2(ranges1,  nSmall,nFar)
 
 def merged(col1, col2, nSmall=None, nFar=None, new=None):
+    # print("merged", nSmall, nFar)
     new = merge(col1, col2)
     if (nSmall and col1.n < nSmall) or (col2.n < nSmall):
         return new

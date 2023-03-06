@@ -7,10 +7,11 @@ import lists
 import config
 import math
 import numerics
+import functools
 
 
 class Data:
-    def __init__(self, src) -> None:
+    def __init__(self, src, rows=None) -> None:
         self.rows = []
         self.cols = None
 
@@ -66,6 +67,30 @@ class Data:
             s2 = s2 - math.exp(col.w * (y - x) / len(ys))
         return s1 / len(ys) < s2 / len(ys)
 
+    def better2(self, row1, row2):
+        s1, s2, ys = 0, 0, self.cols.y
+        for col in ys:
+            x = col.norm(row1.cells[col.at])
+            y = col.norm(row2.cells[col.at])
+            s1 = s1 - math.exp(col.w * (x - y) / len(ys))
+            s2 = s2 - math.exp(col.w * (y - x) / len(ys))
+        return s1 / len(ys) - s2 / len(ys)
+
+    def betters(self, n):
+        def helper(item1, item2):
+            return self.better2(item1, item2)
+        # tmp = lists.sort(self.rows, helper)
+        tmp = self.rows
+        cmp = functools.cmp_to_key(helper)
+        tmp.sort(key=cmp)
+
+        # return  n and slice(tmp,1,n), slice(tmp,n+1)  or tmp  end
+        if n:
+            return tmp[:n], tmp[n:]
+        else:
+            return tmp
+
+
     # calculate the distance between two rows
     def dist(self, row1, row2, cols=None):
         n = 0
@@ -108,6 +133,39 @@ class Data:
                 right.append(tmp['row'])
         return left, right, A, B, mid, c
 
+    # divides data using 2 far points
+    def half2(self, rows=None, cols=None, above=None):
+        def project(row):
+            x2, y = numerics.cosine(dist(row, A), dist(row, B), c)
+            return {'row': row, 'dist': x2}
+
+        def dist(row1, row2):
+            return self.dist(row1, row2, cols)
+
+        rows = rows or self.rows
+        some = lists.many(rows, config.the['Halves'])
+        A = (config.the['Reuse'] and above) or lists.any(some)
+        B = self.around(A, some)[
+            int((config.the['Far'] * len(some)) // 1)-1]['row']
+        c = dist(A, B)
+        # print(int((config.the['Far'] * len(some)) // 1), A,B,c)
+        left, right = [], []
+        # print(lists.sort(lists.map(rows, project), lambda x: x['dist']))
+        for n, tmp in enumerate(lists.sort(lists.map(rows, project), lambda x: x['dist']), 1):
+            if n <= len(rows) // 2:
+                left.append(tmp['row'])
+                mid = tmp['row']
+            else:
+                right.append(tmp['row'])
+
+        if config.the['Reuse'] and above:
+            evals = 1
+        else:
+            evals = 2
+        # print("-----------------")
+        return left, right, A, B, mid, c, evals
+
+
     # returns best half, recursively
     def sway(self, rows=None, min=None, cols=None, above=None):
         rows = rows or self.rows
@@ -138,6 +196,29 @@ class Data:
 
         best, rest = worker(self.rows, [])
         return self.clone(best), self.clone(rest)
+
+    def sway3(self):
+        def worker(rows, worse, evals0, above=None):
+            if len(rows) < len(self.rows) ** config.the['min']:
+                return rows, lists.many(worse, config.the['rest'] * len(rows)), evals0
+            else:
+                l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above) # half() needs HW6 adjustment to return evals
+                # print(A,B,c,evals)
+                if self.better(B, A):
+                    l, r, A, B = r, l, B, A
+                # print(l)
+                # print("-------")
+                lists.map(r, lambda x: worse.append(x))
+                return worker(l, worse, evals + evals0, A)
+
+        best, rest, evals = worker(self.rows, [], 0)
+        # print(best)
+        # print("-------")
+        # print(rest)
+        # print("-------")
+        # print(evals)
+        # print("-------")
+        return self.clone(best), self.clone(rest), evals
 
     # returns rows, recursively halved
     def cluster(self, rows=None, min=None, cols=None, above=None):

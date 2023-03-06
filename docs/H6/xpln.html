@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>xpln.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>xpln.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lists</span> <span class="kn">import</span> <span class="nb">map</span><span class="p">,</span> <span class="n">sort</span><span class="p">,</span> <span class="n">gt</span>
+<span class="kn">from</span> <span class="nn">numerics</span> <span class="kn">import</span> <span class="n">rnd</span>
+<span class="kn">import</span> <span class="nn">merge</span>
+<span class="kn">from</span> <span class="nn">discretization</span> <span class="kn">import</span> <span class="n">bins</span><span class="p">,</span> <span class="n">value</span>
+<span class="kn">from</span> <span class="nn">data</span> <span class="kn">import</span> <span class="n">Data</span>
+
+<span class="n">FAIL</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[91m&#39;</span>
+<span class="n">ENDC</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m&#39;</span>
+<span class="kn">from</span> <span class="nn">merge</span> <span class="kn">import</span> <span class="n">showRule</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">RULE</span><span class="p">(</span><span class="n">ranges</span><span class="p">,</span> <span class="n">maxSize</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="nb">range</span> <span class="ow">in</span> <span class="n">ranges</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">range</span><span class="p">[</span><span class="s1">&#39;txt&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">t</span><span class="p">[</span><span class="nb">range</span><span class="p">[</span><span class="s1">&#39;txt&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">t</span><span class="p">[</span><span class="nb">range</span><span class="p">[</span><span class="s1">&#39;txt&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;lo&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">[</span><span class="s1">&#39;lo&#39;</span><span class="p">],</span> <span class="s1">&#39;hi&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">[</span><span class="s1">&#39;hi&#39;</span><span class="p">],</span> <span class="s1">&#39;at&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">[</span><span class="s1">&#39;at&#39;</span><span class="p">]})</span>
+    <span class="k">return</span> <span class="n">prune</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">maxSize</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">prune</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">maxSize</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>print(f&rsquo;{FAIL}{type(rule)=}{ENDC}&rsquo;)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">txt</span><span class="p">,</span> <span class="n">ranges</span> <span class="ow">in</span> <span class="n">rule</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>TODO: check if this is correct</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ranges</span><span class="p">)</span> <span class="o">==</span> <span class="n">maxSize</span><span class="p">[</span><span class="n">txt</span><span class="p">]:</span>
+            <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>rule[txt] = None</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="n">rule</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rule</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">on</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="n">x</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">firstN</span><span class="p">(</span><span class="n">sortedRanges</span><span class="p">,</span> <span class="n">scoreFun</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">map</span><span class="p">(</span><span class="n">sortedRanges</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">][</span><span class="s1">&#39;txt&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">][</span><span class="s1">&#39;lo&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">][</span><span class="s1">&#39;hi&#39;</span><span class="p">],</span> <span class="n">rnd</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]),</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">][</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">has</span><span class="p">))</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="n">sortedRanges</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;val&#39;</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">useful</span><span class="p">(</span><span class="nb">range</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">range</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.05</span> <span class="ow">and</span> <span class="nb">range</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">first</span> <span class="o">/</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">range</span>
+
+    <span class="n">sortedRanges</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">sortedRanges</span><span class="p">,</span> <span class="n">useful</span><span class="p">)</span>
+    <span class="n">most</span><span class="p">,</span> <span class="n">out</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="n">sortedRanges</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sortedRanges</span> <span class="k">if</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sortedRanges</span><span class="p">)):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">sortedRanges</span><span class="p">[:</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">])</span>
+        <span class="n">tmp</span><span class="p">,</span> <span class="n">rule</span> <span class="o">=</span> <span class="n">scoreFun</span><span class="p">(</span><span class="n">t</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>print(&ldquo;tmp&rdquo;,tmp, most, rule)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="n">tmp</span> <span class="ow">and</span> <span class="n">tmp</span> <span class="o">&gt;</span> <span class="n">most</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">,</span> <span class="n">most</span> <span class="o">=</span> <span class="n">rule</span><span class="p">,</span> <span class="n">tmp</span>
+    <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">most</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">xpln</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">best</span><span class="p">,</span> <span class="n">rest</span><span class="p">,</span> <span class="n">maxSizes</span><span class="o">=</span><span class="p">{}):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>Contains Dictionary with keys <code>best</code> or <code>rest</code> or both.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">v</span><span class="p">(</span><span class="n">has</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      <p>Example1: <code>{'best': 11, 'rest': 19}</code>
+Example2: <code>{'rest': 29}</code></p>
+<p>Args:
+    has (dict): Dictionary with string keys and numeric values.</p>
+<p>Returns:
+    float: A float value.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">return</span> <span class="n">value</span><span class="p">(</span><span class="n">has</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">best</span><span class="o">.</span><span class="n">rows</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">rest</span><span class="o">.</span><span class="n">rows</span><span class="p">),</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">ranges</span><span class="p">):</span>
+        <span class="n">rule</span> <span class="o">=</span> <span class="n">RULE</span><span class="p">(</span><span class="n">ranges</span><span class="p">,</span> <span class="n">maxSizes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rule</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <p>print(&ldquo;rule--------------&ldquo;)
+print(rule)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="nb">print</span><span class="p">(</span><span class="n">showRule</span><span class="p">(</span><span class="n">rule</span><span class="p">))</span>
+            <span class="n">bestr</span> <span class="o">=</span> <span class="n">merge</span><span class="o">.</span><span class="n">selects</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">best</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span>
+            <span class="n">restr</span> <span class="o">=</span> <span class="n">merge</span><span class="o">.</span><span class="n">selects</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">rest</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span>
+            <span class="n">bestr</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bestr</span> <span class="k">if</span> <span class="n">b</span><span class="p">]</span>
+            <span class="n">restr</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">restr</span> <span class="k">if</span> <span class="n">r</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bestr</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">restr</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">v</span><span class="p">({</span><span class="s2">&quot;best&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">bestr</span><span class="p">),</span><span class="s2">&quot;rest&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">restr</span><span class="p">)}),</span> <span class="n">rule</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="n">tmp</span><span class="p">,</span> <span class="n">maxSizes</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ranges</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bins</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">cols</span><span class="o">.</span><span class="n">x</span><span class="p">,{</span><span class="s2">&quot;best&quot;</span><span class="p">:</span> <span class="n">best</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="s2">&quot;rest&quot;</span><span class="p">:</span> <span class="n">rest</span><span class="o">.</span><span class="n">rows</span><span class="p">})):</span>
+        <span class="n">maxSizes</span><span class="p">[</span><span class="n">ranges</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;txt&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ranges</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="nb">range</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ranges</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">range</span><span class="p">[</span><span class="s1">&#39;txt&#39;</span><span class="p">],</span> <span class="nb">range</span><span class="p">[</span><span class="s1">&#39;lo&#39;</span><span class="p">],</span> <span class="nb">range</span><span class="p">[</span><span class="s1">&#39;hi&#39;</span><span class="p">])</span>
+            <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;range&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">,</span>
+                <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">ranges</span><span class="p">),</span>
+                <span class="s1">&#39;val&#39;</span><span class="p">:</span> <span class="n">v</span><span class="p">(</span><span class="nb">range</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">has</span><span class="p">)</span>
+            <span class="p">})</span>
+    <span class="n">rule</span><span class="p">,</span> <span class="n">most</span> <span class="o">=</span> <span class="n">firstN</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">score</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rule</span><span class="p">,</span> <span class="n">most</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

@@ -7,6 +7,8 @@ from utils import csv, show
 import lists
 from utils import returnHandler
 from discretization import bins, value, diffs
+from merge import selects, showRule
+from xpln import xpln
 
 
 def numTest():
@@ -142,7 +144,7 @@ def binsTest():
     best, rest = data.sway2()
     print('all', '', '', '', {'best': len(best.rows), 'rest': len(rest.rows)})
     b4 = None
-    b = bins(data.cols.x, {'best':best.rows, 'rest':rest.rows})
+    b = bins(data.cols.x, {'best': best.rows, 'rest': rest.rows})
     for k, t in enumerate(b):
         for _, range in enumerate(t):
             if range['txt'] != b4:
@@ -151,6 +153,7 @@ def binsTest():
             print(range['txt'], range['lo'], range['hi'], numerics.rnd(
                 value(range['y'].has, len(best.rows), len(rest.rows), "best")), range['y'].has)
     return True
+
 
 def swayTest():
     data = Data(config.the['file'])
@@ -166,4 +169,30 @@ def swayTest():
     print("N=", len(rest.rows))
     print("\nall ~= best?", diffs(best.cols.y, data.cols.y))
     print("best ~= rest?", diffs(best.cols.y, rest.cols.y))
+    return True
+
+
+def xplnTest():
+    data = Data(config.the['file'])
+    best, rest, evals = data.sway3()
+    # print(data)
+    # print("-------")
+    # print(best)
+    # print("-------")
+    # print(rest)
+    # print("-------")
+    # print(evals)
+    # print("-------")
+
+    rule, most = xpln(data, best, rest)
+    print("\n-----------\nexplain=", showRule(rule))
+    selected = selects(rule, data.rows)
+    selected = [s for s in selected if s]
+    data1 = data.clone(selected)
+    print("all                  ", data.stats(), data.stats('div'))
+    print("sway with %5s evals"%evals, best.stats(), best.stats('div'))
+    print("xpln on   %5s evals"%evals, data1.stats(), data1.stats('div'))
+    top, _ = data.betters(len(best.rows))
+    top = data.clone(top)
+    print("sort with %5s evals"%len(data.rows), top.stats(), top.stats('div'))
     return True

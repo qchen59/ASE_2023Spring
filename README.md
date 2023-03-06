@@ -13,7 +13,7 @@ This is the homework Repository for 2023 Spring CSC 591 Automated Software Engin
 - [src/H4](src/H4) source code for HW 4
   - [docs/H4_Report.md](docs/H4_Report.md) HW4 Interviews Report
 - [src/H5](src/H5) source code for HW 5
-- [src/H5](src/H6) source code for HW 6
+- [src/H6](src/H6) source code for HW 6
 
 [etc/out](etc/out) - Tests output
 

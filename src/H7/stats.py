@@ -119,3 +119,9 @@ def tiles(rxs):
         rx['show'] += '}'
 
     return rxs
+
+def bootstrap():
+    pass
+
+def scottKnot():
+    pass

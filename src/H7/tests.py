@@ -1,5 +1,5 @@
 import random
-from stats import samples, NUM, gaussian, cliffsDelta, bootstrap,scottKnot, RX, tiles, mid
+from stats import samples, NUM, gaussian, cliffsDelta, bootstrap, scottKnot, RX, tiles, mid
 
 def ok(n=1):
     random.seed(1)

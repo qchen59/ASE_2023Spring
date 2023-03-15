@@ -1,5 +1,5 @@
 # Global Variable List
-the = {}
+the = {'bootstrap': 512, 'conf': 0.05, 'cliff': 0.4, 'cohen': 0.35, "Fmt": "%6.2f", 'width': 40}
 # the help description
 help = """
 script.py : an example script with help text and a test suite

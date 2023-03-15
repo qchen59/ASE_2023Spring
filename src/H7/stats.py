@@ -120,8 +120,26 @@ def tiles(rxs):
 
     return rxs
 
-def bootstrap():
-    pass
+def bootstrap(y0, z0):
+    x, y, z, yhat, zhat = [], [], [], [], []
+    for y1 in y0:
+        x.append(y1)
+        y.append(y1)
+    for z1 in z0:
+        x.append(z1)
+        z.append(z1)
+    xmu, ymu, zmu = x.mu, y.mu, z.mu
+    for y1 in y0:
+        yhat.append(y1 - ymu + xmu)
+    for z1 in z0:
+        zhat.append(z1 - zmu + xmu)
+    tobs = delta(NUM(y), NUM(z))
+    n = 0
+    for _ in range(1, config.the['bootstrap'] + 1):
+        if delta(NUM(samples(yhat)), NUM(samples(zhat))) > tobs:
+            n = n + 1
+    return n / config.the['bootstrap'] >= config.the['conf']
 
 def scottKnot():
     pass
+

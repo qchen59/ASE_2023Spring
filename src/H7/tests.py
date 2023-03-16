@@ -1,5 +1,6 @@
 import random
 from stats import samples, NUM, gaussian, cliffsDelta, bootstrap, scottKnot, RX, tiles, mid
+import numpy as np
 
 def ok(n=1):
     random.seed(1)
@@ -28,16 +29,18 @@ def bootmuTest():
     a = [gaussian(10,1) for i in range(100)]
     print("mu\tsd\tcliffs\tboot\tboth")
     print("--\t--\t------\t----\t----")
-    for mu in range(10, 11, 0.1):
+    for mu in np.arange(10, 11, 0.1):
         b = [gaussian(mu,1) for i in range(100)]
         cl = cliffsDelta(a, b)
         bs = bootstrap(a, b)
-        print("",mu,1,cl,bs,cl and bs)
+        print(round(mu,2),"\t",1,"\t",cl,"\t",bs,"\t",cl and bs)
+    return True
 
 def basicTest():
-    print("\t\ttruee", bootstrap( [8, 7, 6, 2, 5, 8, 7, 3],[8, 7, 6, 2, 5, 8, 7, 3]),cliffsDelta( [8, 7, 6, 2, 5, 8, 7, 3],[8, 7, 6, 2, 5, 8, 7, 3]))
-    print("\t\tfalse", bootstrap(  [8, 7, 6, 2, 5, 8, 7, 3],[9, 9, 7, 8, 10, 9, 6]),cliffsDelta( [8, 7, 6, 2, 5, 8, 7, 3],[9, 9, 7, 8, 10, 9, 6]))
-    print("\t\tfalse", bootstrap([0.34, 0.49, 0.51, 0.6,   .34,  .49,  .51, .6],[0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9]),cliffsDelta([0.34, 0.49, 0.51, 0.6,   .34,  .49,  .51, .6],[0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9]))
+    print("\t\tTrue", bootstrap( [8, 7, 6, 2, 5, 8, 7, 3],[8, 7, 6, 2, 5, 8, 7, 3]),cliffsDelta( [8, 7, 6, 2, 5, 8, 7, 3],[8, 7, 6, 2, 5, 8, 7, 3]))
+    print("\t\tFalse", bootstrap(  [8, 7, 6, 2, 5, 8, 7, 3],[9, 9, 7, 8, 10, 9, 6]),cliffsDelta( [8, 7, 6, 2, 5, 8, 7, 3],[9, 9, 7, 8, 10, 9, 6]))
+    print("\t\tFalse", bootstrap([0.34, 0.49, 0.51, 0.6,   .34,  .49,  .51, .6],[0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9]),cliffsDelta([0.34, 0.49, 0.51, 0.6,   .34,  .49,  .51, .6],[0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9]))
+    return True
 
 def preTest():
     print("\neg3")
@@ -49,6 +52,7 @@ def preTest():
             t2.append(gaussian(d * 10, 1))
         print(f"\t{d}, {d < 1.1}, {bootstrap(t1, t2)}, {bootstrap(t1, t1)}")
         d += 0.05
+    return True
 
 def fiveTest():
     o = tiles(scottKnot([
@@ -59,6 +63,7 @@ def fiveTest():
         RX([0.1,0.2,0.3,0.4,0.1,0.2,0.3,0.4],"rx5")]))
     for rx in o:
         print(rx['name'],rx['rank'],rx['show'])
+    return True
 
 def sixTest():
     o = tiles(scottKnot[
@@ -68,6 +73,7 @@ def sixTest():
                   RX([101,100,99,101,100,101,100,99,101,100],"rx4")])
     for rx in o:
         print(rx['name'],rx['rank'],rx['show'])
+    return True
 
 def tilesTest():
     rxs,a,b,c,d,e,f,g,h,j,k=[],[],[],[],[],[],[],[],[],[],[]
@@ -91,11 +97,12 @@ def tilesTest():
         j.append(gaussian(40, 3))
     for i in range(1000):
         k.append(gaussian(10, 1))
-    for i,v in ['a','b','c','d','e','f','g','h','j','k']:
+    for i,v in enumerate([a,b,c,d,e,f,g,h,j,k]):
         rxs.append(RX(v, "rx"+str(i)))
     rxs.sort(key=lambda x: mid(x))
     for rx in tiles(rxs):
         print("", rx['name'], rx['show'])
+    return True
 
 def skTest():
     rxs, a, b, c, d, e, f, g, h, j, k = [], [], [], [], [], [], [], [], [], [], []
@@ -119,7 +126,8 @@ def skTest():
         j.append(gaussian(40, 3))
     for i in range(1000):
         k.append(gaussian(10, 1))
-    for i,v in ['a','b','c','d','e','f','g','h','j','k']:
-            rxs.append(RX(v, "rx"+str(i)))
+    for i,v in enumerate([a,b,c,d,e,f,g,h,j,k]):
+        rxs.append(RX(v, "rx"+str(i)))
     for rx in tiles(rxs):
         print("", rx['name'], rx['show'])
+    return True

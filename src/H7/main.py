@@ -39,7 +39,7 @@ if __name__ == '__main__':
     eg('pre','Pre test', preTest)
     eg('five','Five', fiveTest)
     eg('six','Six', sixTest)
-    eg('tile','Test the tiles', tilesTest)
+    eg('tiles','Test the tiles', tilesTest)
     eg('sk','Test the tiles', skTest)
     m = Main()
     m.main(config.help, config.egs)

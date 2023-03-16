@@ -2,8 +2,9 @@ import math
 import random
 import config
 
-def samples(t, n):
+def samples(t, n=None):
     u = []
+    n = n or len(t)
     for i in range(n):
         idx = random.randint(1, len(t)) - 1
         u.append(t[idx])
@@ -22,7 +23,7 @@ def cliffsDelta(ns1, ns2):
                 gt += 1
             if x < y:
                 lt += 1
-    return math.abs(lt - gt) / n <= config.the['cliff']
+    return abs(lt - gt) / n <= config.the['cliff']
 
 def add(i, x):
     i['n'] += 1
@@ -58,7 +59,8 @@ def RX(t, s):
 
 
 def mid(t):
-    t = t.has if hasattr(t, 'has') else t
+    if 'has' in t:
+        t = t['has']
     n = len(t) // 2
     if len(t) % 2 == 0:
         return (t[n - 1] + t[n]) / 2
@@ -99,7 +101,8 @@ def tiles(rxs):
             return max(1, min(most, x))
 
         def at(x):
-            return t[of(len(t) * x // 1, len(t))]
+            # 0.1 -> 100 (-1?)
+            return t[int(of(len(t) * x // 1, len(t)))-1]
 
         def pos(x):
             return math.floor(of(config.the['width'] * (x - lo) / (hi - lo + 1e-32) // 1, config.the['width']))
@@ -114,6 +117,7 @@ def tiles(rxs):
         u[C] = '*'
 
         rx['show'] = ''.join(u) + ' {' + config.the['fmt'].format(a)
+
         for x in [b, c, d, e]:
             rx['show'] += ', ' + config.the['fmt'].format(x)
         rx['show'] += '}'
@@ -121,19 +125,19 @@ def tiles(rxs):
     return rxs
 
 def bootstrap(y0, z0):
-    x, y, z, yhat, zhat = [], [], [], [], []
+    x, y, z, yhat, zhat = NUM(), NUM(), NUM(), [], []
     for y1 in y0:
-        x.append(y1)
-        y.append(y1)
+        add(x,y1)
+        add(y,y1)
     for z1 in z0:
-        x.append(z1)
-        z.append(z1)
-    xmu, ymu, zmu = x.mu, y.mu, z.mu
+        add(x,z1)
+        add(z,z1)
+    xmu, ymu, zmu = x['mu'], y['mu'], z['mu']
     for y1 in y0:
         yhat.append(y1 - ymu + xmu)
     for z1 in z0:
         zhat.append(z1 - zmu + xmu)
-    tobs = delta(NUM(y), NUM(z))
+    tobs = delta(y, z)
     n = 0
     for _ in range(1, config.the['bootstrap'] + 1):
         if delta(NUM(samples(yhat)), NUM(samples(zhat))) > tobs:

@@ -73,7 +73,8 @@ def mid(t):
 
 
 def div(t):
-    t = t.has if hasattr(t, 'has') else t
+    if 'has' in t:
+        t = t['has']
     n = len(t)
     return (t[int(n * 9 / 10) - 1] - t[int(n * 1 / 10) - 1]) / 2.56
 
@@ -99,7 +100,7 @@ def tiles(rxs):
 
     for rx in rxs:
         t = rx['has']
-        u = [' ' for _ in range(config.the['width'])]
+        u = [' ' for _ in range(config.the['width']+1)]
 
         def of(x, most):
             return max(1, min(most, x))
@@ -113,9 +114,9 @@ def tiles(rxs):
 
         a, b, c, d, e = at(.1), at(.3), at(.5), at(.7), at(.9)
         A, B, C, D, E = pos(a), pos(b), pos(c), pos(d), pos(e)
-        for i in range(A, B + 1):
+        for i in range(A, B+1):
             u[i] = '-'
-        for i in range(D, E + 1):
+        for i in range(D, E+1):
             u[i] = '-'
         u[config.the['width'] // 2] = '|'
         u[C] = '*'
@@ -150,7 +151,7 @@ def bootstrap(y0, z0):
     return n / config.the['bootstrap'] >= config.the['conf']
 
 
-def scottKnot(rxs, cohen):
+def scottKnot(rxs):
 
     def merges(i, j):
         out = RX([], rxs[i]['name'])

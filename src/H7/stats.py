@@ -2,6 +2,7 @@ import math
 import random
 import config
 
+
 def samples(t, n=None):
     u = []
     n = n or len(t)
@@ -9,6 +10,7 @@ def samples(t, n=None):
         idx = random.randint(1, len(t)) - 1
         u.append(t[idx])
     return u
+
 
 def cliffsDelta(ns1, ns2):
     n, gt, lt = 0, 0, 0
@@ -24,6 +26,7 @@ def cliffsDelta(ns1, ns2):
             if x < y:
                 lt += 1
     return abs(lt - gt) / n <= config.the['cliff']
+
 
 def add(i, x):
     i['n'] += 1
@@ -48,7 +51,8 @@ def gaussian(mu=0, sd=1):
 def delta(i, other):
     e, y, z = 1E-32, i, other
     numerator = abs(y['mu'] - z['mu'])
-    denominator = (e + (y['sd'] ** 2 / y['n']) + (z['sd'] ** 2 / z['n'])) ** 0.5
+    denominator = (e + (y['sd'] ** 2 / y['n']) +
+                   (z['sd'] ** 2 / z['n'])) ** 0.5
 
     return numerator / denominator
 
@@ -124,14 +128,15 @@ def tiles(rxs):
 
     return rxs
 
+
 def bootstrap(y0, z0):
     x, y, z, yhat, zhat = NUM(), NUM(), NUM(), [], []
     for y1 in y0:
-        add(x,y1)
-        add(y,y1)
+        add(x, y1)
+        add(y, y1)
     for z1 in z0:
-        add(x,z1)
-        add(z,z1)
+        add(x, z1)
+        add(z, z1)
     xmu, ymu, zmu = x['mu'], y['mu'], z['mu']
     for y1 in y0:
         yhat.append(y1 - ymu + xmu)
@@ -144,6 +149,41 @@ def bootstrap(y0, z0):
             n = n + 1
     return n / config.the['bootstrap'] >= config.the['conf']
 
-def scottKnot():
-    pass
 
+def scottKnot(rxs, cohen):
+
+    def merges(i, j):
+        out = RX([], rxs[i]['name'])
+        for k in range(i, j+1):
+            out = merge(out, rxs[j])
+        return out
+
+    def same(lo, cut, hi):
+        l = merges(lo, cut)
+        r = merges(cut+1, hi)
+        return cliffsDelta(l['has'], r['has']) and bootstrap(l['has'], r['has'])
+
+    def recurse(lo, hi, rank):
+        cut, best, l, l1, r, r1, now, b4 = None, 0, None, None, None, None, None, None
+        b4 = merges(lo, hi)
+        for j in range(lo, hi+1):
+            if j < hi:
+                l = merges(lo, j)
+                r = merges(j+1, hi)
+                now = (l['n'] * (mid(l) - mid(b4))**2 + r['n'] *
+                       (mid(r) - mid(b4))**2) / (l['n'] + r['n'])
+                if now > best:
+                    if abs(mid(l) - mid(r)) >= cohen:
+                        cut, best = j, now
+        if cut and not same(lo, cut, hi):
+            rank = recurse(lo, cut, rank) + 1
+            rank = recurse(cut+1, hi, rank)
+        else:
+            for i in range(lo, hi+1):
+                rxs[i]['rank'] = rank
+        return rank
+
+    rxs.sort(key=lambda x: mid(x))
+    cohen = div(merges(0, len(rxs)-1)) * config.the['cohen']
+    recurse(0, len(rxs)-1, 1)
+    return rxs

@@ -32,8 +32,8 @@ jobs:
             cd ./src/H5; python3 main.py -g all > ../../etc/out/bins_hw5.out
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: test hw6
-          run: |
-            cd ./src/H6; python3 main.py -g all > ../../etc/out/xplns_hw6.out
+        run: |
+            cd ./src/H6; python3 main.py -g xpln > ../../etc/out/xpln_hw6.out
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: test hw7
           run: |

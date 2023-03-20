@@ -13,8 +13,8 @@ jobs:
           python-version: 3.9
       - name: Install dependencies
         run: |
-        python3 -m pip install --upgrade pip
-        pip install numpy
+          python3 -m pip install --upgrade pip
+          pip install numpy
       - name: test hw1
         run: |
           cd ./src/H1; python3 script.py -g all > ../../etc/out/script_hw1.out
@@ -40,6 +40,6 @@ jobs:
             cd ./src/H6; python3 main.py -g xpln > ../../etc/out/xpln_hw6.out
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: test hw7
-          run: |
+        run: |
             cd ./src/H7; python3 main.py -g all > ../../etc/out/stats_hw7.out
       - run: echo "🍏 This job's status is ${{ job.status }}."

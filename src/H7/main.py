@@ -1,7 +1,7 @@
 # script.lua -> script.py
 from utils import eg, cli, settings
 import config
-from tests import sampleTest, numTest, guassTest
+from tests import sampleTest, numTest, guassTest,bootmuTest, basicTest,preTest, fiveTest, sixTest, tilesTest, skTest
 
 class Main:
     # parse help string to extract a table of options
@@ -34,6 +34,13 @@ if __name__ == '__main__':
     eg("sample", "Test the sampling", sampleTest)
     eg("num", "Test the num", numTest)
     eg("guass", "Test the guassian", guassTest)
+    eg('bootmu','Test the bootstrap mu', bootmuTest)
+    eg('basic','Test the bootstrp and cliffsDelta', basicTest)
+    eg('pre','Pre test', preTest)
+    eg('five','Five', fiveTest)
+    eg('six','Six', sixTest)
+    eg('tiles','Test the tiles', tilesTest)
+    eg('sk','Test the tiles', skTest)
     m = Main()
     m.main(config.help, config.egs)
     # print(config.the)

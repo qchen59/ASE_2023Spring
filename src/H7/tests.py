@@ -26,6 +26,7 @@ def guassTest():
     return True
 
 def bootmuTest():
+    ok()
     a = [gaussian(10,1) for i in range(100)]
     print("mu\tsd\tcliffs\tboot\tboth")
     print("--\t--\t------\t----\t----")
@@ -37,12 +38,14 @@ def bootmuTest():
     return True
 
 def basicTest():
+    ok()
     print("\t\tTrue", bootstrap( [8, 7, 6, 2, 5, 8, 7, 3],[8, 7, 6, 2, 5, 8, 7, 3]),cliffsDelta( [8, 7, 6, 2, 5, 8, 7, 3],[8, 7, 6, 2, 5, 8, 7, 3]))
     print("\t\tFalse", bootstrap(  [8, 7, 6, 2, 5, 8, 7, 3],[9, 9, 7, 8, 10, 9, 6]),cliffsDelta( [8, 7, 6, 2, 5, 8, 7, 3],[9, 9, 7, 8, 10, 9, 6]))
     print("\t\tFalse", bootstrap([0.34, 0.49, 0.51, 0.6,   .34,  .49,  .51, .6],[0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9]),cliffsDelta([0.34, 0.49, 0.51, 0.6,   .34,  .49,  .51, .6],[0.6,  0.7,  0.8,  0.9,   .6,   .7,   .8,  .9]))
     return True
 
 def preTest():
+    ok()
     print("\neg3")
     d = 1
     for i in range(10):
@@ -67,6 +70,7 @@ def fiveTest():
     return True
 
 def sixTest():
+    ok()
     o = tiles(scottKnot([
                   RX([101,100,99,101,99.5,101,100,99,101,99.5],"rx1"),
                   RX([101,100,99,101,100,101,100,99,101,100],"rx2"),
@@ -77,6 +81,7 @@ def sixTest():
     return True
 
 def tilesTest():
+    ok()
     rxs,a,b,c,d,e,f,g,h,j,k=[],[],[],[],[],[],[],[],[],[],[]
     for i in range(1000):
         a.append(gaussian(10, 1))
@@ -106,6 +111,7 @@ def tilesTest():
     return True
 
 def skTest():
+    ok()
     rxs, a, b, c, d, e, f, g, h, j, k = [], [], [], [], [], [], [], [], [], [], []
     for i in range(1000):
         a.append(gaussian(10, 1))
@@ -129,6 +135,6 @@ def skTest():
         k.append(gaussian(10, 1))
     for i,v in enumerate([a,b,c,d,e,f,g,h,j,k]):
         rxs.append(RX(v, "rx"+str(i)))
-    for rx in tiles(rxs):
+    for rx in tiles(scottKnot(rxs)):
         print("", rx['name'], rx['show'])
     return True

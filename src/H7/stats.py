@@ -114,11 +114,12 @@ def tiles(rxs):
 
         a, b, c, d, e = at(.1), at(.3), at(.5), at(.7), at(.9)
         A, B, C, D, E = pos(a), pos(b), pos(c), pos(d), pos(e)
+        # print(A,B,D,E)
         for i in range(A, B+1):
             u[i] = '-'
         for i in range(D, E+1):
             u[i] = '-'
-        u[config.the['width'] // 2] = '|'
+        u[(config.the['width'] // 2)] = '|'
         u[C] = '*'
 
         rx['show'] = ''.join(u) + ' {' + config.the['fmt'].format(a)
@@ -128,6 +129,7 @@ def tiles(rxs):
         rx['show'] += '}'
 
     return rxs
+
 
 
 def bootstrap(y0, z0):

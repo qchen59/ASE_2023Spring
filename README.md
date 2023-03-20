@@ -13,7 +13,8 @@ This is the homework Repository for 2023 Spring CSC 591 Automated Software Engin
 - [src/H4](src/H4) source code for HW 4
   - [docs/H4_Report.md](docs/H4_Report.md) HW4 Interviews Report
 - [src/H5](src/H5) source code for HW 5
-- [src/H6](src/H6) source code for HW 6
+- [src/H5](src/H6) source code for HW 6
+- [src/H5](src/H7) source code for HW 7
 
 [etc/out](etc/out) - Tests output
 
@@ -29,6 +30,7 @@ This is the homework Repository for 2023 Spring CSC 591 Automated Software Engin
 - [HW4 documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ASE_2023Spring/blob/main/docs/H4/index.html)
 - [HW5 documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ASE_2023Spring/blob/main/docs/H5/index.html)
 - [HW6 documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ASE_2023Spring/blob/main/docs/H6/index.html)
+- [HW7 documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ASE_2023Spring/blob/main/docs/H6/index.html)
 ### Generate the documentation
 `` pycco -i H1/*.py -d ../docs/H1 ``
 

@@ -8,6 +8,7 @@ import config
 import math
 import numerics
 import functools
+from pygmo import hypervolume
 
 
 class Data:
@@ -65,7 +66,28 @@ class Data:
             y = col.norm(row2.cells[col.at])
             s1 = s1 - math.exp(col.w * (x - y) / len(ys))
             s2 = s2 - math.exp(col.w * (y - x) / len(ys))
-        return s1 / len(ys) < s2 / len(ys)
+        s1 = s1 / len(ys)
+        s2 = s2 / len(ys)
+
+        # s1, s2, ys = 0, 0, self.cols.y
+        data = [[row1.cells[col.at], row2.cells[col.at]] for col in ys]
+        hv = hypervolume(data)
+        ref_point = [0, 19, 50]
+        hv1, hv2 = hv.contributions(ref_point)
+        print('------------------------')
+        print('Data: ', data)
+        print(f'Zitzler: {s1=}, {s2=}')
+        print(f'HyperVolume: {hv1=}, {hv2=}')
+        print('------------------------')
+
+        return s1 < s2
+
+        # for col in ys:
+        #     x = col.norm(row1.cells[col.at])
+        #     y = col.norm(row2.cells[col.at])
+        #     s1 = s1 - math.exp(col.w * (x - y) / len(ys))
+        #     s2 = s2 - math.exp(col.w * (y - x) / len(ys))
+        # return s1 / len(ys) < s2 / len(ys)
 
     def better2(self, row1, row2):
         s1, s2, ys = 0, 0, self.cols.y
@@ -90,8 +112,8 @@ class Data:
         else:
             return tmp
 
-
     # calculate the distance between two rows
+
     def dist(self, row1, row2, cols=None):
         n = 0
         d = 0
@@ -165,8 +187,8 @@ class Data:
         # print("-----------------")
         return left, right, A, B, mid, c, evals
 
-
     # returns best half, recursively
+
     def sway(self, rows=None, min=None, cols=None, above=None):
         rows = rows or self.rows
         min = min or len(rows) ** config.the["min"]
@@ -202,7 +224,8 @@ class Data:
             if len(rows) < len(self.rows) ** config.the['min']:
                 return rows, lists.many(worse, config.the['rest'] * len(rows)), evals0
             else:
-                l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above) # half() needs HW6 adjustment to return evals
+                # half() needs HW6 adjustment to return evals
+                l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above)
                 # print(A,B,c,evals)
                 if self.better(B, A):
                     l, r, A, B = r, l, B, A
@@ -232,6 +255,7 @@ class Data:
             node["left"] = self.cluster(left, min, cols, node["A"])
             node["right"] = self.cluster(right, min, cols, node["B"])
         return node
+
 
 def read(sfile):
     data = Data()

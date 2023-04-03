@@ -1,0 +1,80 @@
+
+N_estimators -inf 10
+N_estimators 10 30
+N_estimators 30 50
+N_estimators 50 100
+N_estimators 100 inf
+
+criterion absolute_error absolute_error
+criterion poisson poisson
+criterion squared_error squared_error
+
+Min_sample_leaves -inf 3
+Min_sample_leaves 3 5
+Min_sample_leaves 5 8
+Min_sample_leaves 8 10
+Min_sample_leaves 10 13
+Min_sample_leaves 13 inf
+
+Min_impurity_decrease -inf 0.75
+Min_impurity_decrease 0.75 1.5
+Min_impurity_decrease 1.5 2.75
+Min_impurity_decrease 2.75 3.5
+Min_impurity_decrease 3.5 4.25
+Min_impurity_decrease 4.25 5.5
+Min_impurity_decrease 5.5 inf
+
+Max_depth -inf 3
+Max_depth 3 5
+Max_depth 5 6
+Max_depth 6 9
+Max_depth 9 10
+Max_depth 10 13
+Max_depth 13 15
+Max_depth 15 18
+Max_depth 18 inf
+
+criterion absolute_error absolute_error 0.761 {'best': 78, 'rest': 98}
+N_estimators 10 30 0.3 {'best': 30, 'rest': 34}
+Min_sample_leaves 5 8 0.285 {'best': 30, 'rest': 42}
+Max_depth 10 13 0.275 {'best': 29, 'rest': 41}
+N_estimators -inf 10 0.264 {'best': 24, 'rest': 16}
+Min_impurity_decrease 1.5 2.75 0.202 {'best': 22, 'rest': 35}
+Min_impurity_decrease -inf 0.75 0.173 {'best': 19, 'rest': 31}
+Min_sample_leaves 3 5 0.165 {'best': 18, 'rest': 29}
+Min_sample_leaves 8 10 0.165 {'best': 18, 'rest': 29}
+N_estimators 30 50 0.16 {'best': 18, 'rest': 32}
+Min_impurity_decrease 0.75 1.5 0.117 {'best': 13, 'rest': 22}
+Max_depth 6 9 0.113 {'best': 15, 'rest': 42}
+Min_impurity_decrease 2.75 3.5 0.091 {'best': 11, 'rest': 24}
+Max_depth 9 10 0.088 {'best': 10, 'rest': 18}
+Max_depth 13 15 0.066 {'best': 10, 'rest': 38}
+Min_impurity_decrease 3.5 4.25 0.057 {'best': 8, 'rest': 26}
+Max_depth 5 6 0.043 {'best': 6, 'rest': 19}
+Min_sample_leaves -inf 3 0.027 {'rest': 66, 'best': 7}
+Min_impurity_decrease 4.25 5.5 0.021 {'best': 5, 'rest': 42}
+N_estimators 50 100 0.02 {'best': 6, 'rest': 70}
+Max_depth 3 5 0.019 {'rest': 27, 'best': 4}
+Min_sample_leaves 10 13 0.019 {'best': 5, 'rest': 49}
+Max_depth 15 18 0.007 {'best': 3, 'rest': 55}
+Max_depth -inf 3 0.001 {'rest': 44, 'best': 1}
+N_estimators 100 inf 0.0 {'rest': 160}
+criterion poisson poisson 0.0 {'rest': 117}
+criterion squared_error squared_error 0.0 {'rest': 97}
+Min_sample_leaves 13 inf 0.0 {'rest': 97}
+Min_impurity_decrease 5.5 inf 0.0 {'rest': 132}
+Max_depth 18 inf 0.0 {'rest': 28}
+{'criterion': ['absolute_error']}
+{'criterion': ['absolute_error'], 'N_estimators': [[10, 30]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[10, 30]], 'Min_sample_leaves': [[5, 8]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[10, 30]], 'Min_sample_leaves': [[5, 8]], 'Max_depth': [[10, 13]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[-inf, 30]], 'Min_sample_leaves': [[5, 8]], 'Max_depth': [[10, 13]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[-inf, 30]], 'Min_sample_leaves': [[5, 8]], 'Max_depth': [[10, 13]], 'Min_impurity_decrease': [[1.5, 2.75]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[-inf, 30]], 'Min_sample_leaves': [[5, 8]], 'Max_depth': [[10, 13]], 'Min_impurity_decrease': [[-inf, 0.75], [1.5, 2.75]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[-inf, 30]], 'Min_sample_leaves': [[3, 8]], 'Max_depth': [[10, 13]], 'Min_impurity_decrease': [[-inf, 0.75], [1.5, 2.75]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[-inf, 30]], 'Min_sample_leaves': [[3, 10]], 'Max_depth': [[10, 13]], 'Min_impurity_decrease': [[-inf, 0.75], [1.5, 2.75]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[-inf, 50]], 'Min_sample_leaves': [[3, 10]], 'Max_depth': [[10, 13]], 'Min_impurity_decrease': [[-inf, 0.75], [1.5, 2.75]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[-inf, 50]], 'Min_sample_leaves': [[3, 10]], 'Max_depth': [[10, 13]], 'Min_impurity_decrease': [[-inf, 2.75]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[-inf, 50]], 'Min_sample_leaves': [[3, 10]], 'Max_depth': [[6, 9], [10, 13]], 'Min_impurity_decrease': [[-inf, 2.75]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[-inf, 50]], 'Min_sample_leaves': [[3, 10]], 'Max_depth': [[6, 9], [10, 13]], 'Min_impurity_decrease': [[-inf, 3.5]]}
+{'criterion': ['absolute_error'], 'N_estimators': [[-inf, 50]], 'Min_sample_leaves': [[3, 10]], 'Max_depth': [[6, 13]], 'Min_impurity_decrease': [[-inf, 3.5]]}

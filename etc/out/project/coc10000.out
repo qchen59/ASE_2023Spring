@@ -1,0 +1,321 @@
+
+Acap -inf 1
+Acap 1 2
+Acap 2 3
+Acap 3 4
+Acap 4 inf
+
+Aexp -inf 1
+Aexp 1 2
+Aexp 2 3
+Aexp 3 4
+Aexp 4 inf
+
+Arch -inf 1
+Arch 1 2
+Arch 2 3
+Arch 3 4
+Arch 4 5
+Arch 5 inf
+
+Cplx -inf 1
+Cplx 1 2
+Cplx 2 3
+Cplx 3 4
+Cplx 4 5
+Cplx 5 inf
+
+Data -inf 2
+Data 2 3
+Data 3 4
+Data 4 inf
+
+Docu -inf 1
+Docu 1 2
+Docu 2 3
+Docu 3 4
+Docu 4 inf
+
+Flex -inf 1
+Flex 1 2
+Flex 2 3
+Flex 3 4
+Flex 4 5
+Flex 5 inf
+
+Ltex -inf 1
+Ltex 1 2
+Ltex 2 3
+Ltex 3 4
+Ltex 4 inf
+
+Pcap -inf 1
+Pcap 1 2
+Pcap 2 3
+Pcap 3 4
+Pcap 4 inf
+
+Pcon -inf 1
+Pcon 1 2
+Pcon 2 3
+Pcon 3 4
+Pcon 4 inf
+
+Plex -inf 1
+Plex 1 2
+Plex 2 3
+Plex 3 4
+Plex 4 inf
+
+Pmat -inf 1
+Pmat 1 2
+Pmat 2 3
+Pmat 3 4
+Pmat 4 5
+Pmat 5 inf
+
+Prec -inf 1
+Prec 1 2
+Prec 2 3
+Prec 3 4
+Prec 4 5
+Prec 5 inf
+
+Pvol -inf 2
+Pvol 2 3
+Pvol 3 4
+Pvol 4 inf
+
+Rely -inf 1
+Rely 1 2
+Rely 2 3
+Rely 3 4
+Rely 4 inf
+
+Ruse -inf 2
+Ruse 2 3
+Ruse 3 4
+Ruse 4 5
+Ruse 5 inf
+
+Sced -inf 1
+Sced 1 2
+Sced 2 3
+Sced 3 4
+Sced 4 inf
+
+Site -inf 1
+Site 1 2
+Site 2 3
+Site 3 4
+Site 4 inf
+
+Stor -inf 3
+Stor 3 4
+Stor 4 5
+Stor 5 inf
+
+Team -inf 1
+Team 1 2
+Team 2 3
+Team 3 4
+Team 4 5
+Team 5 inf
+
+Time -inf 3
+Time 3 4
+Time 4 5
+Time 5 inf
+
+Tool -inf 1
+Tool 1 2
+Tool 2 3
+Tool 3 4
+Tool 4 inf
+
+Stor -inf 3 0.413 {'best': 42, 'rest': 51}
+Data -inf 2 0.355 {'best': 37, 'rest': 50}
+Site 3 4 0.297 {'best': 36, 'rest': 80}
+Ltex -inf 1 0.263 {'best': 28, 'rest': 41}
+Time 4 5 0.259 {'best': 36, 'rest': 113}
+Pcon 3 4 0.257 {'best': 33, 'rest': 85}
+Aexp 1 2 0.256 {'best': 32, 'rest': 77}
+Ruse 2 3 0.242 {'best': 30, 'rest': 71}
+Team 4 5 0.24 {'best': 30, 'rest': 72}
+Rely 1 2 0.225 {'best': 29, 'rest': 76}
+Ltex 1 2 0.22 {'best': 30, 'rest': 90}
+Acap 3 4 0.21 {'best': 28, 'rest': 79}
+Tool 3 4 0.21 {'best': 29, 'rest': 89}
+Stor 3 4 0.205 {'best': 30, 'rest': 105}
+Aexp -inf 1 0.2 {'best': 22, 'rest': 36}
+Data 2 3 0.197 {'best': 28, 'rest': 92}
+Tool 4 inf 0.188 {'best': 21, 'rest': 36}
+Ruse -inf 2 0.186 {'best': 20, 'rest': 30}
+Site 4 inf 0.185 {'best': 22, 'rest': 46}
+Prec 1 2 0.183 {'best': 23, 'rest': 56}
+Pvol 2 3 0.18 {'best': 28, 'rest': 111}
+Pcon 4 inf 0.179 {'best': 21, 'rest': 42}
+Pvol -inf 2 0.177 {'best': 22, 'rest': 52}
+Cplx 1 2 0.176 {'best': 23, 'rest': 62}
+Flex 1 2 0.176 {'best': 22, 'rest': 53}
+Team 5 inf 0.17 {'best': 18, 'rest': 26}
+Prec 2 3 0.159 {'best': 20, 'rest': 49}
+Pcap 2 3 0.156 {'best': 22, 'rest': 71}
+Pcap 3 4 0.152 {'best': 22, 'rest': 75}
+Docu 2 3 0.151 {'best': 22, 'rest': 76}
+Rely -inf 1 0.151 {'best': 18, 'rest': 38}
+Sced 1 2 0.148 {'best': 22, 'rest': 80}
+Docu 1 2 0.145 {'best': 21, 'rest': 72}
+Pmat 1 2 0.144 {'best': 20, 'rest': 62}
+Sced 3 4 0.143 {'best': 21, 'rest': 74}
+Plex 2 3 0.142 {'best': 22, 'rest': 87}
+Pmat -inf 1 0.14 {'best': 16, 'rest': 30}
+Time 5 inf 0.136 {'best': 18, 'rest': 50}
+Acap 2 3 0.135 {'best': 20, 'rest': 72}
+Plex 1 2 0.134 {'best': 20, 'rest': 73}
+Arch 2 3 0.133 {'best': 19, 'rest': 63}
+Arch 3 4 0.132 {'best': 19, 'rest': 64}
+Pmat 2 3 0.132 {'best': 18, 'rest': 54}
+Docu 3 4 0.125 {'best': 20, 'rest': 84}
+Arch 4 5 0.125 {'best': 18, 'rest': 61}
+Acap 4 inf 0.124 {'best': 16, 'rest': 42}
+Cplx 2 3 0.12 {'best': 16, 'rest': 45}
+Pcap 4 inf 0.117 {'best': 16, 'rest': 48}
+Time 3 4 0.115 {'best': 20, 'rest': 98}
+Flex 3 4 0.114 {'best': 18, 'rest': 74}
+Plex 3 4 0.112 {'best': 18, 'rest': 76}
+Tool 2 3 0.111 {'best': 18, 'rest': 78}
+Pvol 3 4 0.11 {'best': 20, 'rest': 106}
+Flex 2 3 0.103 {'best': 16, 'rest': 63}
+Cplx -inf 1 0.102 {'best': 13, 'rest': 33}
+Sced 2 3 0.096 {'best': 17, 'rest': 87}
+Arch 5 inf 0.095 {'best': 13, 'rest': 39}
+Ltex 2 3 0.092 {'best': 16, 'rest': 78}
+Aexp 2 3 0.091 {'best': 16, 'rest': 80}
+Site 2 3 0.088 {'best': 15, 'rest': 71}
+Prec 3 4 0.087 {'best': 15, 'rest': 72}
+Cplx 4 5 0.087 {'best': 14, 'rest': 60}
+Sced 4 inf 0.083 {'best': 11, 'rest': 31}
+Rely 2 3 0.081 {'best': 15, 'rest': 83}
+Pcon 2 3 0.08 {'best': 14, 'rest': 69}
+Team 3 4 0.08 {'best': 13, 'rest': 56}
+Plex 4 inf 0.079 {'best': 12, 'rest': 45}
+Flex 4 5 0.079 {'best': 13, 'rest': 58}
+Ruse 3 4 0.072 {'best': 14, 'rest': 84}
+Pmat 3 4 0.065 {'best': 12, 'rest': 66}
+Pcap 1 2 0.065 {'best': 13, 'rest': 82}
+Prec -inf 1 0.06 {'best': 9, 'rest': 33}
+Ruse 4 5 0.056 {'best': 12, 'rest': 84}
+Rely 3 4 0.054 {'best': 11, 'rest': 70}
+Team 2 3 0.049 {'best': 10, 'rest': 64}
+Docu -inf 1 0.049 {'best': 8, 'rest': 35}
+Tool 1 2 0.046 {'best': 10, 'rest': 71}
+Pmat 4 5 0.045 {'best': 10, 'rest': 73}
+Pvol 4 inf 0.044 {'best': 8, 'rest': 43}
+Acap 1 2 0.043 {'best': 10, 'rest': 79}
+Data 3 4 0.041 {'best': 11, 'rest': 107}
+Cplx 3 4 0.037 {'best': 9, 'rest': 75}
+Arch 1 2 0.037 {'best': 8, 'rest': 56}
+Sced -inf 1 0.037 {'best': 7, 'rest': 40}
+Pcon 1 2 0.036 {'best': 9, 'rest': 79}
+Docu 4 inf 0.034 {'best': 7, 'rest': 45}
+Plex -inf 1 0.034 {'best': 6, 'rest': 31}
+Flex -inf 1 0.033 {'best': 6, 'rest': 32}
+Prec 4 5 0.032 {'best': 8, 'rest': 69}
+Pcap -inf 1 0.023 {'best': 5, 'rest': 36}
+Team 1 2 0.021 {'best': 6, 'rest': 65}
+Rely 4 inf 0.02 {'best': 5, 'rest': 45}
+Aexp 3 4 0.018 {'best': 6, 'rest': 77}
+Acap -inf 1 0.015 {'best': 4, 'rest': 40}
+Stor 4 5 0.014 {'best': 6, 'rest': 106}
+Site 1 2 0.013 {'best': 5, 'rest': 76}
+Time -inf 3 0.012 {'best': 4, 'rest': 51}
+Flex 5 inf 0.01 {'best': 3, 'rest': 32}
+Prec 5 inf 0.01 {'best': 3, 'rest': 33}
+Cplx 5 inf 0.009 {'best': 3, 'rest': 37}
+Pmat 5 inf 0.006 {'best': 2, 'rest': 27}
+Ltex 4 inf 0.005 {'best': 2, 'rest': 35}
+Aexp 4 inf 0.004 {'best': 2, 'rest': 42}
+Ruse 5 inf 0.004 {'best': 2, 'rest': 43}
+Data 4 inf 0.003 {'best': 2, 'rest': 63}
+Ltex 3 4 0.003 {'best': 2, 'rest': 68}
+Arch -inf 1 0.002 {'best': 1, 'rest': 29}
+Team -inf 1 0.002 {'best': 1, 'rest': 29}
+Pcon -inf 1 0.001 {'best': 1, 'rest': 37}
+Site -inf 1 0.0 {'rest': 39}
+Stor 5 inf 0.0 {'rest': 50}
+Tool -inf 1 0.0 {'rest': 38}
+{'Stor': [[-inf, 3]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]], 'Site': [[3, 4]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 1]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 1]], 'Time': [[4, 5]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 1]], 'Time': [[4, 5]], 'Pcon': [[3, 4]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 1]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[1, 2]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 1]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[1, 2]], 'Ruse': [[2, 3]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 1]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[1, 2]], 'Ruse': [[2, 3]], 'Team': [[4, 5]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 1]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[1, 2]], 'Ruse': [[2, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[1, 2]], 'Ruse': [[2, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[1, 2]], 'Ruse': [[2, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]]}
+{'Stor': [[-inf, 3]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[1, 2]], 'Ruse': [[2, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, 4]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[1, 2]], 'Ruse': [[2, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, 4]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 2]], 'Site': [[3, 4]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[-inf, 2]], 'Ruse': [[2, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, 4]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, 4]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[-inf, 2]], 'Ruse': [[2, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, 4]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, 4]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[-inf, 2]], 'Ruse': [[2, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, 4]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 2]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, 4]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 2]], 'Pvol': [[2, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 2]], 'Pvol': [[2, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 2]], 'Pvol': [[-inf, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 2]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, 5]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 2]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 2]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[1, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[2, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[2, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[2, 3]], 'Sced': [[1, 2]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 3]], 'Sced': [[1, 2]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 3]], 'Sced': [[1, 2]], 'Pmat': [[1, 2]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 3]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[1, 2]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 3]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[1, 2]], 'Plex': [[2, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, 5]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 3]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 2]], 'Plex': [[2, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[3, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 3]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 2]], 'Plex': [[2, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 3]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 2]], 'Plex': [[2, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 3]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 2]], 'Plex': [[1, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 3]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 2]], 'Plex': [[1, 3]], 'Arch': [[2, 3]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 3]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 2]], 'Plex': [[1, 3]], 'Arch': [[2, 4]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 3]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 3]], 'Arch': [[2, 4]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 3]], 'Arch': [[2, 4]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, 4]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 3]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 2]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 3]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 3]], 'Flex': [[1, 2]], 'Pcap': [[2, 4]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 3]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[4, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 3]], 'Flex': [[1, 2]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 3]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 3]], 'Flex': [[1, 2]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 3]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 3]], 'Flex': [[1, 2], [3, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 3]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[3, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 3]], 'Flex': [[1, 2], [3, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 3]], 'Cplx': [[1, 3]], 'Flex': [[1, 2], [3, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 4]], 'Cplx': [[1, 3]], 'Flex': [[1, 2], [3, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 4]], 'Cplx': [[1, 3]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 2], [3, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, 5]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 2]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 2]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[3, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 3]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, 4]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 2]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[3, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 3]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[2, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 3]], 'Team': [[4, inf]], 'Rely': [[-inf, 3]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[2, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 3]], 'Team': [[3, inf]], 'Rely': [[-inf, 3]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 3]], 'Plex': [[1, 4]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[2, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 3]], 'Team': [[3, inf]], 'Rely': [[-inf, 3]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 4]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 3]], 'Plex': [[1, inf]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[2, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 3]], 'Team': [[3, inf]], 'Rely': [[-inf, 3]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 5]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 3]], 'Plex': [[1, inf]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[2, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 4]], 'Team': [[3, inf]], 'Rely': [[-inf, 3]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 5]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 3]], 'Plex': [[1, inf]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[2, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 4]], 'Team': [[3, inf]], 'Rely': [[-inf, 3]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 5]], 'Pcap': [[2, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 4]], 'Plex': [[1, inf]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[2, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 4]], 'Team': [[3, inf]], 'Rely': [[-inf, 3]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[1, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 5]], 'Pcap': [[1, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 4]], 'Plex': [[1, inf]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[2, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 4]], 'Team': [[3, inf]], 'Rely': [[-inf, 3]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[-inf, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 5]], 'Pcap': [[1, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 4]], 'Plex': [[1, inf]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[2, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 5]], 'Team': [[3, inf]], 'Rely': [[-inf, 3]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[-inf, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 5]], 'Pcap': [[1, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 4]], 'Plex': [[1, inf]], 'Arch': [[2, inf]]}
+{'Stor': [[-inf, 4]], 'Data': [[-inf, 3]], 'Site': [[2, inf]], 'Ltex': [[-inf, 3]], 'Time': [[3, inf]], 'Pcon': [[2, inf]], 'Aexp': [[-inf, 3]], 'Ruse': [[-inf, 5]], 'Team': [[3, inf]], 'Rely': [[-inf, 4]], 'Acap': [[2, inf]], 'Tool': [[2, inf]], 'Prec': [[-inf, 4]], 'Pvol': [[-inf, 4]], 'Cplx': [[-inf, 3], [4, 5]], 'Flex': [[1, 5]], 'Pcap': [[1, inf]], 'Docu': [[1, 4]], 'Sced': [[1, inf]], 'Pmat': [[-inf, 4]], 'Plex': [[1, inf]], 'Arch': [[2, inf]]}

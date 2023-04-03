@@ -1,0 +1,12 @@
+
+no_mbtree 0 0
+no_mbtree 1 1
+
+no_asm 0 0
+no_asm 1 1
+
+no_cabac 0 0
+no_cabac 1 1
+
+no_scenecut 0 0
+no_scenecut 1 1

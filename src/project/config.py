@@ -1,5 +1,18 @@
 # Global Variable List
-the = {'seed': 937162211}
+the = {'seed': 937162211,
+       'bins': 16,
+       'cliffs': 0.147,
+       'd': 0.35,
+       'file': '../../etc/data/project/auto93.csv',
+       'Far': 0.95,
+       'go': 'all',
+       'help': False,
+       'Halves': 512,
+       'min': 0.5,
+       'Max': 512,
+       'p': 2,
+       'rest': 4,
+       'Reuse': True}
 # the help description
 help = """
 script.py : an example script with help text and a test suite

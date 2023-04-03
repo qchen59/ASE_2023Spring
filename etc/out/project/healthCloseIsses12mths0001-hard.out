@@ -1,0 +1,76 @@
+
+N_estimators -inf 30
+N_estimators 30 50
+N_estimators 50 60
+N_estimators 60 90
+N_estimators 90 inf
+
+criterion absolute_error absolute_error
+criterion poisson poisson
+criterion squared_error squared_error
+
+Min_sample_leaves -inf 3
+Min_sample_leaves 3 5
+Min_sample_leaves 5 8
+Min_sample_leaves 8 10
+Min_sample_leaves 10 13
+Min_sample_leaves 13 15
+Min_sample_leaves 15 18
+Min_sample_leaves 18 inf
+
+Min_impurity_decrease -inf 0.25
+Min_impurity_decrease 0.25 0.75
+Min_impurity_decrease 0.75 1.5
+Min_impurity_decrease 1.5 2.75
+Min_impurity_decrease 2.75 inf
+
+Max_depth -inf 8
+Max_depth 8 10
+Max_depth 10 13
+Max_depth 13 15
+Max_depth 15 17
+Max_depth 17 18
+Max_depth 18 inf
+
+criterion absolute_error absolute_error 0.731 {'best': 78, 'rest': 115}
+Min_impurity_decrease -inf 0.25 0.306 {'best': 27, 'rest': 14}
+N_estimators -inf 30 0.291 {'best': 29, 'rest': 32}
+Min_impurity_decrease 0.25 0.75 0.271 {'best': 23, 'rest': 8}
+Max_depth 15 17 0.237 {'best': 25, 'rest': 35}
+N_estimators 30 50 0.233 {'best': 24, 'rest': 31}
+Min_sample_leaves 10 13 0.22 {'best': 25, 'rest': 46}
+Min_impurity_decrease 0.75 1.5 0.218 {'best': 22, 'rest': 26}
+Max_depth 18 inf 0.178 {'best': 19, 'rest': 28}
+Min_sample_leaves 13 15 0.141 {'best': 16, 'rest': 29}
+Max_depth 13 15 0.136 {'best': 15, 'rest': 25}
+Min_sample_leaves 5 8 0.124 {'best': 15, 'rest': 33}
+N_estimators 50 60 0.12 {'best': 13, 'rest': 20}
+N_estimators 60 90 0.078 {'best': 12, 'rest': 47}
+Max_depth 17 18 0.066 {'best': 8, 'rest': 18}
+Max_depth 10 13 0.056 {'best': 10, 'rest': 51}
+Min_sample_leaves 15 18 0.046 {'best': 8, 'rest': 40}
+Min_impurity_decrease 1.5 2.75 0.025 {'best': 6, 'rest': 49}
+Min_sample_leaves 3 5 0.022 {'best': 5, 'rest': 39}
+Min_sample_leaves 8 10 0.015 {'best': 4, 'rest': 38}
+Min_sample_leaves 18 inf 0.01 {'best': 3, 'rest': 36}
+Min_sample_leaves -inf 3 0.003 {'rest': 51, 'best': 2}
+Max_depth 8 10 0.001 {'best': 1, 'rest': 31}
+N_estimators 90 inf 0.0 {'rest': 182}
+criterion poisson poisson 0.0 {'rest': 96}
+criterion squared_error squared_error 0.0 {'rest': 101}
+Min_impurity_decrease 2.75 inf 0.0 {'rest': 215}
+Max_depth -inf 8 0.0 {'rest': 124}
+{'criterion': ['absolute_error']}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 0.25]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 0.25]], 'N_estimators': [[-inf, 30]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 0.75]], 'N_estimators': [[-inf, 30]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 0.75]], 'N_estimators': [[-inf, 30]], 'Max_depth': [[15, 17]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 0.75]], 'N_estimators': [[-inf, 50]], 'Max_depth': [[15, 17]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 0.75]], 'N_estimators': [[-inf, 50]], 'Max_depth': [[15, 17]], 'Min_sample_leaves': [[10, 13]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 1.5]], 'N_estimators': [[-inf, 50]], 'Max_depth': [[15, 17]], 'Min_sample_leaves': [[10, 13]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 1.5]], 'N_estimators': [[-inf, 50]], 'Max_depth': [[15, 17], [18, inf]], 'Min_sample_leaves': [[10, 13]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 1.5]], 'N_estimators': [[-inf, 50]], 'Max_depth': [[15, 17], [18, inf]], 'Min_sample_leaves': [[10, 15]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 1.5]], 'N_estimators': [[-inf, 50]], 'Max_depth': [[13, 17], [18, inf]], 'Min_sample_leaves': [[10, 15]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 1.5]], 'N_estimators': [[-inf, 50]], 'Max_depth': [[13, 17], [18, inf]], 'Min_sample_leaves': [[5, 8], [10, 15]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 1.5]], 'N_estimators': [[-inf, 60]], 'Max_depth': [[13, 17], [18, inf]], 'Min_sample_leaves': [[5, 8], [10, 15]]}
+{'criterion': ['absolute_error'], 'Min_impurity_decrease': [[-inf, 1.5]], 'N_estimators': [[-inf, 90]], 'Max_depth': [[13, 17], [18, inf]], 'Min_sample_leaves': [[5, 8], [10, 15]]}

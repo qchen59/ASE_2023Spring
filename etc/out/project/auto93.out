@@ -1,0 +1,44 @@
+config.the={'seed': 937162211, 'bins': 16, 'cliffs': 0.147, 'd': 0.35, 'file': '../../etc/data/project/auto93.csv', 'Far': 0.95, 'go': 'all', 'help': False, 'Halves': 512, 'min': 0.5, 'Max': 512, 'p': 2, 'rest': 4, 'Reuse': True}
+
+Clndrs -inf 4
+Clndrs 4 inf
+
+Volume -inf 90
+Volume 90 115
+Volume 115 inf
+
+Model -inf 76
+Model 76 79
+Model 79 80
+Model 80 inf
+
+origin 1 1
+origin 2 2
+origin 3 3
+
+origin 3 3 0.873 {'best': 12, 'rest': 7}
+Clndrs -inf 4 0.716 {'best': 12, 'rest': 19}
+Volume -inf 90 0.692 {'best': 9, 'rest': 3}
+Model 79 80 0.429 {'best': 6, 'rest': 4}
+Model 76 79 0.364 {'rest': 9, 'best': 6}
+Volume 90 115 0.167 {'best': 3, 'rest': 6}
+Clndrs 4 inf 0.0 {'rest': 29}
+Volume 115 inf 0.0 {'rest': 39}
+Model -inf 76 0.0 {'rest': 27}
+Model 80 inf 0.0 {'rest': 8}
+origin 1 1 0.0 {'rest': 33}
+origin 2 2 0.0 {'rest': 8}
+{'origin': [3]}
+{'origin': [3], 'Clndrs': [[-inf, 4]]}
+{'origin': [3], 'Clndrs': [[-inf, 4]], 'Volume': [[-inf, 90]]}
+{'origin': [3], 'Clndrs': [[-inf, 4]], 'Volume': [[-inf, 90]], 'Model': [[79, 80]]}
+{'origin': [3], 'Clndrs': [[-inf, 4]], 'Volume': [[-inf, 90]], 'Model': [[76, 80]]}
+{'origin': [3], 'Clndrs': [[-inf, 4]], 'Volume': [[-inf, 115]], 'Model': [[76, 80]]}
+         Lbs-  Acc+  Mpg+
+title                    
+all    2800.0  15.5  20.0
+sway1  2019.0  16.6  40.0
+xpln   2155.0  16.4  30.0
+top    1985.0  18.8  40.0
+--------------------------------------------
+✅ pass: projectTest

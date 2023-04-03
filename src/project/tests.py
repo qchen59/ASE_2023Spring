@@ -1,3 +1,4 @@
+from collections import defaultdict
 import config
 from num import Num
 from sym import Sym
@@ -9,6 +10,7 @@ from utils import returnHandler
 from discretization import bins, value, diffs
 from merge import selects, showRule
 from xpln import xpln
+import pandas as pd
 
 
 def numTest():
@@ -82,7 +84,7 @@ def cloneTest():
     data1 = Data(config.the['file'])
     data2 = data1.clone(data1.rows)
     return len(data1.rows) == len(data2.rows) and data1.cols.y[0].w == data2.cols.y[0].w and data1.cols.x[0].at == \
-           data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
+        data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
 
 
 def aroundTest():
@@ -145,6 +147,7 @@ def binsTest():
     print('all', '', '', '', {'best': len(best.rows), 'rest': len(rest.rows)})
     b4 = None
     b = bins(data.cols.x, {'best': best.rows, 'rest': rest.rows})
+    print(f'{b=}')
     for k, t in enumerate(b):
         for _, range in enumerate(t):
             if range['txt'] != b4:
@@ -190,9 +193,42 @@ def xplnTest():
     selected = [s for s in selected if s]
     data1 = data.clone(selected)
     print("all                  ", data.stats(), data.stats('div'))
-    print("sway with %5s evals"%evals, best.stats(), best.stats('div'))
-    print("xpln on   %5s evals"%evals, data1.stats(), data1.stats('div'))
+    print("sway with %5s evals" % evals, best.stats(), best.stats('div'))
+    print("xpln on   %5s evals" % evals, data1.stats(), data1.stats('div'))
     top, _ = data.betters(len(best.rows))
     top = data.clone(top)
-    print("sort with %5s evals"%len(data.rows), top.stats(), top.stats('div'))
+    print("sort with %5s evals" %
+          len(data.rows), top.stats(), top.stats('div'))
     return True
+
+
+def projectTest():
+    print('called project test')
+    data = Data(config.the['file'])
+    best, rest, evals = data.sway3()
+
+    rule, most = xpln(data, best, rest)
+    selected = selects(rule, data.rows)
+    selected = [s for s in selected if s]
+    data1 = data.clone(selected)
+
+    cols = {}
+    top, _ = data.betters(len(best.rows))
+    top = data.clone(top)
+    medians = [data.stats(), best.stats(), data1.stats(), top.stats()]
+    titles = ['all', 'sway1', 'xpln', 'top']
+
+    for median in medians:
+        for key in median:
+            if key not in cols:
+                # cols[key] = [title]
+                cols[key] = []
+            cols[key].append(median[key])
+    cols['title'] = titles
+
+    df_cols = pd.DataFrame.from_dict(cols)
+    df_cols.set_index('title', inplace=True)
+    print(df_cols)
+    print('--------------------------------------------')
+
+    return df_cols

@@ -156,7 +156,6 @@ def kap2(table, fun):
     return newTable
 
 def selects(rule, rows):
-    # print("rule,rows", rule, rows)
     def disjunction(ranges, row):
         for range in ranges:
             lo, hi, at = range['lo'], range['hi'], range['at']

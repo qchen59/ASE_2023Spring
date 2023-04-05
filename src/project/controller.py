@@ -1,12 +1,8 @@
-import os
 from pathlib import Path
-import pandas as pd
-from main import Main
 import numerics
 import config
 import traceback
-from utils import eg, cli, settings
-from tests import theTest, symTest, randTest, numTest, csvTest, dataTest, statsTest, cloneTest, aroundTest, halfTest, optimizeTest, clusterTest, cliffsTest, binsTest, swayTest, xplnTest, projectTest
+from tests import projectTest
 
 
 dataset_paths = [f for f in Path(
@@ -33,7 +29,7 @@ failed = []
 
 results = {}
 for dataset_path in dataset_paths:
-    if not dataset_path.name == 'auto93.csv':
+    if not dataset_path.name == 'coc10000.csv':
         continue
     print(f'-----------------------------------------------------------')
     print(f'\nDataset name = {dataset_path.name}')

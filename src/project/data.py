@@ -8,7 +8,7 @@ import config
 import math
 import numerics
 import functools
-from pygmo import hypervolume
+# from pygmo import hypervolume
 
 
 class Data:
@@ -70,15 +70,15 @@ class Data:
         s2 = s2 / len(ys)
 
         # s1, s2, ys = 0, 0, self.cols.y
-        data = [[row1.cells[col.at], row2.cells[col.at]] for col in ys]
-        hv = hypervolume(data)
-        ref_point = [0, 19, 50]
-        hv1, hv2 = hv.contributions(ref_point)
-        print('------------------------')
-        print('Data: ', data)
-        print(f'Zitzler: {s1=}, {s2=}')
-        print(f'HyperVolume: {hv1=}, {hv2=}')
-        print('------------------------')
+        # data = [[row1.cells[col.at], row2.cells[col.at]] for col in ys]
+        # hv = hypervolume(data)
+        # ref_point = [0, 19, 50]
+        # hv1, hv2 = hv.contributions(ref_point)
+        # print('------------------------')
+        # print('Data: ', data)
+        # print(f'Zitzler: {s1=}, {s2=}')
+        # print(f'HyperVolume: {hv1=}, {hv2=}')
+        # print('------------------------')
 
         return s1 < s2
 

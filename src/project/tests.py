@@ -206,29 +206,33 @@ def projectTest():
     print('called project test')
     data = Data(config.the['file'])
     best, rest, evals = data.sway3()
-
     rule, most = xpln(data, best, rest)
-    selected = selects(rule, data.rows)
-    selected = [s for s in selected if s]
-    data1 = data.clone(selected)
+    # print("*!*!*!*!*!*",rule)
+    # TODO check if rule is None
+    if rule:
+        selected = selects(rule, data.rows)
+        # selected = [s for s in selected if s]
+        data1 = data.clone(selected)
 
-    cols = {}
-    top, _ = data.betters(len(best.rows))
-    top = data.clone(top)
-    medians = [data.stats(), best.stats(), data1.stats(), top.stats()]
-    titles = ['all', 'sway1', 'xpln', 'top']
+        cols = {}
+        top, _ = data.betters(len(best.rows))
+        top = data.clone(top)
+        medians = [data.stats(), best.stats(), data1.stats(), top.stats()]
+        titles = ['all', 'sway1', 'xpln', 'top']
 
-    for median in medians:
-        for key in median:
-            if key not in cols:
-                # cols[key] = [title]
-                cols[key] = []
-            cols[key].append(median[key])
-    cols['title'] = titles
+        for median in medians:
+            for key in median:
+                if key not in cols:
+                    # cols[key] = [title]
+                    cols[key] = []
+                cols[key].append(median[key])
+        cols['title'] = titles
 
-    df_cols = pd.DataFrame.from_dict(cols)
-    df_cols.set_index('title', inplace=True)
-    print(df_cols)
-    print('--------------------------------------------')
+        df_cols = pd.DataFrame.from_dict(cols)
+        df_cols.set_index('title', inplace=True)
+        print(df_cols)
+        print('--------------------------------------------')
 
-    return df_cols
+        return df_cols
+    else:
+        return None

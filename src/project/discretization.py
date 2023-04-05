@@ -91,58 +91,18 @@ def itself(x):
     """
     return x
 
-# -- Given a sorted list of ranges, try fusing adjacent items
-# -- (stopping when no more fuse-ings can be found). When done,
-# -- make the ranges run from minus to plus infinity
-# -- (with no gaps in between).
 
-
-# def bins(cols: list[Num], rowss: dict[str, list[Row]]) -> list[list[dict]]:
-#     """Return RANGEs that distinguish sets of rows (stored in `rowss`).
-#     To reduce the search space, values in `col` are mapped to small number of `bin`s.
-#     For NUMs, that number is `is.bins=16` (say) (and after dividing
-#     the column into, say, 16 bins, then we call `mergeAny` to see
-#     how many of them can be combined with their neighboring bin).
-#
-#     Args:
-#         cols (list[Num]): `[Num, Num, ...]`\n
-#         rowss (dict[str, list[Row]]): `{'best': [Row, Row, ...]}`.
-#
-#     Returns:
-#         list[list[dict]]: Example = `[[{'at': 0, 'txt': 'Clndrs', 'lo': -inf, 'hi': 3, 'y': Sym}]]`
-#     """
-#     out = []
-#     for col in cols:
-#         ranges = {}
-#         for y, rows in rowss.items():
-#             for row in rows:
-#                 x = row.cells[col.at]
-#                 if x != "?":
-#                     k = bin(col, x)
-#                     if k in ranges:
-#                         ranges[k] = ranges[k]
-#                     else:
-#                         ranges[k] = RANGE(col.at, col.txt, x)
-#                     extend(ranges[k], x, y)
-#         ranges = list(ranges.values())
-#         ranges = lists.sort(lists.map(ranges, itself), lambda x: x['lo'])
-#         if isinstance(col, sym.Sym):
-#             out.append(ranges)
-#         else:
-#             # out.append(merge.mergeAny(ranges))
-#             out.append(merge.mergeAny2(ranges, len(out)/config.the['bins'], config.the['d']*col.div()))
-#     # print(out)
-#     # print("------")
-#     return out
 def bins(cols, rowss):
     def with1Col(col):
         n, ranges = withAllRows(col)
-        # print("n,ranges",n,ranges)
         ranges = lists.sort(lists.map(ranges, itself), lambda x: x['lo'])
         if isinstance(col, sym.Sym):
+            # print("is", ranges)
             return ranges
         else:
-            return merge.mergeAny2(ranges, n/config.the['bins'], config.the['d']*col.div())
+            t = merge.mergeAny2(ranges, n/config.the['bins'], config.the['d']*col.div())
+            # print("not", t)
+            return t
 
     def withAllRows(col):
         def xy(x, y):
@@ -161,6 +121,7 @@ def bins(cols, rowss):
             for row in rows:
                 xy(row.cells[col.at], y)
         return n, ranges.values()
+    # output = [o for o in lists.map(cols, with1Col) if o]
 
     return lists.map(cols, with1Col)
 

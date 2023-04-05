@@ -21,22 +21,27 @@ def RULE(ranges, maxSize):
 def prune(rule, maxSize):
     # print(f'{FAIL}{type(rule)=}{ENDC}')
     n = 0
+    de_list =[]
     for txt, ranges in rule.items():
         n += 1
         # TODO: check if this is correct
         if len(ranges) == maxSize[txt]:
             n -= 1
-            # rule[txt] = None
-            rule.remove(txt)
+            rule[txt] = None
+    rule = {key:val for key, val in rule.items() if val}
+    # print("here", n)
     if n > 0:
         return rule
+
 
 def on(x):
     return lambda t: t[x]
 
+
 def firstN(sortedRanges, scoreFun):
     print("")
-    map(sortedRanges, lambda r: print(r['range']['txt'], r['range']['lo'], r['range']['hi'], rnd(r['val']), r['range']['y'].has))
+    map(sortedRanges,
+        lambda r: print(r['range']['txt'], r['range']['lo'], r['range']['hi'], rnd(r['val']), r['range']['y'].has))
     first = sortedRanges[0]['val']
 
     def useful(range):
@@ -47,12 +52,13 @@ def firstN(sortedRanges, scoreFun):
     most, out = -1, None
     sortedRanges = [i for i in sortedRanges if i]
     for n in range(len(sortedRanges)):
-        t = map(sortedRanges[:n+1], lambda x: x['range'])
+        t = map(sortedRanges[:n + 1], lambda x: x['range'])
         tmp, rule = scoreFun(t)
-        # print("tmp",tmp, most, rule)
+        print("tmp",tmp, most, rule)
         if tmp and tmp > most:
             out, most = rule, tmp
     return out, most
+
 
 def xpln(data, best, rest, maxSizes={}):
     def v(has: dict) -> float:
@@ -79,10 +85,15 @@ def xpln(data, best, rest, maxSizes={}):
             bestr = [b for b in bestr if b]
             restr = [r for r in restr if r]
             if len(bestr) + len(restr) > 0:
-                return v({"best": len(bestr),"rest": len(restr)}), rule
+                return v({"best": len(bestr), "rest": len(restr)}), rule
         return None, None
+
     tmp, maxSizes = [], {}
-    for _, ranges in enumerate(bins(data.cols.x,{"best": best.rows, "rest": rest.rows})):
+    tb = bins(data.cols.x, {"best": best.rows, "rest": rest.rows})
+    tb = [o for o in tb if o]
+    # print("-----")
+    # print(tb)
+    for _, ranges in enumerate(tb):
         maxSizes[ranges[0]['txt']] = len(ranges)
         print()
         for _, range in enumerate(ranges):
@@ -92,5 +103,7 @@ def xpln(data, best, rest, maxSizes={}):
                 'max': len(ranges),
                 'val': v(range['y'].has)
             })
-    rule, most = firstN(sorted(tmp, key=lambda x: x['val'],reverse=True), score)
+    # print("---tmp-----")
+    # print(score)
+    rule, most = firstN(sorted(tmp, key=lambda x: x['val'], reverse=True), score)
     return rule, most

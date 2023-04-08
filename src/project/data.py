@@ -8,7 +8,7 @@ import config
 import math
 import numerics
 import functools
-# from pygmo import hypervolume
+from pygmo import hypervolume
 
 
 class Data:
@@ -68,26 +68,34 @@ class Data:
             s2 = s2 - math.exp(col.w * (y - x) / len(ys))
         s1 = s1 / len(ys)
         s2 = s2 / len(ys)
-
-        # s1, s2, ys = 0, 0, self.cols.y
-        # data = [[row1.cells[col.at], row2.cells[col.at]] for col in ys]
-        # hv = hypervolume(data)
-        # ref_point = [0, 19, 50]
-        # hv1, hv2 = hv.contributions(ref_point)
-        # print('------------------------')
-        # print('Data: ', data)
-        # print(f'Zitzler: {s1=}, {s2=}')
-        # print(f'HyperVolume: {hv1=}, {hv2=}')
-        # print('------------------------')
-
         return s1 < s2
 
-        # for col in ys:
-        #     x = col.norm(row1.cells[col.at])
-        #     y = col.norm(row2.cells[col.at])
-        #     s1 = s1 - math.exp(col.w * (x - y) / len(ys))
-        #     s2 = s2 - math.exp(col.w * (y - x) / len(ys))
-        # return s1 / len(ys) < s2 / len(ys)
+        # calculate which row is better using continuous domination
+
+    def better_project(self, row1, row2):
+        s1, s2, ys = 0, 0, self.cols.y
+        data = [[], []]
+        ref_point = []
+        for col in ys:
+            x = col.norm(row1.cells[col.at])
+            y = col.norm(row2.cells[col.at])
+            if '-' in col.txt:
+                x = -x
+                y = -y
+                ref_point.append(0)
+            else:
+                ref_point.append(1)
+            data[0].append(x)
+            data[1].append(y)
+
+        # print(data)
+        # print(ref_point)
+
+        hv = hypervolume(data)
+        output = hv.contributions(ref_point)
+        hv1, hv2 = output[0], output[1]
+
+        return hv1 < hv2
 
     def better2(self, row1, row2):
         s1, s2, ys = 0, 0, self.cols.y
@@ -101,6 +109,7 @@ class Data:
     def betters(self, n):
         def helper(item1, item2):
             return self.better2(item1, item2)
+
         # tmp = lists.sort(self.rows, helper)
         tmp = self.rows
         cmp = functools.cmp_to_key(helper)
@@ -143,7 +152,7 @@ class Data:
         some = lists.many(rows, config.the['Halves'])
         A = (config.the['Reuse'] and above) or lists.any(some)
         B = self.around(A, some)[
-            int((config.the['Far'] * len(some)) // 1)-1]['row']
+            int((config.the['Far'] * len(some)) // 1) - 1]['row']
         c = dist(A, B)
         # print(int((config.the['Far'] * len(some)) // 1), A,B,c)
         left, right = [], []
@@ -168,7 +177,7 @@ class Data:
         some = lists.many(rows, config.the['Halves'])
         A = (config.the['Reuse'] and above) or lists.any(some)
         B = self.around(A, some)[
-            int((config.the['Far'] * len(some)) // 1)-1]['row']
+            int((config.the['Far'] * len(some)) // 1) - 1]['row']
         c = dist(A, B)
         # print(int((config.the['Far'] * len(some)) // 1), A,B,c)
         left, right = [], []
@@ -226,21 +235,27 @@ class Data:
             else:
                 # half() needs HW6 adjustment to return evals
                 l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above)
-                # print(A,B,c,evals)
                 if self.better(B, A):
                     l, r, A, B = r, l, B, A
-                # print(l)
-                # print("-------")
                 lists.map(r, lambda x: worse.append(x))
                 return worker(l, worse, evals + evals0, A)
 
         best, rest, evals = worker(self.rows, [], 0)
-        # print(best)
-        # print("-------")
-        # print(rest)
-        # print("-------")
-        # print(evals)
-        # print("-------")
+        return self.clone(best), self.clone(rest), evals
+
+    def sway_project(self):
+        def worker(rows, worse, evals0, above=None):
+            if len(rows) < len(self.rows) ** config.the['min']:
+                return rows, lists.many(worse, config.the['rest'] * len(rows)), evals0
+            else:
+                # half() needs HW6 adjustment to return evals
+                l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above)
+                if self.better_project(B, A):
+                    l, r, A, B = r, l, B, A
+                lists.map(r, lambda x: worse.append(x))
+                return worker(l, worse, evals + evals0, A)
+
+        best, rest, evals = worker(self.rows, [], 0)
         return self.clone(best), self.clone(rest), evals
 
     # returns rows, recursively halved

@@ -29,7 +29,7 @@ failed = []
 
 results = {}
 for dataset_path in dataset_paths:
-    if not dataset_path.name == 'china.csv':
+    if not dataset_path.name == 'auto93.csv':
         continue
     print(f'-----------------------------------------------------------')
     print(f'\nDataset name = {dataset_path.name}')

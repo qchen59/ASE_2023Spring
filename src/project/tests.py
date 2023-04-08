@@ -84,7 +84,7 @@ def cloneTest():
     data1 = Data(config.the['file'])
     data2 = data1.clone(data1.rows)
     return len(data1.rows) == len(data2.rows) and data1.cols.y[0].w == data2.cols.y[0].w and data1.cols.x[0].at == \
-        data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
+           data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
 
 
 def aroundTest():
@@ -206,19 +206,24 @@ def projectTest():
     print('called project test')
     data = Data(config.the['file'])
     best, rest, evals = data.sway3()
+    best2, rest2, evals2 = data.sway_project()
     rule, most = xpln(data, best, rest)
+    rule2, most2 = xpln(data, best2, rest2)
     # print("*!*!*!*!*!*",rule)
     # TODO check if rule is None
-    if rule:
+    if rule and rule2:
         selected = selects(rule, data.rows)
+        selected2 = selects(rule2, data.rows)
         selected = [s for s in selected if s]
+        selected2 = [s for s in selected2 if s]
         data1 = data.clone(selected)
+        data2 = data.clone(selected2)
 
         cols = {}
         top, _ = data.betters(len(best.rows))
         top = data.clone(top)
-        medians = [data.stats(), best.stats(), data1.stats(), top.stats()]
-        titles = ['all', 'sway1', 'xpln', 'top']
+        medians = [data.stats(), best.stats(), best2.stats(), data1.stats(), data2.stats(), top.stats()]
+        titles = ['all', 'sway1', 'sway2', 'xpln1', 'xpln2', 'top']
 
         for median in medians:
             for key in median:

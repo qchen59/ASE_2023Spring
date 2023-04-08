@@ -82,12 +82,13 @@ class Data:
             if '-' in col.txt:
                 x = -x
                 y = -y
-                ref_point.append(0)
-            else:
                 ref_point.append(1)
+            else:
+                ref_point.append(2)
             data[0].append(x)
             data[1].append(y)
-
+        if len(ref_point) < 2:
+            return data[0] < data[1]
         # print(data)
         # print(ref_point)
 

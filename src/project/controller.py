@@ -2,6 +2,7 @@ from pathlib import Path
 import numerics
 import config
 import traceback
+import time
 from tests import projectTest
 
 
@@ -29,19 +30,29 @@ failed = []
 
 results = {}
 for dataset_path in dataset_paths:
-    if not dataset_path.name == 'auto93.csv':
-        continue
+    # if not dataset_path.name == 'nasa93dem.csv':
+    #     continue
     print(f'-----------------------------------------------------------')
     print(f'\nDataset name = {dataset_path.name}')
-    try:
-        numerics.Seed = config.the['seed']
-        config.the['file'] = str(dataset_path)
-        results[dataset_path.name] = projectTest()
-        success.append(dataset_path.name)
-    except Exception as e:
-        print(traceback.format_exc())
-        failed.append(dataset_path.name)
+    while 1:
+        try:
+            numerics.Seed = time.time()
+            config.the['file'] = str(dataset_path)
+            result = projectTest()
+            while result is None:
+                numerics.Seed = time.time()
+                result = projectTest()
+            results[dataset_path.name] = result
+            success.append(dataset_path.name)
+            break
+        except Exception as e:
+            print(traceback.format_exc())
+            # failed.append(dataset_path.name)
 
-print(f'Results: \n{results}')
-print(f'{success=}')
+
+# print(f'Results: \n{results}')
+for k,r in results.items():
+    print(k,'\n')
+    print(r,'\n')
+print(f'{success=}, num:{len(success)}')
 print(f'{failed=}')

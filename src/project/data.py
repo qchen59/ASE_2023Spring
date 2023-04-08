@@ -88,7 +88,7 @@ class Data:
             data[0].append(x)
             data[1].append(y)
         if len(ref_point) < 2:
-            return data[0] < data[1]
+            return data[0] > data[1]
         # print(data)
         # print(ref_point)
 

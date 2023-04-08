@@ -211,7 +211,7 @@ def projectTest():
     # TODO check if rule is None
     if rule:
         selected = selects(rule, data.rows)
-        # selected = [s for s in selected if s]
+        selected = [s for s in selected if s]
         data1 = data.clone(selected)
 
         cols = {}

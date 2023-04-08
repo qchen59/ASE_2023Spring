@@ -70,6 +70,15 @@ def mergeAny(ranges0: list[dict]) -> list[dict]:
 
 def mergeAny2(ranges0, nSmall,nFar, noGaps=None):
     def noGaps(t):
+
+        # if the lo == hi for the first bin
+        # e.g 1, 1
+        # -> -inf, 2 since the higher bound is not inclusive
+        # TODO: Check if this implmentation is current
+        if t[0]['lo'] == t[0]['hi']:
+            t[0]['lo'] = float('-inf')
+            t[0]['hi'] += 1
+
         for j in range(1, len(t)):
             t[j]['lo'] = t[j - 1]['hi']
         t[0]['lo'] = float('-inf')

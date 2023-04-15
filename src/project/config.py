@@ -12,7 +12,13 @@ the = {'seed': 937162211,
        'Max': 512,
        'p': 2,
        'rest': 4,
-       'Reuse': True}
+       'Reuse': True,
+       'bootstrap': 512,
+       'conf': 0.05,
+       'cliff': 0.4,
+       'cohen': 0.5,
+       'width': 40
+       }
 # the help description
 help = """
 script.py : an example script with help text and a test suite

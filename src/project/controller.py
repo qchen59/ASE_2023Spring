@@ -36,9 +36,9 @@ def clusterAllDatasets():
         '../../etc/data/project/').iterdir() if f.is_file()]
     results = defaultdict(list)
 
-    for dataset_path in dataset_paths:  # outermost loop
-        if dataset_path.name != 'auto93.csv':
-            continue
+    for dataset_path in dataset_paths[2:4]:  # outermost loop
+        # if dataset_path.name != 'auto93.csv':
+        #     continue
         print(f'-----------------------------------------------------------')
         for i in range(RUNS):
             numerics.Seed = time.time()
@@ -125,6 +125,14 @@ def generateTable2(all_results):
     return all_table2s
 
 
+def displayTable2s(all_table2s):
+    print(f'------------- TABLE 2s --------------')
+    for dataset, dataset_values in all_table2s.items():
+        print(f'Dataset = {dataset}')
+        print(dataset_values)
+        print()
+
+
 if __name__ == "__main__":
     results = clusterAllDatasets()
     displayResults(results)
@@ -132,7 +140,7 @@ if __name__ == "__main__":
     all_results = createRanges(results)
     print(all_results)
     all_table2s = generateTable2(all_results)
-    print(all_table2s)
+    displayTable2s(all_table2s)
 
 
 # print(f'Results: \n{results}')

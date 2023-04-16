@@ -93,13 +93,36 @@ def createRanges(results: dict[str, list]):
 
 
 def generateTable2(all_results):
+    all_table2s = {}
     for dataset, dataset_values in all_results.items():
-        print(f'Dataset = {dataset}')
-        # For all
-        all_to_all = {}
-        for col, col_value in dataset_values['all'].items():
-            all_to_all[col] = bootstrap(col_value, col_value)
-        print(all_to_all)
+        table2 = pd.DataFrame(columns=dataset_values['all'].keys(),
+                              index=['all to all', 'all to sway1', 'all to sway2', 'sway1 to sway2', 'sway1 to xpln1', 'sway2 to xpln2', 'sway1 to top'])
+        for col in dataset_values['all']:
+            # For all to all
+            table2.loc['all to all', col] = bootstrap(
+                dataset_values['all'][col], dataset_values['all'][col])
+            # For all to sway1
+            table2.loc['all to sway1', col] = bootstrap(
+                dataset_values['all'][col], dataset_values['sway1'][col])
+            # For all to sway2
+            table2.loc['all to sway2', col] = bootstrap(
+                dataset_values['all'][col], dataset_values['sway2'][col])
+            # For sway1 to sway2
+            table2.loc['sway1 to sway2', col] = bootstrap(
+                dataset_values['sway1'][col], dataset_values['sway2'][col])
+            # For sway1 to xpln1
+            table2.loc['sway1 to xpln1', col] = bootstrap(
+                dataset_values['sway1'][col], dataset_values['xpln1'][col])
+            # For sway2 to xpln2
+            table2.loc['sway2 to xpln2', col] = bootstrap(
+                dataset_values['sway2'][col], dataset_values['xpln2'][col])
+            # For sway1 to top
+            table2.loc['sway1 to top', col] = bootstrap(
+                dataset_values['sway1'][col], dataset_values['top'][col])
+        # set table2 for dataset
+        all_table2s[dataset] = table2
+
+    return all_table2s
 
 
 if __name__ == "__main__":
@@ -108,7 +131,8 @@ if __name__ == "__main__":
     displayMeanResults(results)
     all_results = createRanges(results)
     print(all_results)
-    generateTable2(all_results)
+    all_table2s = generateTable2(all_results)
+    print(all_table2s)
 
 
 # print(f'Results: \n{results}')

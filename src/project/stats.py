@@ -132,9 +132,9 @@ def tiles(rxs):
 
 
 def bootstrap(y0, z0):
-    print('-----------------------BOOTSTRAP-----------------------')
-    print(f'{y0=}')
-    print(f'{z0=}')
+    # print('-----------------------BOOTSTRAP-----------------------')
+    # print(f'{y0=}')
+    # print(f'{z0=}')
     x, y, z, yhat, zhat = NUM(), NUM(), NUM(), [], []
     for y1 in y0:
         add(x, y1)

@@ -62,9 +62,8 @@ def displayMeanResults(results: dict[str, list]):
     meantable = {}
     for dataset, outputs in results.items():
         print(f'Dataset={dataset}')
-        mean = pd.concat(outputs).groupby(level=0).mean()
-        # tablemean
-        print(round(mean, 2))
+        mean = pd.concat(outputs).groupby(level=0).mean().round(2)
+        print(mean)
         meantable[dataset] = mean
         print()
     return meantable
@@ -146,7 +145,7 @@ if __name__ == "__main__":
     displayTable2s(all_table2s)
     for file in meantable:
         f.write(f"-------------------------{file}-----------\n")
-        f.write(meantable[file].to_latex())
+        f.write(meantable[file].to_latex(float_format="%.2f"))
         f.write("\n\n")
         f.write(all_table2s[file].to_latex())
         f.write("\n\n")

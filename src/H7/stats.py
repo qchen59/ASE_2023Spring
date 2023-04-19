@@ -132,9 +132,9 @@ def tiles(rxs):
 
 
 def bootstrap(y0, z0):
-    print('-----------------------BOOTSTRAP-----------------------')
-    print(f'{y0=}')
-    print(f'{z0=}')
+    # print('-----------------------BOOTSTRAP-----------------------')
+    # print(f'{y0=}')
+    # print(f'{z0=}')
     x, y, z, yhat, zhat = NUM(), NUM(), NUM(), [], []
     for y1 in y0:
         add(x, y1)
@@ -143,14 +143,17 @@ def bootstrap(y0, z0):
         add(x, z1)
         add(z, z1)
     xmu, ymu, zmu = x['mu'], y['mu'], z['mu']
+    xsd, ysd, zsd = x['sd'], y['sd'], z['sd']
     for y1 in y0:
         yhat.append(y1 - ymu + xmu)
     for z1 in z0:
         zhat.append(z1 - zmu + xmu)
     tobs = delta(y, z)
     n = 0
+    if (xmu == ymu and ymu == zmu and xsd == ysd == zsd):
+        return True
     for _ in range(1, config.the['bootstrap'] + 1):
-        if delta(NUM(samples(yhat)), NUM(samples(zhat))) > tobs:
+        if delta(NUM(samples(yhat)), NUM(samples(zhat))) > tobs :
             n = n + 1
     return n / config.the['bootstrap'] >= config.the['conf']
 

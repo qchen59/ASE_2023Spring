@@ -9,12 +9,13 @@ import pandas as pd
 from stats import bootstrap, cliffsDelta
 
 
+
 # output_path = Path('../../etc/out/project/')
 # print(dataset_paths)
 
 success = []
 failed = []
-RUNS = 3
+RUNS = 20
 # for dataset_path in dataset_paths:
 #     if not dataset_path.name == 'auto93.csv':
 #         continue
@@ -36,7 +37,7 @@ def clusterAllDatasets():
         '../../etc/data/project/').iterdir() if f.is_file()]
     results = defaultdict(list)
 
-    for dataset_path in dataset_paths[2:4]:  # outermost loop
+    for dataset_path in dataset_paths:  # outermost loop
         # if dataset_path.name != 'auto93.csv':
         #     continue
         print(f'-----------------------------------------------------------')
@@ -58,11 +59,15 @@ def clusterAllDatasets():
 
 def displayMeanResults(results: dict[str, list]):
     print('------------ MEAN RESULTS -------------')
+    meantable = {}
     for dataset, outputs in results.items():
         print(f'Dataset={dataset}')
         mean = pd.concat(outputs).groupby(level=0).mean()
+        # tablemean
         print(round(mean, 2))
+        meantable[dataset] = mean
         print()
+    return meantable
 
 
 def displayResults(results: dict[str, list]):
@@ -100,19 +105,19 @@ def generateTable2(all_results):
                 
         for col in dataset_values['all']:
             # For all to all
-            table2.loc['all to all', col] = "=" if not bootstrap(dataset_values['all'][col], dataset_values['all'][col]) and cliffsDelta(dataset_values['all'][col], dataset_values['all'][col]) else "≠"
+            table2.loc['all to all', col] = "=" if bootstrap(dataset_values['all'][col], dataset_values['all'][col]) and cliffsDelta(dataset_values['all'][col], dataset_values['all'][col]) else "≠"
             # For all to sway1
-            table2.loc['all to sway1', col] = "=" if not bootstrap(dataset_values['all'][col], dataset_values['sway1'][col]) and cliffsDelta(dataset_values['all'][col], dataset_values['sway1'][col]) else "≠"
+            table2.loc['all to sway1', col] = "=" if bootstrap(dataset_values['all'][col], dataset_values['sway1'][col]) and cliffsDelta(dataset_values['all'][col], dataset_values['sway1'][col]) else "≠"
             # For all to sway2
-            table2.loc['all to sway2', col] = "=" if not bootstrap(dataset_values['all'][col], dataset_values['sway2'][col]) and cliffsDelta(dataset_values['all'][col], dataset_values['sway2'][col]) else "≠"
+            table2.loc['all to sway2', col] = "=" if bootstrap(dataset_values['all'][col], dataset_values['sway2'][col]) and cliffsDelta(dataset_values['all'][col], dataset_values['sway2'][col]) else "≠"
             # For sway1 to sway2
-            table2.loc['sway1 to sway2', col] = "=" if not bootstrap(dataset_values['sway1'][col], dataset_values['sway2'][col]) and cliffsDelta(dataset_values['sway1'][col], dataset_values['sway2'][col]) else "≠"
+            table2.loc['sway1 to sway2', col] = "=" if bootstrap(dataset_values['sway1'][col], dataset_values['sway2'][col]) and cliffsDelta(dataset_values['sway1'][col], dataset_values['sway2'][col]) else "≠"
             # For sway1 to xpln1
-            table2.loc['sway1 to xpln1', col] = "=" if not bootstrap(dataset_values['sway1'][col], dataset_values['xpln1'][col]) and cliffsDelta(dataset_values['sway1'][col], dataset_values['xpln1'][col]) else "≠"
+            table2.loc['sway1 to xpln1', col] = "=" if bootstrap(dataset_values['sway1'][col], dataset_values['xpln1'][col]) and cliffsDelta(dataset_values['sway1'][col], dataset_values['xpln1'][col]) else "≠"
             # For sway2 to xpln2
-            table2.loc['sway2 to xpln2', col] = "=" if not bootstrap(dataset_values['sway2'][col], dataset_values['xpln2'][col]) and cliffsDelta(dataset_values['sway2'][col], dataset_values['xpln2'][col]) else "≠"
+            table2.loc['sway2 to xpln2', col] = "=" if bootstrap(dataset_values['sway2'][col], dataset_values['xpln2'][col]) and cliffsDelta(dataset_values['sway2'][col], dataset_values['xpln2'][col]) else "≠"
             # For sway1 to top
-            table2.loc['sway1 to top', col] = "=" if not bootstrap(dataset_values['sway1'][col], dataset_values['top'][col]) and cliffsDelta(dataset_values['sway1'][col], dataset_values['top'][col]) else "≠"
+            table2.loc['sway1 to top', col] = "=" if bootstrap(dataset_values['sway1'][col], dataset_values['top'][col]) and cliffsDelta(dataset_values['sway1'][col], dataset_values['top'][col]) else "≠"
 
         # set table2 for dataset
         all_table2s[dataset] = table2
@@ -131,13 +136,23 @@ def displayTable2s(all_table2s):
 
 
 if __name__ == "__main__":
+    f = open("../../etc/out/project.txt", "w")
     results = clusterAllDatasets()
     # displayResults(results)
-    displayMeanResults(results)
+    meantable = displayMeanResults(results)
     all_results = createRanges(results)
     # print(all_results)
     all_table2s = generateTable2(all_results)
     displayTable2s(all_table2s)
+    for file in meantable:
+        f.write(f"-------------------------{file}-----------\n")
+        f.write(meantable[file].to_latex())
+        f.write("\n\n")
+        f.write(all_table2s[file].to_latex())
+        f.write("\n\n")
+
+
+    f.close()
 
 
 # print(f'Results: \n{results}')

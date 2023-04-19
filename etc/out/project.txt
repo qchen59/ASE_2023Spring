@@ -1,0 +1,31 @@
+-------------------------auto2.csv-----------
+\begin{tabular}{lrrrr}
+\toprule
+ & CityMPG+ & HighwayMPG+ & Weight- & Class- \\
+title &  &  &  &  \\
+\midrule
+all & 21.000000 & 28.000000 & 3040.000000 & 17.700000 \\
+sway1 & 30.333333 & 34.333333 & 2185.000000 & 8.866667 \\
+sway2 & 31.000000 & 35.666667 & 2018.333333 & 8.533333 \\
+top & 35.000000 & 41.666667 & 2045.000000 & 8.600000 \\
+xpln1 & 30.333333 & 34.333333 & 2218.333333 & 9.466667 \\
+xpln2 & 29.000000 & 33.000000 & 2323.333333 & 9.566667 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lllll}
+\toprule
+ & CityMPG+ & HighwayMPG+ & Weight- & Class- \\
+\midrule
+all to all & = & = & = & = \\
+all to sway1 & ≠ & ≠ & ≠ & ≠ \\
+all to sway2 & ≠ & ≠ & ≠ & ≠ \\
+sway1 to sway2 & = & = & ≠ & ≠ \\
+sway1 to xpln1 & = & = & = & = \\
+sway2 to xpln2 & ≠ & ≠ & ≠ & ≠ \\
+sway1 to top & ≠ & ≠ & ≠ & ≠ \\
+\bottomrule
+\end{tabular}
+
+

@@ -1,0 +1,66 @@
+
+
+X--------------------auto2.csv---------------------X
+
+\begin{tabular}{lrrrr}
+\toprule
+ & CityMPG+ & HighwayMPG+ & Weight- & Class- \\
+title &  &  &  &  \\
+\midrule
+all & 21.00 & 28.00 & 3040.00 & 17.70 \\
+sway1 & 28.00 & 33.00 & 2287.50 & 9.95 \\
+sway2 & 23.50 & 29.50 & 2997.50 & 16.05 \\
+top & 36.00 & 42.00 & 2045.00 & 8.60 \\
+xpln1 & 28.50 & 34.00 & 2270.00 & 9.95 \\
+xpln2 & 20.50 & 28.00 & 3097.50 & 17.65 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lllll}
+\toprule
+ & CityMPG+ & HighwayMPG+ & Weight- & Class- \\
+\midrule
+all to all & = & = & = & = \\
+all to sway1 & ≠ & ≠ & ≠ & ≠ \\
+all to sway2 & = & = & = & = \\
+sway1 to sway2 & ≠ & ≠ & = & = \\
+sway1 to xpln1 & = & = & = & = \\
+sway2 to xpln2 & = & = & = & = \\
+sway1 to top & ≠ & ≠ & ≠ & ≠ \\
+sway2 to top & ≠ & ≠ & ≠ & = \\
+\bottomrule
+\end{tabular}
+
+
+X--------------------auto93.csv--------------------X
+
+\begin{tabular}{lrrr}
+\toprule
+ & Lbs- & Acc+ & Mpg+ \\
+title &  &  &  \\
+\midrule
+all & 2800.00 & 15.50 & 20.00 \\
+sway1 & 2159.50 & 15.00 & 30.00 \\
+sway2 & 2081.50 & 16.10 & 40.00 \\
+top & 2005.00 & 18.80 & 40.00 \\
+xpln1 & 2194.50 & 16.05 & 30.00 \\
+xpln2 & 2194.50 & 16.05 & 30.00 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{llll}
+\toprule
+ & Lbs- & Acc+ & Mpg+ \\
+\midrule
+all to all & = & = & = \\
+all to sway1 & ≠ & ≠ & ≠ \\
+all to sway2 & ≠ & ≠ & ≠ \\
+sway1 to sway2 & ≠ & ≠ & ≠ \\
+sway1 to xpln1 & ≠ & ≠ & = \\
+sway2 to xpln2 & ≠ & = & ≠ \\
+sway1 to top & ≠ & ≠ & ≠ \\
+sway2 to top & ≠ & ≠ & = \\
+\bottomrule
+\end{tabular}

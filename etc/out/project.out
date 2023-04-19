@@ -1,0 +1,43 @@
+
+
+X--------------------auto2.csv---------------------X
+
+       CityMPG+  HighwayMPG+  Weight-  Class-
+title                                        
+all        21.0         28.0   3040.0   17.70
+sway1      28.0         33.0   2287.5    9.95
+sway2      23.5         29.5   2997.5   16.05
+top        36.0         42.0   2045.0    8.60
+xpln1      28.5         34.0   2270.0    9.95
+xpln2      20.5         28.0   3097.5   17.65
+
+               CityMPG+ HighwayMPG+ Weight- Class-
+all to all            =           =       =      =
+all to sway1          ≠           ≠       ≠      ≠
+all to sway2          =           =       =      =
+sway1 to sway2        ≠           ≠       =      =
+sway1 to xpln1        =           =       =      =
+sway2 to xpln2        =           =       =      =
+sway1 to top          ≠           ≠       ≠      ≠
+sway2 to top          ≠           ≠       ≠      =
+
+X--------------------auto93.csv--------------------X
+
+         Lbs-   Acc+  Mpg+
+title                     
+all    2800.0  15.50  20.0
+sway1  2159.5  15.00  30.0
+sway2  2081.5  16.10  40.0
+top    2005.0  18.80  40.0
+xpln1  2194.5  16.05  30.0
+xpln2  2194.5  16.05  30.0
+
+               Lbs- Acc+ Mpg+
+all to all        =    =    =
+all to sway1      ≠    ≠    ≠
+all to sway2      ≠    ≠    ≠
+sway1 to sway2    ≠    ≠    ≠
+sway1 to xpln1    ≠    ≠    =
+sway2 to xpln2    ≠    =    ≠
+sway1 to top      ≠    ≠    ≠
+sway2 to top      ≠    ≠    =

@@ -1,0 +1,363 @@
+
+
+X---------------------SSM.csv----------------------X
+
+\begin{tabular}{lrr}
+\toprule
+ & NUMBERITERATIONS- & TIMETOSOLUTION- \\
+title &  &  \\
+\midrule
+all & 7.00 & 134.89 \\
+sway1 & 6.00 & 123.25 \\
+sway2 & 5.35 & 115.42 \\
+top & 4.00 & 59.97 \\
+xpln1 & 5.55 & 119.32 \\
+xpln2 & 5.35 & 114.89 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lll}
+\toprule
+ & NUMBERITERATIONS- & TIMETOSOLUTION- \\
+\midrule
+all to all & = & = \\
+all to sway1 & ≠ & = \\
+all to sway2 & ≠ & ≠ \\
+sway1 to sway2 & = & = \\
+sway1 to xpln1 & = & = \\
+sway2 to xpln2 & = & = \\
+sway1 to top & ≠ & ≠ \\
+sway2 to top & ≠ & ≠ \\
+\bottomrule
+\end{tabular}
+
+
+X---------------------SSN.csv----------------------X
+
+\begin{tabular}{lrr}
+\toprule
+ & PSNR- & Energy- \\
+title &  &  \\
+\midrule
+all & 45.91 & 1258.08 \\
+sway1 & 42.59 & 1030.32 \\
+sway2 & 43.95 & 1420.75 \\
+top & 26.70 & 465.94 \\
+xpln1 & 45.87 & 1033.54 \\
+xpln2 & 45.55 & 1545.21 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lll}
+\toprule
+ & PSNR- & Energy- \\
+\midrule
+all to all & = & = \\
+all to sway1 & ≠ & ≠ \\
+all to sway2 & ≠ & = \\
+sway1 to sway2 & = & ≠ \\
+sway1 to xpln1 & ≠ & = \\
+sway2 to xpln2 & ≠ & = \\
+sway1 to top & ≠ & ≠ \\
+sway2 to top & ≠ & ≠ \\
+\bottomrule
+\end{tabular}
+
+
+X--------------------auto2.csv---------------------X
+
+\begin{tabular}{lrrrr}
+\toprule
+ & CityMPG+ & HighwayMPG+ & Weight- & Class- \\
+title &  &  &  &  \\
+\midrule
+all & 21.00 & 28.00 & 3040.00 & 17.70 \\
+sway1 & 29.70 & 34.95 & 2169.75 & 8.96 \\
+sway2 & 30.15 & 34.10 & 2227.25 & 9.62 \\
+top & 35.40 & 41.80 & 2045.00 & 8.60 \\
+xpln1 & 27.85 & 32.90 & 2379.00 & 10.26 \\
+xpln2 & 28.85 & 33.50 & 2299.00 & 10.00 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lllll}
+\toprule
+ & CityMPG+ & HighwayMPG+ & Weight- & Class- \\
+\midrule
+all to all & = & = & = & = \\
+all to sway1 & ≠ & ≠ & ≠ & ≠ \\
+all to sway2 & ≠ & ≠ & ≠ & ≠ \\
+sway1 to sway2 & = & = & = & ≠ \\
+sway1 to xpln1 & = & ≠ & ≠ & ≠ \\
+sway2 to xpln2 & = & = & = & = \\
+sway1 to top & ≠ & ≠ & ≠ & = \\
+sway2 to top & ≠ & ≠ & ≠ & ≠ \\
+\bottomrule
+\end{tabular}
+
+
+X--------------------auto93.csv--------------------X
+
+\begin{tabular}{lrrr}
+\toprule
+ & Lbs- & Acc+ & Mpg+ \\
+title &  &  &  \\
+\midrule
+all & 2800.00 & 15.50 & 20.00 \\
+sway1 & 2070.55 & 16.70 & 34.00 \\
+sway2 & 2138.30 & 16.66 & 32.00 \\
+top & 1985.00 & 18.80 & 40.00 \\
+xpln1 & 2183.35 & 16.13 & 30.00 \\
+xpln2 & 2206.60 & 16.08 & 30.00 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{llll}
+\toprule
+ & Lbs- & Acc+ & Mpg+ \\
+\midrule
+all to all & = & = & = \\
+all to sway1 & ≠ & ≠ & ≠ \\
+all to sway2 & ≠ & ≠ & ≠ \\
+sway1 to sway2 & ≠ & = & = \\
+sway1 to xpln1 & ≠ & ≠ & ≠ \\
+sway2 to xpln2 & = & ≠ & = \\
+sway1 to top & ≠ & ≠ & ≠ \\
+sway2 to top & ≠ & ≠ & ≠ \\
+\bottomrule
+\end{tabular}
+
+
+X--------------------china.csv---------------------X
+
+\begin{tabular}{lr}
+\toprule
+ & N_effort- \\
+title &  \\
+\midrule
+all & 2098.00 \\
+sway1 & 623.85 \\
+sway2 & 561.30 \\
+top & 145.00 \\
+xpln1 & 810.15 \\
+xpln2 & 1082.75 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{ll}
+\toprule
+ & N_effort- \\
+\midrule
+all to all & = \\
+all to sway1 & ≠ \\
+all to sway2 & ≠ \\
+sway1 to sway2 & = \\
+sway1 to xpln1 & ≠ \\
+sway2 to xpln2 & ≠ \\
+sway1 to top & ≠ \\
+sway2 to top & ≠ \\
+\bottomrule
+\end{tabular}
+
+
+X-------------------coc1000.csv--------------------X
+
+\begin{tabular}{lrrrrr}
+\toprule
+ & LOC+ & AEXP- & PLEX- & RISK- & EFFORT- \\
+title &  &  &  &  &  \\
+\midrule
+all & 1060.00 & 3.00 & 3.00 & 5.00 & 19641.00 \\
+sway1 & 1065.05 & 2.95 & 3.10 & 3.95 & 18014.65 \\
+sway2 & 1065.20 & 2.90 & 3.10 & 4.30 & 18039.70 \\
+top & 1540.00 & 2.00 & 1.00 & 3.00 & 30241.00 \\
+xpln1 & 1037.65 & 3.00 & 3.00 & 4.50 & 18961.15 \\
+xpln2 & 1066.30 & 3.00 & 2.95 & 5.10 & 21272.95 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{llllll}
+\toprule
+ & LOC+ & AEXP- & PLEX- & RISK- & EFFORT- \\
+\midrule
+all to all & = & = & = & = & = \\
+all to sway1 & = & = & = & = & = \\
+all to sway2 & = & = & = & = & = \\
+sway1 to sway2 & = & = & = & = & = \\
+sway1 to xpln1 & = & = & = & = & = \\
+sway2 to xpln2 & = & = & = & = & = \\
+sway1 to top & ≠ & ≠ & ≠ & = & ≠ \\
+sway2 to top & ≠ & ≠ & ≠ & ≠ & ≠ \\
+\bottomrule
+\end{tabular}
+
+
+X-------------------coc10000.csv-------------------X
+
+\begin{tabular}{lrrr}
+\toprule
+ & Loc+ & Risk- & Effort- \\
+title &  &  &  \\
+\midrule
+all & 1012.00 & 5.00 & 19693.00 \\
+sway1 & 1068.20 & 4.90 & 17848.80 \\
+sway2 & 985.55 & 3.25 & 14185.40 \\
+top & 1959.00 & 0.00 & 17733.00 \\
+xpln1 & 1011.00 & 5.10 & 18985.50 \\
+xpln2 & 1007.30 & 4.50 & 18648.10 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{llll}
+\toprule
+ & Loc+ & Risk- & Effort- \\
+\midrule
+all to all & = & = & = \\
+all to sway1 & ≠ & = & = \\
+all to sway2 & = & ≠ & ≠ \\
+sway1 to sway2 & ≠ & ≠ & = \\
+sway1 to xpln1 & ≠ & = & = \\
+sway2 to xpln2 & = & ≠ & ≠ \\
+sway1 to top & ≠ & ≠ & = \\
+sway2 to top & ≠ & ≠ & ≠ \\
+\bottomrule
+\end{tabular}
+
+
+X-------healthCloseIsses12mths0001-hard.csv--------X
+
+\begin{tabular}{lrrr}
+\toprule
+ & MRE- & ACC+ & PRED40+ \\
+title &  &  &  \\
+\midrule
+all & 75.04 & 7.14 & 25.00 \\
+sway1 & 73.82 & 7.79 & 24.38 \\
+sway2 & 76.31 & 6.79 & 25.62 \\
+top & 64.86 & 11.33 & 25.00 \\
+xpln1 & 73.77 & 7.55 & 25.00 \\
+xpln2 & 76.39 & 6.78 & 26.25 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{llll}
+\toprule
+ & MRE- & ACC+ & PRED40+ \\
+\midrule
+all to all & = & = & = \\
+all to sway1 & ≠ & ≠ & = \\
+all to sway2 & ≠ & ≠ & = \\
+sway1 to sway2 & = & ≠ & = \\
+sway1 to xpln1 & = & = & = \\
+sway2 to xpln2 & = & = & = \\
+sway1 to top & ≠ & ≠ & = \\
+sway2 to top & ≠ & ≠ & = \\
+\bottomrule
+\end{tabular}
+
+
+X-------healthCloseIsses12mths0011-easy.csv--------X
+
+\begin{tabular}{lrrr}
+\toprule
+ & MRE- & ACC+ & PRED40+ \\
+title &  &  &  \\
+\midrule
+all & 119.33 & -12.24 & 0.00 \\
+sway1 & 10.05 & -0.08 & 70.83 \\
+sway2 & 25.13 & -0.13 & 62.50 \\
+top & 0.00 & 0.00 & 83.33 \\
+xpln1 & 5.03 & -0.02 & 79.16 \\
+xpln2 & 5.03 & -0.02 & 79.16 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{llll}
+\toprule
+ & MRE- & ACC+ & PRED40+ \\
+\midrule
+all to all & = & = & = \\
+all to sway1 & ≠ & ≠ & ≠ \\
+all to sway2 & ≠ & ≠ & ≠ \\
+sway1 to sway2 & = & = & = \\
+sway1 to xpln1 & = & = & = \\
+sway2 to xpln2 & = & = & = \\
+sway1 to top & = & = & = \\
+sway2 to top & ≠ & ≠ & ≠ \\
+\bottomrule
+\end{tabular}
+
+
+X------------------nasa93dem.csv-------------------X
+
+\begin{tabular}{lrrrr}
+\toprule
+ & Kloc+ & Effort- & Defects- & Months- \\
+title &  &  &  &  \\
+\midrule
+all & 47.50 & 252.00 & 2007.00 & 21.40 \\
+sway1 & 29.34 & 166.61 & 1293.30 & 17.24 \\
+sway2 & 23.25 & 123.03 & 1031.00 & 15.60 \\
+top & 3.50 & 10.80 & 109.00 & 7.80 \\
+xpln1 & 30.42 & 148.88 & 1313.70 & 18.08 \\
+xpln2 & 25.14 & 140.13 & 1146.30 & 16.52 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lllll}
+\toprule
+ & Kloc+ & Effort- & Defects- & Months- \\
+\midrule
+all to all & = & = & = & = \\
+all to sway1 & ≠ & ≠ & ≠ & ≠ \\
+all to sway2 & ≠ & ≠ & ≠ & ≠ \\
+sway1 to sway2 & ≠ & = & ≠ & = \\
+sway1 to xpln1 & = & = & = & = \\
+sway2 to xpln2 & = & = & = & = \\
+sway1 to top & ≠ & ≠ & ≠ & ≠ \\
+sway2 to top & ≠ & ≠ & ≠ & ≠ \\
+\bottomrule
+\end{tabular}
+
+
+X---------------------pom.csv----------------------X
+
+\begin{tabular}{lrrr}
+\toprule
+ & Cost- & Completion+ & Idle- \\
+title &  &  &  \\
+\midrule
+all & 327.30 & 0.90 & 0.24 \\
+sway1 & 189.12 & 0.89 & 0.23 \\
+sway2 & 246.75 & 0.90 & 0.21 \\
+top & 138.51 & 1.00 & 0.00 \\
+xpln1 & 279.79 & 0.89 & 0.25 \\
+xpln2 & 337.95 & 0.90 & 0.23 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{llll}
+\toprule
+ & Cost- & Completion+ & Idle- \\
+\midrule
+all to all & = & = & = \\
+all to sway1 & ≠ & ≠ & = \\
+all to sway2 & ≠ & = & ≠ \\
+sway1 to sway2 & ≠ & = & = \\
+sway1 to xpln1 & ≠ & = & = \\
+sway2 to xpln2 & ≠ & = & = \\
+sway1 to top & ≠ & ≠ & ≠ \\
+sway2 to top & ≠ & ≠ & ≠ \\
+\bottomrule
+\end{tabular}

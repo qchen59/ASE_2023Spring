@@ -5,17 +5,17 @@ X---------------------SSM.csv----------------------X
        NUMBERITERATIONS-  TIMETOSOLUTION-
 title                                    
 all                 7.00           134.89
-sway1               5.10           120.04
-sway2               5.40           120.22
-sway3               5.15           104.69
+sway1               5.30           116.05
+sway2               5.65           120.05
+sway3               5.20           114.02
 top                 4.00            59.97
-xpln1               5.45           125.68
-xpln2               5.60           120.10
-xpln3               5.65           103.89
+xpln1               5.55           120.43
+xpln2               5.60           126.39
+xpln3               5.90           113.55
 
                NUMBERITERATIONS- TIMETOSOLUTION-
 all to all                     =               =
-all to sway1                   ≠               =
+all to sway1                   ≠               ≠
 all to sway2                   ≠               ≠
 all to sway3                   ≠               ≠
 sway1 to sway2                 =               =
@@ -28,50 +28,50 @@ sway2 to top                   ≠               ≠
 sway3 to top                   ≠               ≠
 
    sway1_time  sway2_time  sway3_time
-0    4.957352    4.941271    5.766362
+0    4.827727    4.830085     5.36906
 
 X---------------------SSN.csv----------------------X
 
        PSNR-  Energy-
 title                
 all    45.91  1258.08
-sway1  44.32   944.61
-sway2  44.06   969.58
-sway3  45.04   705.76
+sway1  44.02  1304.99
+sway2  44.89  1139.13
+sway3  43.72   845.57
 top    26.70   465.94
-xpln1  45.34  1002.05
-xpln2  46.45   902.54
-xpln3  46.06   856.50
+xpln1  44.87  1284.16
+xpln2  46.35  1237.91
+xpln3  44.76   977.48
 
                PSNR- Energy-
 all to all         =       =
-all to sway1       ≠       ≠
-all to sway2       ≠       ≠
-all to sway3       =       ≠
+all to sway1       ≠       =
+all to sway2       =       ≠
+all to sway3       ≠       ≠
 sway1 to sway2     =       =
-sway1 to sway3     =       ≠
+sway1 to sway3     =       =
 sway1 to xpln1     =       =
-sway2 to xpln2     ≠       =
+sway2 to xpln2     =       =
 sway3 to xpln3     =       =
 sway1 to top       ≠       ≠
 sway2 to top       ≠       ≠
 sway3 to top       ≠       ≠
 
    sway1_time  sway2_time  sway3_time
-0    2.118656    2.105528    2.270322
+0    2.008817    2.004715    2.112734
 
 X--------------------auto2.csv---------------------X
 
        CityMPG+  HighwayMPG+  Weight-  Class-
 title                                        
 all       21.00        28.00  3040.00   17.70
-sway1     29.45        34.50  2143.25    8.96
-sway2     29.00        33.70  2233.00    9.67
-sway3     29.20        34.75  2185.50    9.12
+sway1     28.65        33.65  2209.00    9.50
+sway2     29.40        34.15  2204.00    9.31
+sway3     29.15        34.50  2219.25    9.43
 top       35.10        41.70  2045.00    8.60
-xpln1     28.25        32.75  2391.75   10.22
-xpln2     28.05        32.85  2387.00   10.68
-xpln3     30.05        34.10  2238.75    9.32
+xpln1     28.20        33.05  2361.75   10.32
+xpln2     27.90        33.05  2369.75   10.14
+xpln3     28.65        33.35  2317.75    9.92
 
                CityMPG+ HighwayMPG+ Weight- Class-
 all to all            =           =       =      =
@@ -80,28 +80,28 @@ all to sway2          ≠           ≠       ≠      ≠
 all to sway3          ≠           ≠       ≠      ≠
 sway1 to sway2        =           =       =      =
 sway1 to sway3        =           =       =      =
-sway1 to xpln1        =           ≠       ≠      ≠
-sway2 to xpln2        =           =       =      ≠
+sway1 to xpln1        =           =       =      =
+sway2 to xpln2        =           =       ≠      =
 sway3 to xpln3        =           =       =      =
-sway1 to top          ≠           ≠       =      =
-sway2 to top          ≠           ≠       =      =
-sway3 to top          ≠           ≠       ≠      =
+sway1 to top          ≠           ≠       ≠      =
+sway2 to top          ≠           ≠       ≠      =
+sway3 to top          ≠           ≠       ≠      ≠
 
    sway1_time  sway2_time  sway3_time
-0     0.02861    0.026576    0.027266
+0    0.023945    0.023885    0.023566
 
 X--------------------auto93.csv--------------------X
 
           Lbs-   Acc+  Mpg+
 title                      
 all    2800.00  15.50  20.0
-sway1  2156.45  16.47  29.5
-sway2  2113.85  16.02  29.5
-sway3  2136.85  16.33  31.5
+sway1  2114.00  16.33  33.0
+sway2  2080.90  16.04  31.0
+sway3  2115.55  16.42  31.5
 top    1991.00  18.80  40.0
-xpln1  2285.35  15.80  28.0
-xpln2  2203.00  16.06  28.0
-xpln3  2229.85  16.27  30.0
+xpln1  2191.55  16.15  31.5
+xpln2  2166.45  16.14  31.0
+xpln3  2254.70  16.27  29.5
 
                Lbs- Acc+ Mpg+
 all to all        =    =    =
@@ -110,28 +110,28 @@ all to sway2      ≠    ≠    ≠
 all to sway3      ≠    ≠    ≠
 sway1 to sway2    =    =    =
 sway1 to sway3    =    =    =
-sway1 to xpln1    =    =    =
+sway1 to xpln1    ≠    =    =
 sway2 to xpln2    ≠    =    =
-sway3 to xpln3    =    =    =
+sway3 to xpln3    ≠    =    =
 sway1 to top      ≠    ≠    ≠
 sway2 to top      ≠    ≠    ≠
 sway3 to top      ≠    ≠    ≠
 
    sway1_time  sway2_time  sway3_time
-0    0.013562     0.01515    0.016153
+0    0.012154     0.01209    0.012533
 
 X--------------------china.csv---------------------X
 
        N_effort-
 title           
 all      2098.00
-sway1     652.30
-sway2     599.25
-sway3     429.75
+sway1     477.70
+sway2     623.75
+sway3     326.75
 top       145.00
-xpln1    1034.40
-xpln2    1133.05
-xpln3     644.70
+xpln1     808.85
+xpln2    1017.70
+xpln3     554.20
 
                N_effort-
 all to all             =
@@ -139,8 +139,8 @@ all to sway1           ≠
 all to sway2           ≠
 all to sway3           ≠
 sway1 to sway2         =
-sway1 to sway3         =
-sway1 to xpln1         ≠
+sway1 to sway3         ≠
+sway1 to xpln1         =
 sway2 to xpln2         ≠
 sway3 to xpln3         ≠
 sway1 to top           ≠
@@ -148,59 +148,59 @@ sway2 to top           ≠
 sway3 to top           ≠
 
    sway1_time  sway2_time  sway3_time
-0    0.059103    0.046812    0.047329
+0    0.042467    0.041222    0.041466
 
 X-------------------coc1000.csv--------------------X
 
           LOC+  AEXP-  PLEX-  RISK-   EFFORT-
 title                                        
 all    1060.00   3.00   3.00   5.00  19641.00
-sway1  1121.40   2.80   3.00   4.60  20114.00
-sway2  1051.45   2.65   3.00   3.95  17797.10
-sway3  1062.50   3.05   3.00   2.00  13279.25
+sway1  1114.10   2.90   2.95   3.30  17615.90
+sway2  1088.15   2.85   3.00   3.30  14551.65
+sway3  1078.10   2.85   2.75   2.40  15232.60
 top    1540.00   2.00   1.00   3.00  30241.00
-xpln1  1042.25   2.90   3.05   5.10  20568.50
-xpln2  1044.35   3.00   3.00   4.80  18256.65
-xpln3  1056.00   3.00   3.00   4.85  18220.10
+xpln1  1061.35   3.00   2.95   4.25  19637.45
+xpln2  1059.45   3.00   3.00   4.50  19301.05
+xpln3  1031.75   2.95   3.00   4.05  17032.05
 
                LOC+ AEXP- PLEX- RISK- EFFORT-
 all to all        =     =     =     =       =
-all to sway1      ≠     =     =     =       =
-all to sway2      =     ≠     =     ≠       =
+all to sway1      ≠     =     =     ≠       ≠
+all to sway2      =     =     =     ≠       ≠
 all to sway3      =     =     =     ≠       ≠
 sway1 to sway2    =     =     =     =       =
-sway1 to sway3    =     =     =     ≠       ≠
+sway1 to sway3    =     =     =     =       =
 sway1 to xpln1    ≠     =     =     =       =
-sway2 to xpln2    =     ≠     =     =       =
-sway3 to xpln3    =     =     =     ≠       ≠
-sway1 to top      ≠     ≠     ≠     ≠       ≠
+sway2 to xpln2    =     =     =     ≠       ≠
+sway3 to xpln3    =     =     =     ≠       =
+sway1 to top      ≠     ≠     ≠     =       ≠
 sway2 to top      ≠     ≠     ≠     =       ≠
 sway3 to top      ≠     ≠     ≠     ≠       ≠
 
    sway1_time  sway2_time  sway3_time
-0    0.067352    0.067519     0.08055
+0    0.059934    0.059436    0.066015
 
 X-------------------coc10000.csv-------------------X
 
           Loc+  Risk-   Effort-
 title                          
 all    1012.00   5.00  19693.00
-sway1  1087.85   3.85  17404.50
-sway2  1014.60   2.80  12488.45
-sway3  1024.70   2.25  13895.35
-top    1959.00   0.00  17733.00
-xpln1  1011.70   4.80  19050.25
-xpln2  1011.75   4.50  18312.60
-xpln3  1012.55   5.05  19202.35
+sway1  1013.90   4.25  16074.40
+sway2   948.55   2.90  12619.95
+sway3   995.80   3.20  14007.00
+top    1959.00   0.00  17733.95
+xpln1  1011.45   5.20  18766.15
+xpln2   999.40   4.50  17722.10
+xpln3  1019.85   4.75  17848.40
 
                Loc+ Risk- Effort-
 all to all        =     =       =
-all to sway1      ≠     ≠       ≠
-all to sway2      =     ≠       ≠
+all to sway1      =     =       ≠
+all to sway2      ≠     ≠       ≠
 all to sway3      =     ≠       ≠
-sway1 to sway2    ≠     =       ≠
-sway1 to sway3    =     ≠       =
-sway1 to xpln1    ≠     =       =
+sway1 to sway2    =     ≠       ≠
+sway1 to sway3    =     =       =
+sway1 to xpln1    =     =       ≠
 sway2 to xpln2    =     ≠       ≠
 sway3 to xpln3    =     ≠       ≠
 sway1 to top      ≠     ≠       =
@@ -208,20 +208,20 @@ sway2 to top      ≠     ≠       ≠
 sway3 to top      ≠     ≠       ≠
 
    sway1_time  sway2_time  sway3_time
-0    0.541191    0.543763    0.573709
+0    0.492337    0.492558    0.507144
 
 X-------healthCloseIsses12mths0001-hard.csv--------X
 
         MRE-   ACC+  PRED40+
 title                       
 all    75.04   7.14    25.00
-sway1  74.06   7.44    25.00
-sway2  97.34   0.76    36.25
-sway3  77.70   6.39    26.88
+sway1  75.03   7.28    25.62
+sway2  94.75   1.50    35.00
+sway3  76.28   6.79    26.25
 top    64.86  11.33    25.00
-xpln1  75.10   7.21    25.00
-xpln2  97.38   0.76    36.25
-xpln3  77.70   6.40    26.88
+xpln1  75.07   7.18    25.62
+xpln2  94.75   1.51    35.00
+xpln3  76.39   6.78    26.25
 
                MRE- ACC+ PRED40+
 all to all        =    =       =
@@ -238,20 +238,20 @@ sway2 to top      ≠    ≠       ≠
 sway3 to top      ≠    ≠       =
 
    sway1_time  sway2_time  sway3_time
-0    0.156974    0.154835    0.178213
+0    0.148637    0.147097    0.161108
 
 X-------healthCloseIsses12mths0011-easy.csv--------X
 
          MRE-   ACC+  PRED40+
 title                        
 all    119.33 -12.24     0.00
-sway1   15.08  -0.10    66.66
-sway2   15.08  -0.08    70.83
-sway3   52.05  -4.46    41.66
+sway1   20.10  -0.13    63.33
+sway2    5.03  -0.03    79.16
+sway3   85.14  -6.39    20.83
 top      0.00   0.00    83.33
 xpln1    0.00   0.00    83.33
-xpln2    5.03  -0.02    79.16
-xpln3   42.00  -4.38    54.16
+xpln2    0.00   0.00    83.33
+xpln3   65.03  -6.28    37.50
 
                MRE- ACC+ PRED40+
 all to all        =    =       =
@@ -259,63 +259,63 @@ all to sway1      ≠    ≠       ≠
 all to sway2      ≠    ≠       ≠
 all to sway3      ≠    ≠       ≠
 sway1 to sway2    =    =       =
-sway1 to sway3    ≠    ≠       =
-sway1 to xpln1    =    =       =
+sway1 to sway3    ≠    ≠       ≠
+sway1 to xpln1    =    ≠       ≠
 sway2 to xpln2    =    =       =
 sway3 to xpln3    =    =       =
-sway1 to top      =    =       =
+sway1 to top      =    ≠       ≠
 sway2 to top      =    =       =
 sway3 to top      ≠    ≠       ≠
 
    sway1_time  sway2_time  sway3_time
-0     0.15602    0.155442    0.183132
+0    0.145162     0.14292    0.160176
 
 X------------------nasa93dem.csv-------------------X
 
        Kloc+  Effort-  Defects-  Months-
 title                                   
 all    47.50   252.00   2007.00    21.40
-sway1  27.61   242.10   1085.15    17.60
-sway2  24.46   124.06    934.80    16.62
-sway3  25.46   126.12    948.75    16.54
+sway1  21.02   117.28    910.35    15.01
+sway2  15.98    89.00    705.40    15.04
+sway3  32.76   131.95   1382.65    16.48
 top     3.50    10.80    109.00     7.80
-xpln1  29.24   270.38   1219.85    18.64
-xpln2  32.26   177.90   1367.95    18.99
-xpln3  24.90   101.89    960.10    16.76
+xpln1  27.69   134.55   1155.95    16.73
+xpln2  28.66   148.30   1146.60    17.38
+xpln3  35.75   141.06   1403.85    17.21
 
                Kloc+ Effort- Defects- Months-
 all to all         =       =        =       =
-all to sway1       ≠       =        ≠       ≠
+all to sway1       ≠       ≠        ≠       ≠
 all to sway2       ≠       ≠        ≠       ≠
 all to sway3       ≠       ≠        ≠       ≠
 sway1 to sway2     =       =        =       =
 sway1 to sway3     =       =        =       =
 sway1 to xpln1     =       =        =       =
-sway2 to xpln2     =       =        =       =
+sway2 to xpln2     ≠       =        ≠       =
 sway3 to xpln3     =       =        =       =
 sway1 to top       ≠       ≠        ≠       ≠
 sway2 to top       ≠       ≠        ≠       ≠
 sway3 to top       ≠       ≠        ≠       ≠
 
    sway1_time  sway2_time  sway3_time
-0     0.01003    0.009847    0.010087
+0    0.010662    0.009924    0.009979
 
 X---------------------pom.csv----------------------X
 
         Cost-  Completion+  Idle-
 title                            
 all    327.30         0.90   0.24
-sway1  203.51         0.89   0.22
-sway2  240.41         0.89   0.22
-sway3  158.15         0.89   0.25
-top    138.52         1.00   0.00
-xpln1  330.08         0.90   0.24
-xpln2  293.26         0.89   0.24
-xpln3  268.72         0.89   0.25
+sway1  248.89         0.89   0.23
+sway2  221.34         0.89   0.23
+sway3  171.54         0.89   0.24
+top    138.51         1.00   0.00
+xpln1  322.13         0.90   0.24
+xpln2  294.19         0.89   0.25
+xpln3  299.69         0.90   0.25
 
                Cost- Completion+ Idle-
 all to all         =           =     =
-all to sway1       ≠           =     =
+all to sway1       ≠           ≠     =
 all to sway2       ≠           ≠     =
 all to sway3       ≠           ≠     =
 sway1 to sway2     =           =     =
@@ -328,4 +328,4 @@ sway2 to top       ≠           ≠     ≠
 sway3 to top       ≠           ≠     ≠
 
    sway1_time  sway2_time  sway3_time
-0     0.28274    0.281328    0.309324
+0    0.264949    0.260113    0.276519

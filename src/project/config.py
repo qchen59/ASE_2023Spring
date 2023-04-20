@@ -18,7 +18,7 @@ the = {'seed': 937162211,
        'cliff': 0.4,
        'cohen': 0.5,
        'width': 40,
-       'some': 0.5
+       'some': 0.8
        }
 # the help description
 help = """

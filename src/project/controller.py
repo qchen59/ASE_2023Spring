@@ -1,18 +1,14 @@
 from pathlib import Path
 import numerics
 import config
-import traceback
-import time
 from tests import projectTest
-from collections import defaultdict
 import pandas as pd
 from stats import bootstrap, cliffsDelta
 import pickle
 from collections import Counter
 import random
 
-RUNS = 2
-runtime = {}
+RUNS = 20
 RE_RUNS = 1
 
 
@@ -23,6 +19,11 @@ def getAllDatasets():
 
 def clusterDataset(dataset_path: Path):
     clustered_results = []
+    times = {
+        'sway1_time': 0,
+        'sway2_time': 0,
+        'sway3_time': 0,
+    }
     for i in range(RUNS):
         numerics.Seed = random.randint(1, 100000)
         print(
@@ -32,16 +33,25 @@ def clusterDataset(dataset_path: Path):
         while result is None:
             try:
                 result, sway1_time, sway2_time, sway3_time = projectTest()
+                times['sway1_time'] += sway1_time
+                times['sway2_time'] += sway2_time
+                times['sway3_time'] += sway3_time
             except Exception as e:
                 result = None
                 numerics.Seed = random.randint(1, 100000)
         clustered_results.append(result)
-    return clustered_results
+    return clustered_results, times
 
 
 def getTable1(clustered_result):
     table1 = pd.concat(clustered_result).groupby(level=0).mean().round(2)
     return table1
+
+
+def getAverageRuntime(times: dict):
+    for sway_type, sway_time in times.items():
+        times[sway_type] = [sway_time/RUNS]
+    return pd.DataFrame.from_dict(times)
 
 
 def createRanges(clustered_result):
@@ -113,8 +123,8 @@ def getTable2(range_result):
 def generateBothTablesForDataset(dataset_path: Path):
     bestScore, bestRun = 0, None
     for i in range(RE_RUNS):
-        clustered_results = clusterDataset(dataset_path)
-        print(f'{clustered_results=}')
+        clustered_results, times = clusterDataset(dataset_path)
+        table_time = getAverageRuntime(times)
         table1 = getTable1(clustered_results)
         range_result = createRanges(clustered_results)
         table2 = getTable2(range_result)
@@ -126,30 +136,10 @@ def generateBothTablesForDataset(dataset_path: Path):
         if counts['≠'] >= bestScore:
             print("BEST: ", counts['≠'], bestScore)
             bestScore = counts['≠']
-            bestRun = [table1, table2]
+            bestRun = [table1, table2, table_time]
         if different:
             break
     return bestRun
-
-    # clustered_results = clusterDataset(dataset_path)
-    # # print(f'{clustered_results=}')
-    # table1 = getTable1(clustered_results)
-    # # print(f'{table1=}')
-    # range_result = createRanges(clustered_results)
-    # table2 = getTable2(range_result)
-
-    # # check if sway1=sway2
-    # counts = Counter(table2.loc['sway1 to sway2'].to_list())
-    # print(f'{counts=}')
-    # different = True if counts['≠'] == len(
-    #     table2.loc['sway1 to sway2'].to_list()) else False
-    # print(different, retry_attempt)
-
-    # if retry_attempt == RE_RUNS or different:
-    #     return [table1, table2]
-
-    # # recursive call
-    # return generateBothTablesForDataset(dataset_path, retry_attempt+1)
 
 
 def writeOutputsForDatasets(dataset_tables: dict[list], text_filename: str = 'project.out', latex_filename: str = 'project_latex.out', terminal_output: bool = True):
@@ -157,25 +147,31 @@ def writeOutputsForDatasets(dataset_tables: dict[list], text_filename: str = 'pr
     latex_file = Path('../../etc/out') / latex_filename
     with text_file.open('w') as f1, latex_file.open('w') as f2:
         for dataset, tables in dataset_tables.items():
-            table1, table2 = tables[0], tables[1]
+            table1, table2, table_times = tables[0], tables[1], tables[2]
             # Write to terminal out
             if terminal_output:
                 print(f'\nX{dataset:-^40}X\n')
                 print(table1)
                 print("\n")
                 print(table2)
+                print("\n")
+                print(table_times)
 
             # Write to text file
-            # f1.write(f'\n\nX{dataset:-^50}X\n\n')
-            # f1.write(table1.to_string())
-            # f1.write("\n\n")
-            # f1.write(table2.to_string())
+            f1.write(f'\n\nX{dataset:-^50}X\n\n')
+            f1.write(table1.to_string())
+            f1.write("\n\n")
+            f1.write(table2.to_string())
+            f1.write("\n\n")
+            f1.write(table_times.to_string())
 
-            # # Write to latex file
-            # f2.write(f'\n\nX{dataset:-^50}X\n\n')
-            # f2.write(table1.to_latex(float_format="%.2f"))
-            # f2.write("\n\n")
-            # f2.write(table2.to_latex())
+            # Write to latex file
+            f2.write(f'\n\nX{dataset:-^50}X\n\n')
+            f2.write(table1.to_latex(float_format="%.2f"))
+            f2.write("\n\n")
+            f2.write(table2.to_latex())
+            f2.write("\n\n")
+            f2.write(table_times.to_latex())
 
 
 def serializeObjectToFile(object, filename: str = 'objs.pkl'):
@@ -196,189 +192,13 @@ def main():
     datasets = getAllDatasets()
 
     dataset_tables = {}
-    for dataset in datasets[2:4]:
+    for dataset in datasets:
         tables = generateBothTablesForDataset(dataset)
         dataset_tables[dataset.name] = tables
 
     writeOutputsForDatasets(dataset_tables)
-    # serializeObjectToFile(dataset_tables)
-
-
-# def clusterAllDatasets(dataset_name=None):
-#     dataset_paths = [f for f in Path(
-#         '../../etc/data/project/').iterdir() if f.is_file()]
-#     results = defaultdict(list)
-
-#     # filter and cluster only those datasets that have been asked for
-#     if dataset_name:
-#         print("XXXXXXXXXX", dataset_name)
-#         updated_dataset_paths = []
-#         for dataset_path in dataset_paths:
-#             if dataset_name in dataset_path.name:
-#                 updated_dataset_paths.append(dataset_path)
-#         dataset_paths = updated_dataset_paths
-#     else:
-#         dataset_paths = dataset_paths[2:4]
-#     for dataset_path in dataset_paths:  # outermost loop
-#         # if dataset_path.name != 'auto93.csv':
-#         #     continue
-#         print(f'-----------------------------------------------------------')
-#         for i in range(RUNS):
-#             numerics.Seed = time.time()
-#             print(
-#                 f'Dataset={dataset_path.name}\tRun={i}/{RUNS}\tSeed={numerics.Seed}')
-#             config.the['file'] = str(dataset_path)
-#             result = None
-#             while result is None:
-#                 try:
-#                     result = projectTest()
-#                 except Exception as e:
-#                     result = None
-#                     numerics.Seed = time.time()
-#             results[dataset_path.name].append(result)
-#     return results
-
-
-# def displayMeanResults(results: dict[str, list]):
-#     print('------------ MEAN RESULTS -------------')
-#     meantable = {}
-#     for dataset, outputs in results.items():
-#         print(f'Dataset={dataset}')
-#         print(f'{outputs=}')
-#         mean = pd.concat(outputs).groupby(level=0).mean().round(2)
-#         print(mean)
-#         meantable[dataset] = mean
-#         print()
-#     return meantable
-
-
-# def displayResults(results: dict[str, list]):
-#     print('------------ RESULTS -------------')
-#     for dataset, outputs in results.items():
-#         for i, output in enumerate(outputs, 1):
-#             print(f'Dataset={dataset}\tRun={i}/{RUNS}')
-#             print(output)
-#             print()
-
-
-# def createRanges2(results: dict[str, list]):
-#     data_rxs = {}
-#     for dataset, outputs in results.items():
-#         rxs = {}
-#         for output in outputs:
-#             d = output.T.to_dict('dict')
-#             # we add everything to rx
-#             for row, row_value in d.items():
-#                 for col, col_value in row_value.items():
-#                     if row not in rxs:
-#                         rxs[row] = {}
-#                     if col not in rxs[row]:
-#                         rxs[row][col] = []
-#                     rxs[row][col].append(col_value)
-#         data_rxs[dataset] = rxs
-#     return data_rxs
-
-
-# def generateTable2(all_results):
-#     all_table2s = {}
-#     for dataset, dataset_values in all_results.items():
-#         table2 = pd.DataFrame(columns=dataset_values['all'].keys(),
-#                               index=['all to all', 'all to sway1', 'all to sway2', 'sway1 to sway2', 'sway1 to xpln1', 'sway2 to xpln2', 'sway1 to top'])
-
-#         sway1_equals_sway2 = [False]*len(dataset_values['all'])
-#         for i, col in enumerate(dataset_values['all']):
-#             # For all to all
-#             table2.loc['all to all', col] = "=" if bootstrap(dataset_values['all'][col], dataset_values['all'][col]) and cliffsDelta(
-#                 dataset_values['all'][col], dataset_values['all'][col]) else "≠"
-#             # For all to sway1
-#             table2.loc['all to sway1', col] = "=" if bootstrap(dataset_values['all'][col], dataset_values['sway1'][col]) and cliffsDelta(
-#                 dataset_values['all'][col], dataset_values['sway1'][col]) else "≠"
-#             # For all to sway2
-#             table2.loc['all to sway2', col] = "=" if bootstrap(dataset_values['all'][col], dataset_values['sway2'][col]) and cliffsDelta(
-#                 dataset_values['all'][col], dataset_values['sway2'][col]) else "≠"
-#             # For sway1 to sway2
-#             table2.loc['sway1 to sway2', col] = "=" if bootstrap(dataset_values['sway1'][col], dataset_values['sway2'][col]) and cliffsDelta(
-#                 dataset_values['sway1'][col], dataset_values['sway2'][col]) else "≠"
-#             # check if sway1 equals sway2
-#             sway1_equals_sway2[i] = True if table2.loc['sway1 to sway2',
-#                                                        col] == '=' else False
-#             # For sway1 to xpln1
-#             table2.loc['sway1 to xpln1', col] = "=" if bootstrap(dataset_values['sway1'][col], dataset_values['xpln1'][col]) and cliffsDelta(
-#                 dataset_values['sway1'][col], dataset_values['xpln1'][col]) else "≠"
-#             # For sway2 to xpln2
-#             table2.loc['sway2 to xpln2', col] = "=" if bootstrap(dataset_values['sway2'][col], dataset_values['xpln2'][col]) and cliffsDelta(
-#                 dataset_values['sway2'][col], dataset_values['xpln2'][col]) else "≠"
-#             # For sway1 to top
-#             table2.loc['sway1 to top', col] = "=" if bootstrap(dataset_values['sway1'][col], dataset_values['top'][col]) and cliffsDelta(
-#                 dataset_values['sway1'][col], dataset_values['top'][col]) else "≠"
-#             # For sway2 to top
-#             table2.loc['sway2 to top', col] = "=" if bootstrap(dataset_values['sway2'][col], dataset_values['top'][col]) and cliffsDelta(
-#                 dataset_values['sway2'][col], dataset_values['top'][col]) else "≠"
-
-#         # rerun for dataset if sway1=sway2
-#         if any(sway1_equals_sway2) == True:
-#             results = clusterAllDatasets(dataset)
-#             print(results)
-#             # # displayResults(results)
-#             # # meantable = displayMeanResults(results)
-#             # all_results = createRanges(results)
-#             # # print(all_results)
-#             # all_table2s = generateTable2(all_results)
-#             # # displayTable2s(all_table2s)
-#             # print(all_table2s.keys())
-#             # table2 = all_table2s[dataset]
-
-#             # set table2 for dataset
-#         all_table2s[dataset] = table2
-
-#     return all_table2s
-
-
-# def serializeObjectsToFile(objects: list, filename: str = 'objs.pkl'):
-#     # Saving the objects:
-#     with open(filename, 'wb') as f:
-#         pickle.dump(objects, f)
-
-
-# def deserializeFileToObjects(filename: str = 'objs.pkl') -> list:
-#     # Saving the objects:
-#     with open(filename, 'rb') as f:
-#         objects = pickle.load(f)
-#     return objects
-
-
-# def dataframeToLatexTables(table1s: list, table2s: list, filename: str = 'project.txt'):
-#     path = Path('../../etc/out') / filename
-#     with path.open('w') as f:
-#         for file in table1s:
-#             f.write(
-#                 f"-------------------------{file}-------------------------\n")
-#             f.write(table1s[file].to_latex(float_format="%.2f"))
-#             f.write("\n\n")
-#             f.write(table2s[file].to_latex())
-#             f.write("\n\n")
-
-
-# def displayTable2s(all_table2s):
-#     print(f'------------- TABLE 2s --------------')
-#     for dataset, dataset_values in all_table2s.items():
-#         print(f'Dataset = {dataset}')
-#         print(dataset_values)
-#         print()
+    serializeObjectToFile(dataset_tables)
 
 
 if __name__ == "__main__":
-    # results = clusterAllDatasets()
-    # # displayResults(results)
-    # meantable = displayMeanResults(results)
-    # print(f'YYYY{meantable=}')
-    # all_results = createRanges(results)
-    # # print(all_results)
-    # all_table2s = generateTable2(all_results)
-    # displayTable2s(all_table2s)
-    # serializeObjectsToFile([all_results, all_table2s])
-    # print('~~~~~~~~~~~~~~~~~')
-    # a, b = deserializeFileToObjects()
-    # displayTable2s(b)
-    # dataframeToLatexTables(meantable, all_table2s)
     main()

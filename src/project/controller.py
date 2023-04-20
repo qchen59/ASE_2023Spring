@@ -12,6 +12,7 @@ from collections import Counter
 import random
 
 RUNS = 20
+runtime = {}
 RE_RUNS = 5
 
 

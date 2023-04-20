@@ -59,6 +59,7 @@ class Data:
         return lists.kap(cols or self.cols.y, fun)
 
     # calculate which row is better using continuous domination
+    # Is row 2 better?
     def better(self, row1, row2):
         s1, s2, ys = 0, 0, self.cols.y
         for col in ys:
@@ -71,7 +72,7 @@ class Data:
         return s1 < s2
 
         # calculate which row is better using continuous domination
-
+    # Is row 2 better?
     def better_project(self, row1, row2):
         s1, s2, ys = 0, 0, self.cols.y
         data = [[], []]
@@ -82,13 +83,16 @@ class Data:
             if '-' in col.txt:
                 x = -x
                 y = -y
-                ref_point.append(1)
+                ref_point.append(0.1)
             else:
-                ref_point.append(2)
+                ref_point.append(1.1)
             data[0].append(x)
             data[1].append(y)
         if len(ref_point) < 2:
-            return data[0] > data[1]
+            if '-' in ys[0].txt:
+                return data[0] > data[1]
+            else:
+                return data[1] < data[0]
         # print(data)
         # print(ref_point)
 
@@ -97,6 +101,64 @@ class Data:
         hv1, hv2 = output[0], output[1]
 
         return hv1 < hv2
+
+    def better_project_set(self, row1, row2):
+        # print("row1 row2")
+        # print("-------")
+        # print(row1,row2)
+        s1, s2, ys = 0, 0, self.cols.y
+        data = [[], []]
+        ref_point = []
+        r = 0
+        if len(ys) < 2:
+            col = ys[0]
+            if '-' in col.txt:
+                ref_point.append(0.1)
+            else:
+                ref_point.append(1.1)
+            for i in range(len(row1)):
+                x = col.norm(row1[i].cells[col.at])
+                y = col.norm(row2[i].cells[col.at])
+                if '-' in col.txt:
+                    y = -y
+                    x = -x
+                data[0].append(x)
+                data[1].append(y)
+        else:
+            for i in range(len(row1)):
+                temp1 = []
+                temp2 = []
+                for col in ys:
+                    x = col.norm(row1[i].cells[col.at])
+                    y = col.norm(row2[i].cells[col.at])
+                    if '-' in col.txt:
+                        y = -y
+                        x = -x
+                        if not r:
+                            ref_point.append(0.1)
+                    else:
+                        if not r:
+                            ref_point.append(1.1)
+                    temp1.append(x)
+                    temp2.append(y)
+                r = 1
+                data[0].append(temp1)
+                data[1].append(temp2)
+        # Only one goal
+        if len(ref_point) < 2:
+            if '-' in ys[0].txt:
+                return sum(data[0]) < sum(data[1])
+            else:
+                return sum(data[1]) > sum(data[0])
+        # print(data)
+        # print(ref_point)
+
+        hv1 = hypervolume(data[0])
+        h1 = hv1.compute(ref_point)
+        hv2 = hypervolume(data[1])
+        h2 = hv2.compute(ref_point)
+
+        return h1 > h2
 
     def better2(self, row1, row2):
         s1, s2, ys = 0, 0, self.cols.y
@@ -251,7 +313,9 @@ class Data:
             else:
                 # half() needs HW6 adjustment to return evals
                 l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above)
-                if self.better_project(B, A):
+                # if self.better_project(B, A):
+                #     l, r, A, B = r, l, B, A
+                if self.better_project_set(l,r):
                     l, r, A, B = r, l, B, A
                 lists.map(r, lambda x: worse.append(x))
                 return worker(l, worse, evals + evals0, A)

@@ -11,6 +11,7 @@ from discretization import bins, value, diffs
 from merge import selects, showRule
 from xpln import xpln
 import pandas as pd
+import time
 
 
 def numTest():
@@ -205,8 +206,12 @@ def xplnTest():
 def projectTest():
     print('called project test')
     data = Data(config.the['file'])
+    start_time = time.time()
     best, rest, evals = data.sway3()
+    t1 = time.time() - start_time
+    start_time = time.time()
     best2, rest2, evals2 = data.sway_project()
+    t2 = time.time() - start_time
     rule, most = xpln(data, best, rest)
     rule2, most2 = xpln(data, best2, rest2)
     # print("*!*!*!*!*!*",rule)
@@ -238,6 +243,6 @@ def projectTest():
         print(df_cols)
         print('--------------------------------------------')
 
-        return df_cols
+        return df_cols, t1, t2
     else:
         return None

@@ -16,6 +16,7 @@ from stats import bootstrap, cliffsDelta
 success = []
 failed = []
 RUNS = 20
+runtime = {}
 # for dataset_path in dataset_paths:
 #     if not dataset_path.name == 'auto93.csv':
 #         continue
@@ -40,6 +41,7 @@ def clusterAllDatasets():
     for dataset_path in dataset_paths:  # outermost loop
         # if dataset_path.name != 'auto93.csv':
         #     continue
+        runtime[dataset_path.name] = {"sway1": 0, "sway2": 0}
         print(f'-----------------------------------------------------------')
         for i in range(RUNS):
             numerics.Seed = time.time()
@@ -47,12 +49,17 @@ def clusterAllDatasets():
                 f'Dataset={dataset_path.name}\tRun={i}/{RUNS}\tSeed={numerics.Seed}')
             config.the['file'] = str(dataset_path)
             result = None
+            t1 = None
+            t2 = None
             while result is None:
                 try:
-                    result = projectTest()
+                    result, t1, t2 = projectTest()
                 except Exception as e:
+                    print(e)
                     result = None
                     numerics.Seed = time.time()
+            runtime[dataset_path.name]["sway1"] += t1
+            runtime[dataset_path.name]["sway2"] += t2
             results[dataset_path.name].append(result)
     return results
 
@@ -62,6 +69,8 @@ def displayMeanResults(results: dict[str, list]):
     meantable = {}
     for dataset, outputs in results.items():
         print(f'Dataset={dataset}')
+        print(f'Sway 1 Runtime={runtime[dataset]["sway1"]/20}')
+        print(f'Sway 2 Runtime={runtime[dataset]["sway2"]/20}\n')
         mean = pd.concat(outputs).groupby(level=0).mean().round(2)
         print(mean)
         meantable[dataset] = mean

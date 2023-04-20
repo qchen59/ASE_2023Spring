@@ -60,7 +60,7 @@ class Data:
 
     # calculate which row is better using continuous domination
     # Is row 2 better?
-    def better(self, row1, row2):
+    def better_sway1(self, row1, row2):
         s1, s2, ys = 0, 0, self.cols.y
         for col in ys:
             x = col.norm(row1.cells[col.at])
@@ -73,7 +73,7 @@ class Data:
 
         # calculate which row is better using continuous domination
     # Is row 2 better?
-    def better_project(self, row1, row2):
+    def better_sway2(self, row1, row2):
         s1, s2, ys = 0, 0, self.cols.y
         data = [[], []]
         ref_point = []
@@ -102,7 +102,7 @@ class Data:
 
         return hv1 < hv2
 
-    def better_project_set(self, row1, row2):
+    def better_sway3(self, row1, row2):
         # print("row1 row2")
         # print("-------")
         # print(row1,row2)
@@ -261,35 +261,35 @@ class Data:
 
     # returns best half, recursively
 
-    def sway(self, rows=None, min=None, cols=None, above=None):
-        rows = rows or self.rows
-        min = min or len(rows) ** config.the["min"]
-        cols = cols or self.cols.x
-        node = {"data": self.clone(rows)}
+    def sway1(self):
+        def worker(rows, worse, evals0, above=None):
+            if len(rows) < len(self.rows) ** config.the['min']:
+                return rows, lists.many(worse, config.the['rest'] * len(rows)), evals0
+            else:
+                # half() needs HW6 adjustment to return evals
+                l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above)
+                if self.better_sway1(B, A):
+                    l, r, A, B = r, l, B, A
+                lists.map(r, lambda x: worse.append(x))
+                return worker(l, worse, evals + evals0, A)
 
-        if len(rows) > 2 * min:
-            left, right, node["A"], node["B"], node["mid"], c = self.half(
-                rows, cols, above)
-            if self.better(node["B"], node["A"]):
-                left, right, node["A"], node["B"] = right, left, node["B"], node["A"]
-
-            node["left"] = self.sway(left, min, cols, node["A"])
-
-        return node
+        best, rest, evals = worker(self.rows, [], 0)
+        return self.clone(best), self.clone(rest), evals
 
     def sway2(self):
-        def worker(rows, worse, above=None):
-            if len(rows) <= len(self.rows) ** config.the['min']:
-                return rows, lists.many(worse, config.the['rest'] * len(rows))
+        def worker(rows, worse, evals0, above=None):
+            if len(rows) < len(self.rows) ** config.the['min']:
+                return rows, lists.many(worse, config.the['rest'] * len(rows)), evals0
             else:
-                l, r, A, B, m, c = self.half(rows, self.cols.x, above)
-                if self.better(B, A):
-                    l, r, A, B, = r, l, B, A
+                # half() needs HW6 adjustment to return evals
+                l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above)
+                if self.better_sway2(B, A):
+                    l, r, A, B = r, l, B, A
                 lists.map(r, lambda x: worse.append(x))
-                return worker(l, worse, A)
+                return worker(l, worse, evals + evals0, A)
 
-        best, rest = worker(self.rows, [])
-        return self.clone(best), self.clone(rest)
+        best, rest, evals = worker(self.rows, [], 0)
+        return self.clone(best), self.clone(rest), evals
 
     def sway3(self):
         def worker(rows, worse, evals0, above=None):
@@ -298,24 +298,9 @@ class Data:
             else:
                 # half() needs HW6 adjustment to return evals
                 l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above)
-                if self.better(B, A):
-                    l, r, A, B = r, l, B, A
-                lists.map(r, lambda x: worse.append(x))
-                return worker(l, worse, evals + evals0, A)
-
-        best, rest, evals = worker(self.rows, [], 0)
-        return self.clone(best), self.clone(rest), evals
-
-    def sway_project(self):
-        def worker(rows, worse, evals0, above=None):
-            if len(rows) < len(self.rows) ** config.the['min']:
-                return rows, lists.many(worse, config.the['rest'] * len(rows)), evals0
-            else:
-                # half() needs HW6 adjustment to return evals
-                l, r, A, B, m, c, evals = self.half2(rows, self.cols.x, above)
-                # if self.better_project(B, A):
-                #     l, r, A, B = r, l, B, A
-                if self.better_project_set(l,r):
+                some_l, some_r = lists.many(
+                    l, int(config.the['some'] * len(l))), lists.many(r, int(config.the['some'] * len(r)))
+                if self.better_sway3(some_l, some_r):
                     l, r, A, B = r, l, B, A
                 lists.map(r, lambda x: worse.append(x))
                 return worker(l, worse, evals + evals0, A)

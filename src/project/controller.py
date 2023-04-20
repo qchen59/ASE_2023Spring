@@ -11,9 +11,9 @@ import pickle
 from collections import Counter
 import random
 
-RUNS = 20
+RUNS = 2
 runtime = {}
-RE_RUNS = 5
+RE_RUNS = 1
 
 
 def getAllDatasets():
@@ -31,7 +31,7 @@ def clusterDataset(dataset_path: Path):
         result = None
         while result is None:
             try:
-                result = projectTest()
+                result, sway1_time, sway2_time, sway3_time = projectTest()
             except Exception as e:
                 result = None
                 numerics.Seed = random.randint(1, 100000)
@@ -61,7 +61,7 @@ def createRanges(clustered_result):
 
 def getTable2(range_result):
     table2 = pd.DataFrame(columns=range_result['all'].keys(),
-                          index=['all to all', 'all to sway1', 'all to sway2', 'sway1 to sway2', 'sway1 to xpln1', 'sway2 to xpln2', 'sway1 to top', 'sway2 to top'])
+                          index=['all to all', 'all to sway1', 'all to sway2', 'all to sway3', 'sway1 to sway2', 'sway1 to sway3', 'sway1 to xpln1', 'sway2 to xpln2', 'sway3 to xpln3', 'sway1 to top', 'sway2 to top', 'sway3 to top'])
 
     sway1_equals_sway2 = [False]*len(range_result['all'])
 
@@ -75,9 +75,15 @@ def getTable2(range_result):
         # For all to sway2
         table2.loc['all to sway2', col] = "=" if bootstrap(range_result['all'][col], range_result['sway2'][col]) and cliffsDelta(
             range_result['all'][col], range_result['sway2'][col]) else "≠"
+        # For all to sway3
+        table2.loc['all to sway3', col] = "=" if bootstrap(range_result['all'][col], range_result['sway3'][col]) and cliffsDelta(
+            range_result['all'][col], range_result['sway3'][col]) else "≠"
         # For sway1 to sway2
         table2.loc['sway1 to sway2', col] = "=" if bootstrap(range_result['sway1'][col], range_result['sway2'][col]) and cliffsDelta(
             range_result['sway1'][col], range_result['sway2'][col]) else "≠"
+        # For sway1 to sway3
+        table2.loc['sway1 to sway3', col] = "=" if bootstrap(range_result['sway1'][col], range_result['sway3'][col]) and cliffsDelta(
+            range_result['sway1'][col], range_result['sway3'][col]) else "≠"
         # check if sway1 equals sway2
         sway1_equals_sway2[i] = True if table2.loc['sway1 to sway2',
                                                    col] == '=' else False
@@ -87,12 +93,18 @@ def getTable2(range_result):
         # For sway2 to xpln2
         table2.loc['sway2 to xpln2', col] = "=" if bootstrap(range_result['sway2'][col], range_result['xpln2'][col]) and cliffsDelta(
             range_result['sway2'][col], range_result['xpln2'][col]) else "≠"
+        # For sway3 to xpln3
+        table2.loc['sway3 to xpln3', col] = "=" if bootstrap(range_result['sway3'][col], range_result['xpln3'][col]) and cliffsDelta(
+            range_result['sway3'][col], range_result['xpln3'][col]) else "≠"
         # For sway1 to top
         table2.loc['sway1 to top', col] = "=" if bootstrap(range_result['sway1'][col], range_result['top'][col]) and cliffsDelta(
             range_result['sway1'][col], range_result['top'][col]) else "≠"
         # For sway2 to top
         table2.loc['sway2 to top', col] = "=" if bootstrap(range_result['sway2'][col], range_result['top'][col]) and cliffsDelta(
             range_result['sway2'][col], range_result['top'][col]) else "≠"
+        # For sway3 to top
+        table2.loc['sway3 to top', col] = "=" if bootstrap(range_result['sway3'][col], range_result['top'][col]) and cliffsDelta(
+            range_result['sway3'][col], range_result['top'][col]) else "≠"
 
     return table2
 
@@ -102,6 +114,7 @@ def generateBothTablesForDataset(dataset_path: Path):
     bestScore, bestRun = 0, None
     for i in range(RE_RUNS):
         clustered_results = clusterDataset(dataset_path)
+        print(f'{clustered_results=}')
         table1 = getTable1(clustered_results)
         range_result = createRanges(clustered_results)
         table2 = getTable2(range_result)
@@ -153,16 +166,16 @@ def writeOutputsForDatasets(dataset_tables: dict[list], text_filename: str = 'pr
                 print(table2)
 
             # Write to text file
-            f1.write(f'\n\nX{dataset:-^50}X\n\n')
-            f1.write(table1.to_string())
-            f1.write("\n\n")
-            f1.write(table2.to_string())
+            # f1.write(f'\n\nX{dataset:-^50}X\n\n')
+            # f1.write(table1.to_string())
+            # f1.write("\n\n")
+            # f1.write(table2.to_string())
 
-            # Write to latex file
-            f2.write(f'\n\nX{dataset:-^50}X\n\n')
-            f2.write(table1.to_latex(float_format="%.2f"))
-            f2.write("\n\n")
-            f2.write(table2.to_latex())
+            # # Write to latex file
+            # f2.write(f'\n\nX{dataset:-^50}X\n\n')
+            # f2.write(table1.to_latex(float_format="%.2f"))
+            # f2.write("\n\n")
+            # f2.write(table2.to_latex())
 
 
 def serializeObjectToFile(object, filename: str = 'objs.pkl'):
@@ -183,12 +196,12 @@ def main():
     datasets = getAllDatasets()
 
     dataset_tables = {}
-    for dataset in datasets:
+    for dataset in datasets[2:4]:
         tables = generateBothTablesForDataset(dataset)
         dataset_tables[dataset.name] = tables
 
     writeOutputsForDatasets(dataset_tables)
-    serializeObjectToFile(dataset_tables)
+    # serializeObjectToFile(dataset_tables)
 
 
 # def clusterAllDatasets(dataset_name=None):

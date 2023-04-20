@@ -85,7 +85,7 @@ def cloneTest():
     data1 = Data(config.the['file'])
     data2 = data1.clone(data1.rows)
     return len(data1.rows) == len(data2.rows) and data1.cols.y[0].w == data2.cols.y[0].w and data1.cols.x[0].at == \
-           data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
+        data2.cols.x[0].at and len(data1.cols.x) == len(data2.cols.x)
 
 
 def aroundTest():
@@ -178,7 +178,7 @@ def swayTest():
 
 def xplnTest():
     data = Data(config.the['file'])
-    best, rest, evals = data.sway3()
+    best, rest, evals = data.sway1()
     # print(data)
     # print("-------")
     # print(best)
@@ -207,28 +207,45 @@ def projectTest():
     print('called project test')
     data = Data(config.the['file'])
     start_time = time.time()
-    best, rest, evals = data.sway3()
+    best, rest, evals = data.sway1()
     t1 = time.time() - start_time
     start_time = time.time()
-    best2, rest2, evals2 = data.sway_project()
+    best2, rest2, evals2 = data.sway2()
     t2 = time.time() - start_time
+    start_time = time.time()
+    best3, rest3, evals3 = data.sway3()
+    t3 = time.time() - start_time
+
+    # Run xpln
     rule, most = xpln(data, best, rest)
     rule2, most2 = xpln(data, best2, rest2)
+    rule3, most3 = xpln(data, best3, rest3)
+
     # print("*!*!*!*!*!*",rule)
     # TODO check if rule is None
-    if rule and rule2:
+    if rule and rule2 and rule3:
+        # selects
         selected = selects(rule, data.rows)
         selected2 = selects(rule2, data.rows)
+        selected3 = selects(rule3, data.rows)
+
+        # selected
         selected = [s for s in selected if s]
         selected2 = [s for s in selected2 if s]
+        selected3 = [s for s in selected3 if s]
+
+        # data
         data1 = data.clone(selected)
         data2 = data.clone(selected2)
+        data3 = data.clone(selected3)
 
         cols = {}
         top, _ = data.betters(len(best.rows))
         top = data.clone(top)
-        medians = [data.stats(), best.stats(), best2.stats(), data1.stats(), data2.stats(), top.stats()]
-        titles = ['all', 'sway1', 'sway2', 'xpln1', 'xpln2', 'top']
+        medians = [data.stats(), best.stats(), best2.stats(), best3.stats(),
+                   data1.stats(), data2.stats(), data3.stats(), top.stats()]
+        titles = ['all', 'sway1', 'sway2', 'sway3',
+                  'xpln1', 'xpln2', 'xpln3', 'top']
 
         for median in medians:
             for key in median:
@@ -243,6 +260,6 @@ def projectTest():
         print(df_cols)
         print('--------------------------------------------')
 
-        return df_cols, t1, t2
+        return df_cols, t1, t2, t3
     else:
         return None

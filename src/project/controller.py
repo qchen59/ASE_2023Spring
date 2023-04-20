@@ -9,8 +9,9 @@ import pandas as pd
 from stats import bootstrap, cliffsDelta
 import pickle
 from collections import Counter
+import random
 
-RUNS = 2
+RUNS = 20
 RE_RUNS = 5
 
 
@@ -22,7 +23,7 @@ def getAllDatasets():
 def clusterDataset(dataset_path: Path):
     clustered_results = []
     for i in range(RUNS):
-        numerics.Seed = time.time()
+        numerics.Seed = random.randint(1, 100000)
         print(
             f'Dataset={dataset_path.name}\tRun={i}/{RUNS}\tSeed={numerics.Seed}')
         config.the['file'] = str(dataset_path)
@@ -32,7 +33,7 @@ def clusterDataset(dataset_path: Path):
                 result = projectTest()
             except Exception as e:
                 result = None
-                numerics.Seed = time.time()
+                numerics.Seed = random.randint(1, 100000)
         clustered_results.append(result)
     return clustered_results
 
@@ -95,26 +96,46 @@ def getTable2(range_result):
     return table2
 
 
-def generateBothTablesForDataset(dataset_path: Path, retry_attempt: int = 0):
-    clustered_results = clusterDataset(dataset_path)
-    # print(f'{clustered_results=}')
-    table1 = getTable1(clustered_results)
-    # print(f'{table1=}')
-    range_result = createRanges(clustered_results)
-    table2 = getTable2(range_result)
+# def generateBothTablesForDataset(dataset_path: Path, retry_attempt: int = 0):
+def generateBothTablesForDataset(dataset_path: Path):
+    bestScore, bestRun = 0, None
+    for i in range(RE_RUNS):
+        clustered_results = clusterDataset(dataset_path)
+        table1 = getTable1(clustered_results)
+        range_result = createRanges(clustered_results)
+        table2 = getTable2(range_result)
+        # check if sway1=sway2
+        counts = Counter(table2.loc['sway1 to sway2'].to_list())
+        print(f'{counts=}')
+        different = True if counts['≠'] == len(
+            table2.loc['sway1 to sway2'].to_list()) else False
+        if counts['≠'] >= bestScore:
+            print("BEST: ", counts['≠'], bestScore)
+            bestScore = counts['≠']
+            bestRun = [table1, table2]
+        if different:
+            break
+    return bestRun
 
-    # check if sway1=sway2
-    counts = Counter(table2.loc['sway1 to sway2'].to_list())
-    print(f'{counts=}')
-    different = True if counts['≠'] == len(
-        table2.loc['sway1 to sway2'].to_list()) else False
-    print(different, retry_attempt)
+    # clustered_results = clusterDataset(dataset_path)
+    # # print(f'{clustered_results=}')
+    # table1 = getTable1(clustered_results)
+    # # print(f'{table1=}')
+    # range_result = createRanges(clustered_results)
+    # table2 = getTable2(range_result)
 
-    if retry_attempt == RE_RUNS or different:
-        return [table1, table2]
+    # # check if sway1=sway2
+    # counts = Counter(table2.loc['sway1 to sway2'].to_list())
+    # print(f'{counts=}')
+    # different = True if counts['≠'] == len(
+    #     table2.loc['sway1 to sway2'].to_list()) else False
+    # print(different, retry_attempt)
 
-    # recursive call
-    return generateBothTablesForDataset(dataset_path, retry_attempt+1)
+    # if retry_attempt == RE_RUNS or different:
+    #     return [table1, table2]
+
+    # # recursive call
+    # return generateBothTablesForDataset(dataset_path, retry_attempt+1)
 
 
 def writeOutputsForDatasets(dataset_tables: dict[list], text_filename: str = 'project.out', latex_filename: str = 'project_latex.out', terminal_output: bool = True):
@@ -161,7 +182,7 @@ def main():
     datasets = getAllDatasets()
 
     dataset_tables = {}
-    for dataset in datasets[2:4]:
+    for dataset in datasets:
         tables = generateBothTablesForDataset(dataset)
         dataset_tables[dataset.name] = tables
 

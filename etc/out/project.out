@@ -1,43 +1,232 @@
 
 
+X---------------------SSM.csv----------------------X
+
+       NUMBERITERATIONS-  TIMETOSOLUTION-
+title                                    
+all                 7.00           134.89
+sway1               6.00           123.25
+sway2               5.35           115.42
+top                 4.00            59.97
+xpln1               5.55           119.32
+xpln2               5.35           114.89
+
+               NUMBERITERATIONS- TIMETOSOLUTION-
+all to all                     =               =
+all to sway1                   ≠               =
+all to sway2                   ≠               ≠
+sway1 to sway2                 =               =
+sway1 to xpln1                 =               =
+sway2 to xpln2                 =               =
+sway1 to top                   ≠               ≠
+sway2 to top                   ≠               ≠
+
+X---------------------SSN.csv----------------------X
+
+       PSNR-  Energy-
+title                
+all    45.91  1258.08
+sway1  42.59  1030.32
+sway2  43.95  1420.75
+top    26.70   465.94
+xpln1  45.87  1033.54
+xpln2  45.55  1545.21
+
+               PSNR- Energy-
+all to all         =       =
+all to sway1       ≠       ≠
+all to sway2       ≠       =
+sway1 to sway2     =       ≠
+sway1 to xpln1     ≠       =
+sway2 to xpln2     ≠       =
+sway1 to top       ≠       ≠
+sway2 to top       ≠       ≠
+
 X--------------------auto2.csv---------------------X
 
        CityMPG+  HighwayMPG+  Weight-  Class-
 title                                        
-all        21.0         28.0   3040.0   17.70
-sway1      28.0         33.0   2287.5    9.95
-sway2      23.5         29.5   2997.5   16.05
-top        36.0         42.0   2045.0    8.60
-xpln1      28.5         34.0   2270.0    9.95
-xpln2      20.5         28.0   3097.5   17.65
+all       21.00        28.00  3040.00   17.70
+sway1     29.70        34.95  2169.75    8.96
+sway2     30.15        34.10  2227.25    9.62
+top       35.40        41.80  2045.00    8.60
+xpln1     27.85        32.90  2379.00   10.26
+xpln2     28.85        33.50  2299.00   10.00
 
                CityMPG+ HighwayMPG+ Weight- Class-
 all to all            =           =       =      =
 all to sway1          ≠           ≠       ≠      ≠
-all to sway2          =           =       =      =
-sway1 to sway2        ≠           ≠       =      =
-sway1 to xpln1        =           =       =      =
+all to sway2          ≠           ≠       ≠      ≠
+sway1 to sway2        =           =       =      ≠
+sway1 to xpln1        =           ≠       ≠      ≠
 sway2 to xpln2        =           =       =      =
-sway1 to top          ≠           ≠       ≠      ≠
-sway2 to top          ≠           ≠       ≠      =
+sway1 to top          ≠           ≠       ≠      =
+sway2 to top          ≠           ≠       ≠      ≠
 
 X--------------------auto93.csv--------------------X
 
-         Lbs-   Acc+  Mpg+
-title                     
-all    2800.0  15.50  20.0
-sway1  2159.5  15.00  30.0
-sway2  2081.5  16.10  40.0
-top    2005.0  18.80  40.0
-xpln1  2194.5  16.05  30.0
-xpln2  2194.5  16.05  30.0
+          Lbs-   Acc+  Mpg+
+title                      
+all    2800.00  15.50  20.0
+sway1  2070.55  16.70  34.0
+sway2  2138.30  16.66  32.0
+top    1985.00  18.80  40.0
+xpln1  2183.35  16.13  30.0
+xpln2  2206.60  16.08  30.0
 
                Lbs- Acc+ Mpg+
 all to all        =    =    =
 all to sway1      ≠    ≠    ≠
 all to sway2      ≠    ≠    ≠
-sway1 to sway2    ≠    ≠    ≠
-sway1 to xpln1    ≠    ≠    =
-sway2 to xpln2    ≠    =    ≠
+sway1 to sway2    ≠    =    =
+sway1 to xpln1    ≠    ≠    ≠
+sway2 to xpln2    =    ≠    =
 sway1 to top      ≠    ≠    ≠
-sway2 to top      ≠    ≠    =
+sway2 to top      ≠    ≠    ≠
+
+X--------------------china.csv---------------------X
+
+       N_effort-
+title           
+all      2098.00
+sway1     623.85
+sway2     561.30
+top       145.00
+xpln1     810.15
+xpln2    1082.75
+
+               N_effort-
+all to all             =
+all to sway1           ≠
+all to sway2           ≠
+sway1 to sway2         =
+sway1 to xpln1         ≠
+sway2 to xpln2         ≠
+sway1 to top           ≠
+sway2 to top           ≠
+
+X-------------------coc1000.csv--------------------X
+
+          LOC+  AEXP-  PLEX-  RISK-   EFFORT-
+title                                        
+all    1060.00   3.00   3.00   5.00  19641.00
+sway1  1065.05   2.95   3.10   3.95  18014.65
+sway2  1065.20   2.90   3.10   4.30  18039.70
+top    1540.00   2.00   1.00   3.00  30241.00
+xpln1  1037.65   3.00   3.00   4.50  18961.15
+xpln2  1066.30   3.00   2.95   5.10  21272.95
+
+               LOC+ AEXP- PLEX- RISK- EFFORT-
+all to all        =     =     =     =       =
+all to sway1      =     =     =     =       =
+all to sway2      =     =     =     =       =
+sway1 to sway2    =     =     =     =       =
+sway1 to xpln1    =     =     =     =       =
+sway2 to xpln2    =     =     =     =       =
+sway1 to top      ≠     ≠     ≠     =       ≠
+sway2 to top      ≠     ≠     ≠     ≠       ≠
+
+X-------------------coc10000.csv-------------------X
+
+          Loc+  Risk-  Effort-
+title                         
+all    1012.00   5.00  19693.0
+sway1  1068.20   4.90  17848.8
+sway2   985.55   3.25  14185.4
+top    1959.00   0.00  17733.0
+xpln1  1011.00   5.10  18985.5
+xpln2  1007.30   4.50  18648.1
+
+               Loc+ Risk- Effort-
+all to all        =     =       =
+all to sway1      ≠     =       =
+all to sway2      =     ≠       ≠
+sway1 to sway2    ≠     ≠       =
+sway1 to xpln1    ≠     =       =
+sway2 to xpln2    =     ≠       ≠
+sway1 to top      ≠     ≠       =
+sway2 to top      ≠     ≠       ≠
+
+X-------healthCloseIsses12mths0001-hard.csv--------X
+
+        MRE-   ACC+  PRED40+
+title                       
+all    75.04   7.14    25.00
+sway1  73.82   7.79    24.38
+sway2  76.31   6.79    25.62
+top    64.86  11.33    25.00
+xpln1  73.77   7.55    25.00
+xpln2  76.39   6.78    26.25
+
+               MRE- ACC+ PRED40+
+all to all        =    =       =
+all to sway1      ≠    ≠       =
+all to sway2      ≠    ≠       =
+sway1 to sway2    =    ≠       =
+sway1 to xpln1    =    =       =
+sway2 to xpln2    =    =       =
+sway1 to top      ≠    ≠       =
+sway2 to top      ≠    ≠       =
+
+X-------healthCloseIsses12mths0011-easy.csv--------X
+
+         MRE-   ACC+  PRED40+
+title                        
+all    119.33 -12.24     0.00
+sway1   10.05  -0.08    70.83
+sway2   25.13  -0.13    62.50
+top      0.00   0.00    83.33
+xpln1    5.03  -0.02    79.16
+xpln2    5.03  -0.02    79.16
+
+               MRE- ACC+ PRED40+
+all to all        =    =       =
+all to sway1      ≠    ≠       ≠
+all to sway2      ≠    ≠       ≠
+sway1 to sway2    =    =       =
+sway1 to xpln1    =    =       =
+sway2 to xpln2    =    =       =
+sway1 to top      =    =       =
+sway2 to top      ≠    ≠       ≠
+
+X------------------nasa93dem.csv-------------------X
+
+       Kloc+  Effort-  Defects-  Months-
+title                                   
+all    47.50   252.00    2007.0    21.40
+sway1  29.34   166.61    1293.3    17.24
+sway2  23.25   123.03    1031.0    15.60
+top     3.50    10.80     109.0     7.80
+xpln1  30.42   148.88    1313.7    18.08
+xpln2  25.14   140.13    1146.3    16.52
+
+               Kloc+ Effort- Defects- Months-
+all to all         =       =        =       =
+all to sway1       ≠       ≠        ≠       ≠
+all to sway2       ≠       ≠        ≠       ≠
+sway1 to sway2     ≠       =        ≠       =
+sway1 to xpln1     =       =        =       =
+sway2 to xpln2     =       =        =       =
+sway1 to top       ≠       ≠        ≠       ≠
+sway2 to top       ≠       ≠        ≠       ≠
+
+X---------------------pom.csv----------------------X
+
+        Cost-  Completion+  Idle-
+title                            
+all    327.30         0.90   0.24
+sway1  189.12         0.89   0.23
+sway2  246.75         0.90   0.21
+top    138.51         1.00   0.00
+xpln1  279.79         0.89   0.25
+xpln2  337.95         0.90   0.23
+
+               Cost- Completion+ Idle-
+all to all         =           =     =
+all to sway1       ≠           ≠     =
+all to sway2       ≠           =     ≠
+sway1 to sway2     ≠           =     =
+sway1 to xpln1     ≠           =     =
+sway2 to xpln2     ≠           =     =
+sway1 to top       ≠           ≠     ≠
+sway2 to top       ≠           ≠     ≠

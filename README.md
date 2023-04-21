@@ -37,6 +37,11 @@ This is the homework Repository for 2023 Spring CSC 591 Automated Software Engin
 `` pycco -i H1/*.py -d ../docs/H1 ``
 
 
+## Project README
+
+[project.md](docs/project.md)
+
+
 
 
 ## Meet the Team

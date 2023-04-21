@@ -5,17 +5,36 @@
 
 ## Run the project
 
+1. Go to `src/project`.
+```sh
+cd src/project
+```
+
+2. Install `pygmo`. It is only compatible on Intel Linux systems, For any other OS, please follow the following steps `3` to `8`:
 
 1. Install Docker Desktop for M1 (if M1 mac, else normal)
 2. Start the app
 3. Install Dev Containers extension on VS Code.
-4. CMD+Shift+P -> Then search for Dev Containers: Open Folder in Container
+4. `CMD`+`Shift`+`P` -> Then search for `Dev Containers: Open Folder in Container`
 5. Select the project folder and environment as Anaconda (Python)
-6. Open the Terminal and run conda create -n pygmo_env -c conda-forge pygmo
-7. Run conda init (If errors pop up, choose no to report and continue)
-8. Open a NEW Terminal and run conda activate pygmo_env
-9. Then run pip install pandas
-10. Now run the code with ``Python3 controller.py``
+6. Open the Terminal and run 
+```sh
+conda create -n pygmo_env -c conda-forge pygmo
+```
+7. Run `conda init` (If errors pop up, choose no to report and continue)
+8. Open a NEW Terminal and run 
+```sh
+conda activate pygmo_env
+```
+9. Install dependencies. 
+```sh
+pip install pandas jinja2 seaborn
+```
+10. Now run the code:
+```sh
+python controller.py
+```
+
 
 ## Output
 - [etc/out/project](etc/out/project) contains all the output

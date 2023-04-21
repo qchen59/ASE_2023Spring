@@ -1,6 +1,6 @@
 # ASE Final Project
 
- - [src/project](src/project) source code
+ - [src/project](../src/project) source code
  - [Project documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ASE_2023Spring/blob/main/docs/project/index.html)
 
 ## Run the project

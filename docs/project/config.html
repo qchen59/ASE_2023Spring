@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>config.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>config.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Global Variable List</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="n">the</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;seed&#39;</span><span class="p">:</span> <span class="mi">937162211</span><span class="p">,</span>
+       <span class="s1">&#39;bins&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+       <span class="s1">&#39;cliffs&#39;</span><span class="p">:</span> <span class="mf">0.147</span><span class="p">,</span>
+       <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span>
+       <span class="s1">&#39;file&#39;</span><span class="p">:</span> <span class="s1">&#39;../../etc/data/project/auto93.csv&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Far&#39;</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+       <span class="s1">&#39;go&#39;</span><span class="p">:</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+       <span class="s1">&#39;Halves&#39;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span>
+       <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+       <span class="s1">&#39;Max&#39;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span>
+       <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+       <span class="s1">&#39;rest&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+       <span class="s1">&#39;Reuse&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+       <span class="s1">&#39;bootstrap&#39;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span>
+       <span class="s1">&#39;conf&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
+       <span class="s1">&#39;cliff&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span>
+       <span class="s1">&#39;cohen&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+       <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+       <span class="s1">&#39;some&#39;</span><span class="p">:</span> <span class="mf">0.8</span>
+       <span class="p">}</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>the help description</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">script.py : an example script with help text and a test suite</span>
+<span class="s2">USAGE:   script.py  [OPTIONS] [-g ACTION]</span>
+<span class="s2">OPTIONS:</span>
+<span class="s2">  -b  --bins    initial number of bins       = 16</span>
+<span class="s2">  -c  --cliffs  cliff&#39;s delta threshold      = .147</span>
+<span class="s2">  -d  --d       different is over sd*d       = .35</span>
+<span class="s2">  -f  --file    data file                    = ../../etc/data/auto93.csv</span>
+<span class="s2">  -F  --Far     distance to distant          = .95</span>
+<span class="s2">  -g  --go      start-up action              = nothing</span>
+<span class="s2">  -h  --help    show help                    = false</span>
+<span class="s2">  -H  --Halves  search space for clustering  = 512</span>
+<span class="s2">  -m  --min     size of smallest cluster     = .5</span>
+<span class="s2">  -M  --Max     numbers                      = 512</span>
+<span class="s2">  -p  --p       dist coefficient             = 2</span>
+<span class="s2">  -r  --rest    how many of rest to sample   = 4</span>
+<span class="s2">  -R  --Reuse   child splits reuse a parent pole = true</span>
+<span class="s2">  -s  --seed    random number seed           = 937162211</span>
+<span class="s2">ACTIONS:</span>
+<span class="s2">&quot;&quot;&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Test cases</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">egs</span> <span class="o">=</span> <span class="p">{}</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
